@@ -222,11 +222,26 @@ See [TESTING_INSTRUCTIONS.md](TESTING_INSTRUCTIONS.md) for detailed instructions
 
 ### Running Tests
 
+The project includes comprehensive unit and integration tests (49 tests total):
+
+```bash
+# Run all tests
+./run_tests.sh
+
+# Or use unittest directly
+python3 -m unittest discover -s tests -p "test_*.py"
+
+# Run specific test file
+python3 -m unittest tests.test_api_client -v
+```
+
 Test the markdown generator with sample data:
 
 ```bash
 python test_with_sample_data.py
 ```
+
+See [tests/README.md](tests/README.md) for detailed testing documentation.
 
 ### Code Style
 

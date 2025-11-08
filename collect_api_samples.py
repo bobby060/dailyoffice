@@ -353,10 +353,10 @@ These files can be used for:
 
 ## File Naming Convention
 
-- Office prayers: `{type}_{YYYY-MM-DD}.json`
-- Family prayers: `family_{type}_{YYYY-MM-DD}.json`
-- Calendar: `calendar_{YYYY-MM-DD}.json` or `calendar_month_{YYYY-MM}.json`
-- General: `{endpoint_name}.json`
+- Office prayers: `{{type}}_{{YYYY-MM-DD}}.json`
+- Family prayers: `family_{{type}}_{{YYYY-MM-DD}}.json`
+- Calendar: `calendar_{{YYYY-MM-DD}}.json` or `calendar_month_{{YYYY-MM}}.json`
+- General: `{{endpoint_name}}.json`
 """
 
         with open(readme_path, 'w', encoding='utf-8') as f:
