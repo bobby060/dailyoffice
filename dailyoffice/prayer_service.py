@@ -55,6 +55,89 @@ class PrayerService:
 
         return markdown_content
 
+    def generate_evening_prayer_markdown(
+        self,
+        prayer_date: Optional[date] = None
+    ) -> str:
+        """
+        Generate a complete evening prayer document in Markdown format.
+
+        Args:
+            prayer_date: The date for the prayer. Defaults to today.
+
+        Returns:
+            Complete evening prayer as a Markdown string
+
+        Raises:
+            requests.RequestException: If the API request fails
+        """
+        if prayer_date is None:
+            prayer_date = date.today()
+
+        prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date)
+        markdown_content = self.markdown_generator.generate_evening_prayer(prayer_data)
+        return markdown_content
+
+    def generate_midday_prayer_markdown(
+        self,
+        prayer_date: Optional[date] = None
+    ) -> str:
+        """
+        Generate a complete midday prayer document in Markdown format.
+
+        Args:
+            prayer_date: The date for the prayer. Defaults to today.
+
+        Returns:
+            Complete midday prayer as a Markdown string
+
+        Raises:
+            requests.RequestException: If the API request fails
+        """
+        if prayer_date is None:
+            prayer_date = date.today()
+
+        prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date)
+        markdown_content = self.markdown_generator.generate_midday_prayer(prayer_data)
+        return markdown_content
+
+    def save_prayer(
+        self,
+        filename: str,
+        prayer_type: str = 'morning',
+        prayer_date: Optional[date] = None,
+        as_pdf: bool = False
+    ):
+        """
+        Generate and save a prayer document to a file.
+
+        Args:
+            filename: The output filename (should end in .md or .pdf)
+            prayer_type: Type of prayer ('morning', 'evening', or 'midday')
+            prayer_date: The date for the prayer. Defaults to today.
+            as_pdf: If True, save as PDF instead of Markdown
+
+        Raises:
+            requests.RequestException: If the API request fails
+            IOError: If the file cannot be written
+            ValueError: If prayer_type is invalid
+        """
+        # Generate appropriate markdown based on prayer type
+        if prayer_type == 'morning':
+            markdown_content = self.generate_morning_prayer_markdown(prayer_date=prayer_date)
+        elif prayer_type == 'evening':
+            markdown_content = self.generate_evening_prayer_markdown(prayer_date=prayer_date)
+        elif prayer_type == 'midday':
+            markdown_content = self.generate_midday_prayer_markdown(prayer_date=prayer_date)
+        else:
+            raise ValueError(f"Invalid prayer type: {prayer_type}. Must be 'morning', 'evening', or 'midday'")
+
+        # Save as PDF or Markdown
+        if as_pdf:
+            self.markdown_generator.save_to_pdf(markdown_content, filename)
+        else:
+            self.markdown_generator.save_to_file(markdown_content, filename)
+
     def save_morning_prayer(
         self,
         filename: str,

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Daily Office Morning Prayer Generator - Main CLI
+Daily Office Prayer Generator - Main CLI
 
-Generate formatted morning prayer documents from The Book of Common Prayer (2019)
+Generate formatted prayer documents from The Book of Common Prayer (2019)
 using the Daily Office 2019 API.
 """
 
@@ -36,22 +36,41 @@ def parse_date(date_str: str) -> date:
 def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
-        description="Generate Daily Morning Prayer from The Book of Common Prayer (2019)",
+        description="Generate Daily Office prayers from The Book of Common Prayer (2019)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   # Generate morning prayer for today
   python main.py
 
-  # Generate for a specific date
-  python main.py --date 2025-12-25
+  # Generate evening prayer for today
+  python main.py --type evening
+
+  # Generate midday prayer for a specific date
+  python main.py --type midday --date 2025-12-25
+
+  # Generate as PDF
+  python main.py --pdf --output morning_prayer.pdf
 
   # Save to a specific file
   python main.py --output christmas_morning_prayer.md --date 2025-12-25
 
   # Display to console instead of saving
   python main.py --print
+
+  # Get help
+  python main.py --help
+
+For more information, visit: https://www.dailyoffice2019.com/
         """
+    )
+
+    parser.add_argument(
+        '--type', '-t',
+        type=str,
+        choices=['morning', 'evening', 'midday'],
+        default='morning',
+        help='Type of prayer to generate (default: morning)'
     )
 
     parser.add_argument(
@@ -64,8 +83,14 @@ Examples:
     parser.add_argument(
         '--output', '-o',
         type=str,
-        help='Output filename (default: morning_prayer_YYYY-MM-DD.md)',
+        help='Output filename (default: <type>_prayer_YYYY-MM-DD.md or .pdf)',
         metavar='FILE'
+    )
+
+    parser.add_argument(
+        '--pdf',
+        action='store_true',
+        help='Generate PDF output instead of Markdown (requires markdown and weasyprint packages)'
     )
 
     parser.add_argument(
@@ -91,16 +116,21 @@ Examples:
         output_file = args.output
     else:
         date_str = prayer_date.strftime("%Y-%m-%d")
-        output_file = f"morning_prayer_{date_str}.md"
+        ext = 'pdf' if args.pdf else 'md'
+        output_file = f"{args.type}_prayer_{date_str}.{ext}"
 
     # Generate the prayer
     try:
-        print(f"Generating morning prayer for {prayer_date}...")
+        print(f"Generating {args.type} prayer for {prayer_date}...")
 
         with PrayerService() as service:
-            markdown_content = service.generate_morning_prayer_markdown(
-                prayer_date=prayer_date
-            )
+            # Generate markdown based on prayer type
+            if args.type == 'morning':
+                markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date)
+            elif args.type == 'evening':
+                markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date)
+            elif args.type == 'midday':
+                markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date)
 
             if args.print:
                 # Print to console
@@ -108,14 +138,26 @@ Examples:
                 print(markdown_content)
                 print("\n" + "="*80)
             else:
-                # Save to file
-                service.markdown_generator.save_to_file(markdown_content, output_file)
-                print(f"✓ Morning prayer saved to: {output_file}")
+                # Save to file (PDF or Markdown)
+                if args.pdf:
+                    service.markdown_generator.save_to_pdf(markdown_content, output_file)
+                    print(f"✓ {args.type.capitalize()} prayer saved as PDF to: {output_file}")
+                else:
+                    service.markdown_generator.save_to_file(markdown_content, output_file)
+                    print(f"✓ {args.type.capitalize()} prayer saved to: {output_file}")
 
         return 0
 
+    except ImportError as e:
+        if 'markdown' in str(e) or 'weasyprint' in str(e):
+            print(f"Error: PDF generation requires additional packages.", file=sys.stderr)
+            print(f"Install them with: pip install markdown weasyprint", file=sys.stderr)
+        else:
+            print(f"Error: {e}", file=sys.stderr)
+        return 1
+
     except Exception as e:
-        print(f"Error generating morning prayer: {e}", file=sys.stderr)
+        print(f"Error generating {args.type} prayer: {e}", file=sys.stderr)
         import traceback
         traceback.print_exc()
         return 1

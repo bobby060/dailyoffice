@@ -135,8 +135,9 @@ class TestMarkdownGenerator(unittest.TestCase):
         }
 
         result = self.generator._format_line(line)
-        self.assertIn('Officiant:', result)
-        self.assertIn('O Lord, open our lips;', result)
+        # Leader lines should be plain text without labels
+        self.assertEqual(result, 'O Lord, open our lips;')
+        self.assertNotIn('Officiant:', result)
 
     def test_format_line_congregation(self):
         """Test congregation line formatting."""
@@ -147,8 +148,9 @@ class TestMarkdownGenerator(unittest.TestCase):
         }
 
         result = self.generator._format_line(line)
-        self.assertIn('People:', result)
-        self.assertIn('And our mouth shall proclaim your praise.', result)
+        # Congregation lines should be bold without labels
+        self.assertEqual(result, '**And our mouth shall proclaim your praise.**')
+        self.assertNotIn('People:', result)
 
     def test_format_line_with_preface(self):
         """Test line formatting with custom preface."""
@@ -160,8 +162,9 @@ class TestMarkdownGenerator(unittest.TestCase):
         }
 
         result = self.generator._format_line(line)
-        self.assertIn('Officiant:', result)
-        self.assertIn('The Lord be with you.', result)
+        # Leader lines should be plain text without labels (preface is ignored)
+        self.assertEqual(result, 'The Lord be with you.')
+        self.assertNotIn('Officiant:', result)
 
     def test_format_line_citation(self):
         """Test citation line formatting."""

@@ -1,33 +1,37 @@
-# Daily Office Morning Prayer Generator
+# Daily Office Prayer Generator
 
-Generate beautifully formatted morning prayer documents from *The Book of Common Prayer* (2019) using the Daily Office 2019 API.
+Generate beautifully formatted prayer documents from *The Book of Common Prayer* (2019) using the Daily Office 2019 API.
 
 ## Overview
 
-This Python application fetches daily morning prayer liturgy from the [Daily Office 2019 API](https://api.dailyoffice2019.com) and generates well-formatted Markdown documents. The output includes all components of the morning prayer service:
+This Python application fetches daily office liturgy from the [Daily Office 2019 API](https://api.dailyoffice2019.com) and generates well-formatted Markdown and PDF documents. The application supports:
 
+- **Morning Prayer** - Complete morning office with readings and canticles
+- **Evening Prayer** - Evening office with appropriate canticles
+- **Midday Prayer** - Midday office for noontime prayer
+
+Each service includes all components:
 - Opening Sentence
-- Confession of Sin
+- Confession of Sin (where appropriate)
 - The Preces
-- Invitatory (Venite)
-- Psalms (with 30-day or 60-day reading cycle)
-- Old Testament Reading
-- Te Deum Laudamus (or other canticle)
-- New Testament Reading
-- Benedictus (Song of Zechariah)
+- Invitatory (for Morning/Evening Prayer)
+- Psalms (60-day reading cycle)
+- Scripture Readings
+- Canticles (Te Deum, Benedictus, Magnificat, etc.)
 - The Apostles' Creed
 - The Prayers and Collects
 - Final Prayers and Dismissal
 
 ## Features
 
-- ✅ Fetch morning prayer for any date
-- ✅ Support for both 30-day and 60-day psalm reading cycles
-- ✅ Generate clean, readable Markdown output
-- ✅ Includes all daily readings and prayers
-- ✅ Properly formatted liturgical text with leader/congregation parts
-- ✅ Command-line interface for easy use
-- 🔄 Future: LaTeX output for precise PDF formatting
+- ✅ **Three prayer types**: Morning, Evening, and Midday Prayer
+- ✅ **Multiple output formats**: Markdown and PDF
+- ✅ **Clean formatting**: People's responses in bold, no labels needed
+- ✅ **Psalm formatting**: Responsive reading format (officiant normal, people bold)
+- ✅ **Fetch prayers for any date**
+- ✅ **Includes all daily readings and prayers**
+- ✅ **Command-line interface** for easy use
+- ✅ **Comprehensive test suite** (49 tests)
 
 ## Installation
 
@@ -48,7 +52,17 @@ pip install -r requirements.txt
 
 The required packages are:
 - `requests` - for API communication
-- `python-dateutil` - for date handling
+
+3. (Optional) For PDF generation, install additional packages:
+
+```bash
+pip install markdown weasyprint
+```
+
+**Note**: WeasyPrint requires some system libraries. On most systems:
+- **Ubuntu/Debian**: `sudo apt-get install python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0`
+- **macOS**: `brew install pango`
+- **Windows**: Generally works out of the box
 
 ## Usage
 
@@ -70,19 +84,29 @@ python main.py [OPTIONS]
 
 **Options:**
 
+- `-h, --help` - Show help message and exit
+  ```bash
+  python main.py --help
+  ```
+
+- `-t, --type {morning|evening|midday}` - Type of prayer to generate (default: morning)
+  ```bash
+  python main.py --type evening
+  ```
+
 - `-d, --date YYYY-MM-DD` - Specify a date for the prayer (default: today)
   ```bash
   python main.py --date 2025-12-25
   ```
 
-- `-p, --psalm-cycle {30|60}` - Choose psalm reading cycle (default: 60)
-  ```bash
-  python main.py --psalm-cycle 30
-  ```
-
-- `-o, --output FILE` - Specify output filename (default: morning_prayer_YYYY-MM-DD.md)
+- `-o, --output FILE` - Specify output filename (default: <type>_prayer_YYYY-MM-DD.md)
   ```bash
   python main.py --output my_prayer.md
+  ```
+
+- `--pdf` - Generate PDF output instead of Markdown
+  ```bash
+  python main.py --pdf
   ```
 
 - `--print` - Print to console instead of saving to file
@@ -92,24 +116,31 @@ python main.py [OPTIONS]
 
 ### Examples
 
-1. **Generate prayer for Christmas Day:**
+1. **Generate morning prayer for Christmas Day:**
    ```bash
    python main.py --date 2025-12-25 --output christmas_morning.md
    ```
 
-2. **Use 30-day psalm cycle:**
+2. **Generate evening prayer as PDF:**
    ```bash
-   python main.py --psalm-cycle 30
+   python main.py --type evening --pdf --output evening_prayer.pdf
    ```
 
-3. **Preview without saving:**
+3. **Generate midday prayer for a specific date:**
+   ```bash
+   python main.py --type midday --date 2025-11-08
+   ```
+
+4. **Preview without saving:**
    ```bash
    python main.py --print
    ```
 
-4. **Generate for a specific date with custom filename:**
+5. **Generate all three prayers for Sunday:**
    ```bash
-   python main.py -d 2025-11-08 -o november_8_prayer.md -p 60
+   python main.py --type morning --date 2025-11-23 --output sunday_morning.md
+   python main.py --type midday --date 2025-11-23 --output sunday_midday.md
+   python main.py --type evening --date 2025-11-23 --output sunday_evening.md
    ```
 
 ## Project Structure
@@ -139,21 +170,24 @@ Handles all communication with the Daily Office 2019 API:
 - Constructs proper API requests
 - Manages HTTP sessions
 - Handles errors and timeouts
-- Supports both morning and evening prayer endpoints
+- Supports morning, evening, and midday prayer endpoints
 
 ### 2. MarkdownGenerator (`prayer_generator.py`)
 
-Converts API responses into formatted Markdown:
+Converts API responses into formatted Markdown and PDF:
 - Processes different line types (headings, prayers, rubrics, etc.)
 - Formats Scripture readings
-- Handles indentation and liturgical formatting
+- Handles responsive psalm formatting (officiant/people)
 - Cleans HTML content from readings
+- Generates PDF output with proper styling
+- Supports morning, evening, and midday prayer formats
 
 ### 3. PrayerService (`prayer_service.py`)
 
 High-level service layer that coordinates the workflow:
 - Combines API client and markdown generator
-- Provides simple interface for generating prayers
+- Provides simple interface for generating all prayer types
+- Supports both Markdown and PDF output
 - Manages resource lifecycle
 
 ## API Information
@@ -165,9 +199,11 @@ This application uses the [Daily Office 2019 API](https://api.dailyoffice2019.co
 - Proper collects and prayers for each day
 - Church calendar information (seasons, feasts, commemorations)
 
-**API Endpoint Format:**
+**API Endpoint Formats:**
 ```
 https://api.dailyoffice2019.com/api/v1/office/morning_prayer/YYYY-MM-DD
+https://api.dailyoffice2019.com/api/v1/office/evening_prayer/YYYY-MM-DD
+https://api.dailyoffice2019.com/api/v1/office/midday_prayer/YYYY-MM-DD
 ```
 
 ## Output Format
@@ -176,29 +212,40 @@ The generated Markdown includes:
 
 - **Liturgical metadata** - date, season, feast day
 - **Structured sections** - each part of the service as a heading
-- **Role indicators** - "Officiant:" and "People:" for responsive parts
-- **Scripture** - formatted as blockquotes
-- **Citations** - properly marked
-- **Rubrics** - in italics
+- **Clean formatting** - People's responses in **bold**, officiant lines in normal text
+- **No redundant labels** - Italic rubrics indicate who speaks
+- **Responsive psalms** - Alternating normal (officiant) and bold (people) lines
+- **Scripture** - formatted as blockquotes with verse numbers
+- **Citations** - properly marked with em dash
+- **Rubrics** - in italics for stage directions
 
 Example output structure:
 
 ```markdown
 # Daily Morning Prayer
-## Friday, November 8, 2025
+## Saturday, November 8, 2025
 
-**Friday after the Twenty-first Sunday after Pentecost**
+**Saturday after the Twenty-first Sunday after Pentecost**
 *Season After Pentecost (green)*
 
 ---
 
-## Opening Sentence
+### Opening Sentence
+The hour is coming, and is now here, when the true worshipers...
+— JOHN 4:23
 
-**Officiant:** The hour is coming, and is now here...
-
-## Confession of Sin
-
+### Confession of Sin
 *The Officiant says to the People*
+Let us humbly confess our sins to Almighty God.
+
+  **Almighty and most merciful Father,**
+  **we have erred and strayed from your ways like lost sheep.**
+  ...
+
+### The Preces
+*All stand.*
+O Lord, open our lips;
+**And our mouth shall proclaim your praise.**
 ...
 ```
 
@@ -249,13 +296,13 @@ The codebase follows Python PEP 8 style guidelines with comprehensive docstrings
 
 ## Future Enhancements
 
-- [ ] LaTeX output generation for precise PDF formatting
-- [ ] Evening prayer support
+- [ ] LaTeX output generation for even more precise formatting
 - [ ] Compline support
 - [ ] Custom canticle selection
-- [ ] PDF generation directly
 - [ ] Configuration file support
 - [ ] Multiple output formats (HTML, DOCX)
+- [ ] Week-at-a-time generation
+- [ ] Custom CSS styling for PDF output
 
 ## License
 
