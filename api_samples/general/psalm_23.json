@@ -1,0 +1,72 @@
+{
+  "id": "2cc9531b-f4d1-48ff-9950-6642174d7c85",
+  "number": 23,
+  "latin_title": "Dominus regit me",
+  "topics": [
+    {
+      "id": "3e902c93-c57e-4e11-90a8-d730ea00a257",
+      "topic_name": "God’s Providence",
+      "order": 8
+    },
+    {
+      "id": "f8048fdb-b9b4-4c84-a32b-7826a4ebb279",
+      "topic_name": "God’s Mercy",
+      "order": 9
+    },
+    {
+      "id": "46acf0bd-ca5f-493d-8c3d-96a3a72c24c1",
+      "topic_name": "Preparation for Holy Communion",
+      "order": 27
+    }
+  ],
+  "verses": [
+    {
+      "id": "bfe9f469-fd18-439a-8227-791804c81daf",
+      "number": 1,
+      "first_half": "The Lᴏʀᴅ is my shepherd;",
+      "second_half": "therefore I can lack nothing.",
+      "first_half_tle": "The Lᴏʀᴅ is my shepherd;",
+      "second_half_tle": "therefore can I lack nothing."
+    },
+    {
+      "id": "1ddae2dc-bb93-4559-b053-f7724fd7e2f3",
+      "number": 2,
+      "first_half": "He shall feed me in green pastures",
+      "second_half": "and lead me forth beside the waters of comfort.",
+      "first_half_tle": "He shall feed me in a green pasture",
+      "second_half_tle": "and lead me forth beside the waters of comfort."
+    },
+    {
+      "id": "1acdb13b-a622-4104-9817-ecd8611ba577",
+      "number": 3,
+      "first_half": "He shall refresh my soul",
+      "second_half": "and bring me forth in the paths of righteousness for his Name’s sake.",
+      "first_half_tle": "He shall convert my soul,",
+      "second_half_tle": "and bring me forth in the paths of righteousness for his Name’s sake."
+    },
+    {
+      "id": "aaa5a732-8d70-4faa-8fdd-8111a876cecd",
+      "number": 4,
+      "first_half": "Even though I walk through the valley of the shadow of death, I will fear no evil,",
+      "second_half": "for you are with me; your rod and your staff comfort me.",
+      "first_half_tle": "Yea, though I walk through the valley of the shadow of death, I will fear no evil;",
+      "second_half_tle": "for thou art with me; thy rod and thy staff comfort me."
+    },
+    {
+      "id": "770bd35e-50ac-4ce3-81c2-2940cf9ab9da",
+      "number": 5,
+      "first_half": "You shall prepare a table before me, in the presence of those who trouble me;",
+      "second_half": "you have anointed my head with oil, and my cup shall be full.",
+      "first_half_tle": "Thou shalt prepare a table before me in the presence of them that trouble me;",
+      "second_half_tle": "thou hast anointed my head with oil, and my cup shall be full."
+    },
+    {
+      "id": "b3d1f774-ea28-4608-bc7f-df4b957a98e9",
+      "number": 6,
+      "first_half": "Surely your goodness and mercy shall follow me all the days of my life,",
+      "second_half": "and I will dwell in the house of the Lᴏʀᴅ for ever.",
+      "first_half_tle": "Surely thy loving-kindness and mercy shall follow me all the days of my life;",
+      "second_half_tle": "and I will dwell in the house of the Lᴏʀᴅ for ever"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "3267bb32-4e57-4922-ac40-02f282abab01",
+    "topic_name": "God the Creator",
+    "order": 1
+  },
+  {
+    "id": "867f101d-43dd-4963-83c5-1daaa5feb64d",
+    "topic_name": "God the Redeemer",
+    "order": 2
+  },
+  {
+    "id": "01acbdcf-37bc-425a-af65-c9b3114cf866",
+    "topic_name": "God the Judge",
+    "order": 3
+  },
+  {
+    "id": "4f47d52a-e48a-4f23-a32e-19b7adafc58b",
+    "topic_name": "God’s Glory",
+    "order": 4
+  },
+  {
+    "id": "d2479396-1589-4f49-b773-ddf0e28c1e13",
+    "topic_name": "God ’s Sovereignty",
+    "order": 5
+  },
+  {
+    "id": "d32c60ac-0e1c-4e1c-88e5-b839b1007d80",
+    "topic_name": "God’s Wisdom",
+    "order": 6
+  },
+  {
+    "id": "131fc93b-7369-404b-8927-e9d64380ee91",
+    "topic_name": "God’s Law",
+    "order": 7
+  },
+  {
+    "id": "3e902c93-c57e-4e11-90a8-d730ea00a257",
+    "topic_name": "God’s Providence",
+    "order": 8
+  },
+  {
+    "id": "f8048fdb-b9b4-4c84-a32b-7826a4ebb279",
+    "topic_name": "God’s Mercy",
+    "order": 9
+  },
+  {
+    "id": "5377151c-7567-4293-a188-e2209c162410",
+    "topic_name": "The Incarnation",
+    "order": 10
+  },
+  {
+    "id": "b447829a-c66d-4c02-bccb-d4716def098d",
+    "topic_name": "The Passion",
+    "order": 11
+  },
+  {
+    "id": "861fea37-518e-4ed1-bbec-3e2a3d45b064",
+    "topic_name": "The Church",
+    "order": 12
+  },
+  {
+    "id": "06bc11fa-12ee-4e7f-98d9-49f52a5d550f",
+    "topic_name": "Worship",
+    "order": 13
+  },
+  {
+    "id": "02662eda-83cb-4dc3-9057-2161ae0ce806",
+    "topic_name": "Thanksgiving",
+    "order": 14
+  },
+  {
+    "id": "b0289049-89ca-45f3-9558-c524b388ca7d",
+    "topic_name": "Prayer",
+    "order": 15
+  },
+  {
+    "id": "6d564e0d-db4d-46c6-9931-e9f30559ed2c",
+    "topic_name": "Trust in God",
+    "order": 16
+  },
+  {
+    "id": "62da29f0-1100-4ec3-8ae4-658797bc6902",
+    "topic_name": "God our Refuge",
+    "order": 17
+  },
+  {
+    "id": "c8b339d5-52b6-4801-99db-e5510b9bfa67",
+    "topic_name": "Divine Guidance",
+    "order": 18
+  },
+  {
+    "id": "a79e8951-0f90-49d9-946f-3663614becc4",
+    "topic_name": "In Time of Trouble",
+    "order": 19
+  },
+  {
+    "id": "2276897a-033c-4b41-873a-46dc30733a78",
+    "topic_name": "Righteousness",
+    "order": 20
+  },
+  {
+    "id": "6c2a2f0e-c52b-4b3a-b21a-3063af537ea3",
+    "topic_name": "Peace",
+    "order": 21
+  },
+  {
+    "id": "d1aebfc0-a422-46e0-8774-c800e8646f8e",
+    "topic_name": "The Transitoriness of Life",
+    "order": 22
+  },
+  {
+    "id": "5b0841f4-0349-450d-99e6-797a5ea6cf72",
+    "topic_name": "The Hope of Immortality",
+    "order": 23
+  },
+  {
+    "id": "a3f66c1b-8e58-490a-9c00-8dff3a47a57c",
+    "topic_name": "Morning",
+    "order": 24
+  },
+  {
+    "id": "ed6264cb-9430-4ca8-8605-33ea3aa66f11",
+    "topic_name": "Evening",
+    "order": 25
+  },
+  {
+    "id": "4aba596e-d2df-4b84-8c1c-f2aa2974b000",
+    "topic_name": "Penitential Psalms",
+    "order": 26
+  },
+  {
+    "id": "46acf0bd-ca5f-493d-8c3d-96a3a72c24c1",
+    "topic_name": "Preparation for Holy Communion",
+    "order": 27
+  },
+  {
+    "id": "9982863e-6d2d-4c3a-9503-a981f2eab048",
+    "topic_name": "Thanksgiving after Holy Communion",
+    "order": 28
+  }
+]

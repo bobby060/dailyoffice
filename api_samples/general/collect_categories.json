@@ -1,0 +1,592 @@
+[
+  {
+    "uuid": "5565fb93-0390-446e-a717-1228ee5c2ddb",
+    "name": "Source",
+    "key": "source",
+    "order": 0,
+    "tags": [
+      {
+        "uuid": "c2c4c319-663c-4ebb-aec1-07f3b012322a",
+        "name": "Occasional Prayers",
+        "category_order": 0,
+        "order": 0,
+        "key": "occasional",
+        "category_name": "Source",
+        "category_key": "source",
+        "category_uuid": "5565fb93-0390-446e-a717-1228ee5c2ddb"
+      },
+      {
+        "uuid": "a7ae4712-451f-4841-abdb-2e1209b76ca2",
+        "name": "Collects of the Christian Year",
+        "category_order": 0,
+        "order": 1,
+        "key": "year",
+        "category_name": "Source",
+        "category_key": "source",
+        "category_uuid": "5565fb93-0390-446e-a717-1228ee5c2ddb"
+      },
+      {
+        "uuid": "947fd38d-24b4-4ef0-b769-8e1c808174aa",
+        "name": "Liturgy Prayers",
+        "category_order": 0,
+        "order": 2,
+        "key": "liturgical",
+        "category_name": "Source",
+        "category_key": "source",
+        "category_uuid": "5565fb93-0390-446e-a717-1228ee5c2ddb"
+      }
+    ]
+  },
+  {
+    "uuid": "e644f52a-989b-47f5-bd96-58d8c984af06",
+    "name": "Theme",
+    "key": "theme",
+    "order": 1,
+    "tags": [
+      {
+        "uuid": "0af6073b-ef93-4a06-94a2-08e6ee56a627",
+        "name": "The Church",
+        "category_order": 1,
+        "order": 0,
+        "key": "church",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "6ece3080-7788-4258-942b-5a67fc778d0d",
+        "name": "Creation",
+        "category_order": 1,
+        "order": 1,
+        "key": "creation",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "adcc1df5-00f3-489c-9f2e-ae9edb39c3ec",
+        "name": "The Nation",
+        "category_order": 1,
+        "order": 2,
+        "key": "nation_generic",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "82b4538c-baba-4c34-b39c-e87b52875d25",
+        "name": "The Nation (Specific to Canada)",
+        "category_order": 1,
+        "order": 3,
+        "key": "nation_canada",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "e6cbef16-8618-48b7-8343-a5d39eafd9ed",
+        "name": "The Nation (Specific to the United States or Mexico)",
+        "category_order": 1,
+        "order": 4,
+        "key": "nation_us",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "5cfabd77-528b-4b95-818b-e1d206c5741d",
+        "name": "Social Order",
+        "category_order": 1,
+        "order": 5,
+        "key": "social_order",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "d0034dea-3165-481a-ab7b-375b416cd344",
+        "name": "Those in Need",
+        "category_order": 1,
+        "order": 6,
+        "key": "those_in_need",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "64376996-871d-4ed7-a421-3798cd717ab4",
+        "name": "Family and Personal Life",
+        "category_order": 1,
+        "order": 7,
+        "key": "family",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "6bcc602c-33f0-4e84-9a49-4ac2f27e1dbb",
+        "name": "Family and Personal Life (All)",
+        "category_order": 1,
+        "order": 8,
+        "key": "family_all",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "8850f3fb-bb38-4c37-b5b0-d20174955e4e",
+        "name": "Family and Personal Life (Throughout the Day)",
+        "category_order": 1,
+        "order": 9,
+        "key": "family",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "aa390bd3-3250-48e0-8bc6-6c703711f0f7",
+        "name": "Personal Devotion",
+        "category_order": 1,
+        "order": 10,
+        "key": "personal_devotion",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "192c9bbc-45b4-4093-8d2f-11cddae6585b",
+        "name": "At Times of Prayer and Worship",
+        "category_order": 1,
+        "order": 11,
+        "key": "prayer_and_worship",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "44332621-29d9-4152-a161-1a758f407964",
+        "name": "Death, the Departed, and the Communion of Saints",
+        "category_order": 1,
+        "order": 12,
+        "key": "death",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "ff35f45a-6713-46d9-8fe0-9554832c3941",
+        "name": "Thanksgivings",
+        "category_order": 1,
+        "order": 13,
+        "key": "thanksgivings",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "b7365c92-a2fc-4c3b-aaf5-8395dc508cb7",
+        "name": "Mission",
+        "category_order": 1,
+        "order": 14,
+        "key": "mission",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "6b4afad5-7525-4e3c-ac64-17d6d6ceb6ae",
+        "name": "Confession of Sin",
+        "category_order": 1,
+        "order": 15,
+        "key": "confession",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      },
+      {
+        "uuid": "cf71a438-232f-47f2-b3e5-b11ef7b068ba",
+        "name": "In the Time of Pandemic",
+        "category_order": 1,
+        "order": 16,
+        "key": "pandemic",
+        "category_name": "Theme",
+        "category_key": "theme",
+        "category_uuid": "e644f52a-989b-47f5-bd96-58d8c984af06"
+      }
+    ]
+  },
+  {
+    "uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba",
+    "name": "Commemoration Type",
+    "key": "commemoration_type",
+    "order": 2,
+    "tags": [
+      {
+        "uuid": "5223aec3-5051-41f6-8580-f14df7822183",
+        "name": "Major Feasts",
+        "category_order": 2,
+        "order": 0,
+        "key": "major_feast",
+        "category_name": "Commemoration Type",
+        "category_key": "commemoration_type",
+        "category_uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba"
+      },
+      {
+        "uuid": "52dacd65-d909-4389-b594-6a1ffd64b65b",
+        "name": "Sundays",
+        "category_order": 2,
+        "order": 1,
+        "key": "sunday",
+        "category_name": "Commemoration Type",
+        "category_key": "commemoration_type",
+        "category_uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba"
+      },
+      {
+        "uuid": "547f7f83-4a57-4b26-ad6a-8dd2b93e80e7",
+        "name": "Holy Days",
+        "category_order": 2,
+        "order": 2,
+        "key": "holy_day",
+        "category_name": "Commemoration Type",
+        "category_key": "commemoration_type",
+        "category_uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba"
+      },
+      {
+        "uuid": "2023472f-d3d9-4a19-894f-733fd693d216",
+        "name": "Commons of Commemorations",
+        "category_order": 2,
+        "order": 3,
+        "key": "common",
+        "category_name": "Commemoration Type",
+        "category_key": "commemoration_type",
+        "category_uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba"
+      },
+      {
+        "uuid": "74329a63-fbaa-4459-856c-d33b5cb6f195",
+        "name": "National Days",
+        "category_order": 2,
+        "order": 4,
+        "key": "national",
+        "category_name": "Commemoration Type",
+        "category_key": "commemoration_type",
+        "category_uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba"
+      },
+      {
+        "uuid": "2ef1421f-4e1e-4b60-8fd2-5518f4e0c726",
+        "name": "Ember Days or Rogation Days",
+        "category_order": 2,
+        "order": 5,
+        "key": "ember_or_rogation",
+        "category_name": "Commemoration Type",
+        "category_key": "commemoration_type",
+        "category_uuid": "bd387c57-f9b5-4e2c-a8ba-523592ecb9ba"
+      }
+    ]
+  },
+  {
+    "uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28",
+    "name": "Season",
+    "key": "season",
+    "order": 3,
+    "tags": [
+      {
+        "uuid": "707f7dfa-d5fc-4000-9b60-a14e8a3e839b",
+        "name": "Advent",
+        "category_order": 3,
+        "order": 0,
+        "key": "advent",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      },
+      {
+        "uuid": "8e3ae149-e8df-4915-88c8-85cd546b917f",
+        "name": "Christmas",
+        "category_order": 3,
+        "order": 1,
+        "key": "christmas",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      },
+      {
+        "uuid": "d71af774-0303-46f4-b025-0fd4ba1755fc",
+        "name": "Epiphany",
+        "category_order": 3,
+        "order": 2,
+        "key": "epiphany",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      },
+      {
+        "uuid": "9bd13e3b-bb17-486f-a7ff-b3ccadbdf6e8",
+        "name": "Lent",
+        "category_order": 3,
+        "order": 3,
+        "key": "lent",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      },
+      {
+        "uuid": "477295cb-ea14-4a5a-9836-6b3d48668eb0",
+        "name": "Holy Week",
+        "category_order": 3,
+        "order": 4,
+        "key": "holy_week",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      },
+      {
+        "uuid": "3dceda5f-5bd5-4530-9e79-9cd86c6a8f16",
+        "name": "Easter",
+        "category_order": 3,
+        "order": 5,
+        "key": "easter",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      },
+      {
+        "uuid": "bf03a81b-a569-4333-bb97-8dbc3e68f49b",
+        "name": "Season after Pentecost",
+        "category_order": 3,
+        "order": 6,
+        "key": "pentecost",
+        "category_name": "Season",
+        "category_key": "season",
+        "category_uuid": "10f4977e-0eeb-4ac5-9683-786acc699a28"
+      }
+    ]
+  },
+  {
+    "uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8",
+    "name": "Liturgy",
+    "key": "liturgy",
+    "order": 4,
+    "tags": [
+      {
+        "uuid": "e81ee246-8a25-40aa-b8fc-8c2be1e65ff6",
+        "name": "Morning Prayer",
+        "category_order": 4,
+        "order": 0,
+        "key": "morning_prayer",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "f892779c-7cde-4e2a-8e89-455f1b76dc72",
+        "name": "Midday Prayer",
+        "category_order": 4,
+        "order": 1,
+        "key": "midday_prayer",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "5ec498a2-8e17-4709-a91d-0c26397e245a",
+        "name": "Evening Prayer",
+        "category_order": 4,
+        "order": 2,
+        "key": "evening_prayer",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "ce990b11-7f5f-4cd2-baa2-eae6ccdcd96e",
+        "name": "Compline",
+        "category_order": 4,
+        "order": 3,
+        "key": "compline",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "61c17391-6b8d-4227-b882-3b9c57ac8a0d",
+        "name": "Family Prayer",
+        "category_order": 4,
+        "order": 4,
+        "key": "family_prayer",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "fba529ef-368d-4e2f-a54f-96da535f87e4",
+        "name": "Holy Eucharist",
+        "category_order": 4,
+        "order": 5,
+        "key": "holy_eucharist",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "32dc0999-3cc4-4ae2-ba3d-0612ede40395",
+        "name": "Holy Baptism",
+        "category_order": 4,
+        "order": 6,
+        "key": "holy_baptism",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "6c8f1310-4990-4fb0-83c3-e657b35502b3",
+        "name": "Confirmation, Reception, and Reaffirmation",
+        "category_order": 4,
+        "order": 7,
+        "key": "confirmation",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "0de0dce0-4b70-4558-a98e-8f22843ad1a6",
+        "name": "Holy Matrimony",
+        "category_order": 4,
+        "order": 8,
+        "key": "holy_matrimony",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "3f1f1fc4-287f-4e68-b7c2-bee29d18f978",
+        "name": "Thanksgiving for the Birth or Adoption of a Child",
+        "category_order": 4,
+        "order": 9,
+        "key": "birth",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "655bcd80-1f5d-4be8-98c6-4f6b82cbceca",
+        "name": "Reconciliation of a Penitent",
+        "category_order": 4,
+        "order": 10,
+        "key": "reconciliation",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "ec3f32fc-bec1-4ca6-94e5-c7e8924c0032",
+        "name": "Ministry to the Sick",
+        "category_order": 4,
+        "order": 11,
+        "key": "sick",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "b59dbd73-ba54-4a3d-aa04-643e9b5c5401",
+        "name": "Burial of the Dead",
+        "category_order": 4,
+        "order": 12,
+        "key": "burial",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "742bfaa3-ae24-4354-ba22-588c324d6454",
+        "name": "Ordination",
+        "category_order": 4,
+        "order": 13,
+        "key": "ordination",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "e796294f-bf50-4db3-9e47-42a7c80daf1f",
+        "name": "Institution of a New Rector",
+        "category_order": 4,
+        "order": 14,
+        "key": "institution",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "a3d3c7bd-47da-4a1c-a8a3-aa2a8aa5dff7",
+        "name": "Consecration of a Place of Worship",
+        "category_order": 4,
+        "order": 15,
+        "key": "consecration",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "39276c00-5e75-42af-a0f3-216b11eb75c7",
+        "name": "Ash Wednesday",
+        "category_order": 4,
+        "order": 16,
+        "key": "ash_wednesday",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "20403cbb-5249-4737-b2a0-5725a1674280",
+        "name": "Palm Sunday",
+        "category_order": 4,
+        "order": 17,
+        "key": "palm_sunday",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "e47d30c5-a79c-44e7-9fd3-f86b19e5fc03",
+        "name": "Maundy Thursday",
+        "category_order": 4,
+        "order": 18,
+        "key": "maundy_thursday",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "4c6b1c78-9dea-4d8d-9f6a-87381a9decdd",
+        "name": "Good Friday",
+        "category_order": 4,
+        "order": 19,
+        "key": "good_friday",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "0b818d9a-9489-4d0e-89c1-5fb22b04353c",
+        "name": "Holy Saturday",
+        "category_order": 4,
+        "order": 20,
+        "key": "holy_saturday",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      },
+      {
+        "uuid": "2a339587-2ea2-4309-aa6e-d5dcff28e151",
+        "name": "Great Vigil of Easter",
+        "category_order": 4,
+        "order": 21,
+        "key": "easter_vigil",
+        "category_name": "Liturgy",
+        "category_key": "liturgy",
+        "category_uuid": "d7f7dd11-cbd4-4a31-a5e9-112e43c883b8"
+      }
+    ]
+  }
+]

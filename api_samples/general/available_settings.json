@@ -1,0 +1,1008 @@
+[
+  {
+    "uuid": "a938cba3-fea3-46a2-9749-60409689d109",
+    "name": "language_style",
+    "title": "Language Style",
+    "description": "Traditional or Contemporary English",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 0,
+    "setting_string_order": 0,
+    "options": [
+      {
+        "uuid": "937d566e-59d3-4768-9264-e9f00a913479",
+        "name": "Contemporary Langauge",
+        "description": "Text in contemporary English according to the 2019 edition of the Book of Common Prayer",
+        "value": "contemporary",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "dca9e98b-a2ab-4944-b506-35a4b828a716",
+        "name": "Traditional Language",
+        "description": "Text in tradtional, Elizabethan-style English according to the 2022 Traditional Language Edition of the 2019 edition of the Book of Common Prayer",
+        "value": "traditional",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "94baf911-f3fa-4211-bd5b-59aa281bc99a",
+    "name": "psalm_translation",
+    "title": "Psalms Translation",
+    "description": "The Psalms Translation for use in the Daily Office",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 1,
+    "setting_string_order": 1,
+    "options": [
+      {
+        "uuid": "427b0c29-fbf8-4de6-80c3-c7d6a95390f0",
+        "name": "Contemporary Language",
+        "description": "The New Coverdale Psalter, a contemporary language adaptation of the 1535 Coverdale Psalter, as introducted in the 2019 Book of Common Prayer",
+        "value": "contemporary",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "5700b5f6-5a33-48df-ad32-af907dec5961",
+        "name": "Traditional Language",
+        "description": "The Coverdale Psalter, the traditional language psalter from 1535 (with minor edits in 1928), as found in the Traditional Language Edition of the 2019 Book of Common Prayer",
+        "value": "traditional",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "f0483400-69a6-4cbb-b526-035b883e7461",
+    "name": "bible_translation",
+    "title": "Bible Translation",
+    "description": "The Bible Translation used for the readings",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 2,
+    "setting_string_order": 2,
+    "options": [
+      {
+        "uuid": "f4de81e2-ed94-4fb4-ad0f-4c2f887c4bea",
+        "name": "ESV",
+        "description": "English Standard Version (2001)",
+        "value": "esv",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "d39e45e9-69f4-484f-ae66-48c22e82d5b6",
+        "name": "KJV",
+        "description": "The King James Version (Authorized Edition) (1611) (traditional language)",
+        "value": "kjv",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "afd9d945-7286-4afc-b6dc-15e4519a3f88",
+        "name": "RSV",
+        "description": "Revised Standard Version (1946)",
+        "value": "rsv",
+        "order": 2,
+        "abbreviation": "C"
+      },
+      {
+        "uuid": "4115caa7-187a-4d97-86a4-208e9a191de7",
+        "name": "NASB",
+        "description": "New American Standard Bible (1971/2020)",
+        "value": "nasb",
+        "order": 3,
+        "abbreviation": "D"
+      },
+      {
+        "uuid": "8f26aa16-80a9-4822-9b1d-dfbc47a58e3e",
+        "name": "NRSV",
+        "description": "New Revised Standard Version (1989)",
+        "value": "nrsvce",
+        "order": 5,
+        "abbreviation": "F"
+      },
+      {
+        "uuid": "2f44db14-49d9-495c-90d8-7196855d4536",
+        "name": "NAB-RE",
+        "description": "New American Bible (Revised Edition) (2011)",
+        "value": "nabre",
+        "order": 6,
+        "abbreviation": "G"
+      }
+    ]
+  },
+  {
+    "uuid": "673c71cc-b39d-4f79-8066-bbf1cd14ab8c",
+    "name": "psalter",
+    "title": "Psalter Cycle",
+    "description": "During Morning and Evening Prayer, pray through all the Psalms either every <strong>60 days</strong> (fewer psalms per day) or once every <strong>30 days</strong> (more psalms per day).",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 3,
+    "setting_string_order": 3,
+    "options": [
+      {
+        "uuid": "b861ccb9-2f59-4e45-847d-34a9ac9b735c",
+        "name": "60 Day",
+        "description": "Pray through the psalms once every 60 days",
+        "value": "60",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "9da330ac-ca40-4664-a287-609ef31d0ef8",
+        "name": "30 Day",
+        "description": "Pray through the psalms once every 30 days",
+        "value": "30",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "e576b606-7ebd-486d-9caa-ada1168ef446",
+    "name": "reading_cycle",
+    "title": "Reading Cycle",
+    "description": "Read through most of the Bible during Morning and Evening Prayer every <strong>1 year</strong> or every <strong>2 years</strong>.  The one year cycle is best if you do <strong>both</strong> Morning and Evening prayer daily; the two year cycle is best if you do only one.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 4,
+    "setting_string_order": 4,
+    "options": [
+      {
+        "uuid": "bd7b40fd-c24b-4017-ad0d-9e3c19eea0c6",
+        "name": "One Year",
+        "description": "Read through most of the Bible each year. (Use if you pray <strong>both</strong> Morning and Evening Prayer)",
+        "value": "1",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "253b07b9-d9ed-49d3-af89-b8222feb9d10",
+        "name": "Two Year",
+        "description": "Read through most of the Bible in two years. (Use if you pray <strong>either</strong> Morning <strong>or</strong> Evening prayer)",
+        "value": "2",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "3e4248ba-446d-4cfd-9aed-9f64fcd7c629",
+    "name": "reading_length",
+    "title": "Reading Length",
+    "description": "Always use the full readings, or use the shortened readings (when there are suggested abbreviations).",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 5,
+    "setting_string_order": 5,
+    "options": [
+      {
+        "uuid": "6393516b-dfa4-493a-8d04-d1d16d86b7cb",
+        "name": "Full",
+        "description": "The full readings will always be used.",
+        "value": "full",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "f9c82009-5899-4304-a86e-28096a841429",
+        "name": "Abbreviated",
+        "description": "Suggested abbreviations, when available.",
+        "value": "abbreviated",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "d457f6a2-db91-4113-ae5e-f6c23d5257a6",
+    "name": "reading_audio",
+    "title": "Reading Audio",
+    "description": "Show or hide an audio player to listen to the scripture readings during Morning and Evening Prayer.  Audio is provided by esv.org and currently does not include the Deuterocanon/Apocrypha.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 6,
+    "setting_string_order": 6,
+    "options": [
+      {
+        "uuid": "7a74ef8b-0eba-4b7a-a8d2-a8b0f30a6087",
+        "name": "Disable Audio",
+        "description": "No audio controls for scripture readings",
+        "value": "off",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "32ccf186-ebfd-4d05-be48-07f979346173",
+        "name": "Enable Audio",
+        "description": "Enable audio player for scripture readings",
+        "value": "on",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "0895f433-e582-49b9-bc9e-7ad2a82f5390",
+    "name": "canticle_rotation",
+    "title": "Canticle Rotation",
+    "description": "",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 7,
+    "setting_string_order": 7,
+    "options": [
+      {
+        "uuid": "90c3663c-04c9-4ebc-b752-bcc7df7a1e99",
+        "name": "Traditional",
+        "description": "The traditional fixed canticles each day",
+        "value": "default",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "3be8abfe-d452-4dd1-adc9-8d7b998138db",
+        "name": "Seasonal Rotation",
+        "description": "One fixed canticle and one canticle that rotates by season",
+        "value": "2011",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "a8c28a34-d388-4be8-bf96-c3363152ac47",
+        "name": "Daily Rotation",
+        "description": "A rotating set of canticles by day of week and season",
+        "value": "1979",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "eabbd3a6-66fd-4b61-bd74-1e216fd64d2f",
+    "name": "psalm_style",
+    "title": "Psalm Style",
+    "description": "Psalm Recitation Style",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 0,
+    "setting_string_order": 8,
+    "options": [
+      {
+        "uuid": "31f13cb6-888c-4c75-bfb5-381212f34b19",
+        "name": "Antiphonally by Whole Verse",
+        "description": "Alternating between leader and congregation by whole verse",
+        "value": "whole_verse",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "131e3fba-58fe-4b8b-9074-0434d2a8ba52",
+        "name": "Antiphonally by Half Verse",
+        "description": "Alternating between leader and congregation by half verse",
+        "value": "half_verse",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "1140c0db-8a20-445c-b21c-80873e996a58",
+        "name": "In Unison",
+        "description": "All verses read in unison",
+        "value": "unison",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "d014903e-b032-4bae-9255-60a6db7ece63",
+    "name": "lectionary",
+    "title": "Substitute Sunday/Holy Day (Eucharistic) Lectionary",
+    "description": "On Sundays and major holy days, do you want to use the standard Daily Office readings or substitute the 3-year Sunday/Holy Day cycle? When the Daily Office is used for the principal service of a church, the prayer book instructs you to replace the Daily Office readings with the three year cycle of Sunday and Holy Day readings.  This is generally done only in churches and not when using the Daily Office as a personal devotion at home.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 1,
+    "setting_string_order": 9,
+    "options": [
+      {
+        "uuid": "d5de0416-a843-4677-a7e5-70961fb65a9c",
+        "name": "Standard Daily Office",
+        "description": "",
+        "value": "daily-office-readings",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "5c672ab6-923d-4b6f-abe5-eb50c22d8787",
+        "name": "Sundays & Holy Days",
+        "description": "",
+        "value": "mass-readings",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "54dad182-5f04-4e8e-8fda-811e630cbacc",
+    "name": "confession",
+    "title": "Confession Intro Length",
+    "description": "Use either the short or long exhortation before the confession.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 2,
+    "setting_string_order": 10,
+    "options": [
+      {
+        "uuid": "c632b4b8-2f20-4363-8319-d4d4ddc3f7fb",
+        "name": "Long Intro Only on Fast Days",
+        "description": "The long form of the intro and absolution are used only on fast days",
+        "value": "long-on-fast",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "ac5c4fef-960c-4ed4-a605-370f4d96db24",
+        "name": "Short Intro Always",
+        "description": "The short form of the intro and absolution are used every day",
+        "value": "short",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "17dc106f-f838-41f4-954c-52e431d7f58c",
+        "name": "Long Intro Always",
+        "description": "The long form of the intro and absolution are used every day",
+        "value": "long",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "9482d06f-6d45-4a0b-8224-2d15ee23bb4c",
+    "name": "absolution",
+    "title": "Absolution Style",
+    "description": "After the confession, read an absolution suitable for a priest or a prayer suitable for a deacon or lay person.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 3,
+    "setting_string_order": 11,
+    "options": [
+      {
+        "uuid": "addea4e9-6787-4487-8a97-9c8b568c0087",
+        "name": "Deacon or Lay Person",
+        "description": "A prayer suitable for a deacon or lay person to read",
+        "value": "lay",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "7af59937-2cb9-4553-9b09-e165b26d0344",
+        "name": "Priest or Bishop",
+        "description": "An absolution suitable for a priest to pronounce",
+        "value": "priest",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "c7c4d37b-957e-4e8f-91f4-6dce66ecc642",
+    "name": "morning_prayer_invitatory",
+    "title": "Morning Prayer Invitatory",
+    "description": "Open with the Venite (Psalm 95) always (traditional), have a special celebratory invitatory on Sundays and feasts (Pascha Nostrum during Eastertide or Jubilate/Psalm 100 otherwise), or rotate between the normal and celebratory invitatory each day. Regardless of which setting you choose, the Pascha Nostrum is always used during the first week of Easter, and the invitatory will never be the same as one of the day's appointed psalms.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 4,
+    "setting_string_order": 12,
+    "options": [
+      {
+        "uuid": "2f22b54c-cdeb-4120-a955-94b84b144335",
+        "name": "Venite always",
+        "description": "Always use the Venite (except on days when Pslam 95 is appointed)",
+        "value": "invitatory_traditional",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "150376b8-5f98-4610-80d0-8abf9bcddd16",
+        "name": "Celebratory Sundays and feasts",
+        "description": "Use the Jubilate on Feasts and Sundays, Venite on other days ",
+        "value": "invitatory_jubilate_on_feasts",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "9019d525-0773-4f73-879b-4d213747e2e2",
+        "name": "Rotating each day",
+        "description": "Rotate between the Venite and Jubilate",
+        "value": "invitatory_rotating",
+        "order": 2,
+        "abbreviation": "C"
+      },
+      {
+        "uuid": "8c278fd2-3b45-45d8-8974-665056a630b9",
+        "name": "Celebratory Always",
+        "description": "Always use the Jubilate (or Pascha Nostrum, in Eastertide)",
+        "value": "celebratory_always",
+        "order": 3,
+        "abbreviation": "D"
+      }
+    ]
+  },
+  {
+    "uuid": "aabff4b3-8edd-4c55-aa58-cd19821c3287",
+    "name": "reading_headings",
+    "title": "Reading Headings",
+    "description": "Show or hide headings from the English Standard Version of the Bible in scripture readings ",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 5,
+    "setting_string_order": 13,
+    "options": [
+      {
+        "uuid": "ac494252-6077-48a4-994b-4e4b963183ed",
+        "name": "Hide",
+        "description": "Hide ESV headings in readings",
+        "value": "off",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "66ead4c7-9225-4898-a0f3-f22422b30963",
+        "name": "Show",
+        "description": "Show ESV headings in readings",
+        "value": "on",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "a72353c3-da1d-45e9-b4a3-8837ea544051",
+    "name": "language_style_for_our_father",
+    "title": "Language Style for Kyrie and Our Father",
+    "description": "When the overall language style is 'contemporary', both traditional and contemporary language options are available for the Kyrie (Lord have mercy) and the Lord's Prayer. The setting has no effect when the overal language style is set to 'tradtional'.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 6,
+    "setting_string_order": 14,
+    "options": [
+      {
+        "uuid": "79a72eef-f7a3-4fec-9a3b-14a523e431c3",
+        "name": "Traditional",
+        "description": "Traditional language for the Kyrie and Our Father",
+        "value": "traditional",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "95f36f4b-d938-4be4-a920-c3acdf70a40d",
+        "name": "Contemporary",
+        "description": "Modern language for the Kyrie and Our Father",
+        "value": "contemporary",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "7ce48fc6-5a91-408d-ae88-3f48f40bc792",
+    "name": "national_holidays",
+    "title": "National Holiday Collects",
+    "description": "Show country-specific commemorations for the United States, Canada, or both.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 7,
+    "setting_string_order": 15,
+    "options": [
+      {
+        "uuid": "28f8d481-7e0f-4a42-b564-3ccaf9b22c56",
+        "name": "All",
+        "description": "Both U.S. and Canadian Holidays",
+        "value": "all",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "eaf50b9b-6805-4349-aa77-f1c94c035e2a",
+        "name": "United States",
+        "description": "United States Holidays",
+        "value": "us",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "0b2ee614-0d7b-496e-b2bb-fefd3c41e630",
+        "name": "Canada",
+        "description": "Canadian Holidays",
+        "value": "canada",
+        "order": 2,
+        "abbreviation": "C"
+      },
+      {
+        "uuid": "c32731b7-681b-4196-8a75-d5345f2841e5",
+        "name": "None",
+        "description": "No Holidays",
+        "value": "national_none",
+        "order": 3,
+        "abbreviation": "D"
+      }
+    ]
+  },
+  {
+    "uuid": "43dcddae-1a36-4363-9bf0-8c689df537c6",
+    "name": "suffrages",
+    "title": "Evening Prayer Suffrages",
+    "description": "Choose which set of short prayers to be used each evening",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 8,
+    "setting_string_order": 16,
+    "options": [
+      {
+        "uuid": "f6f48b7a-63ee-4553-a4af-093173c7d7b9",
+        "name": "Rotating",
+        "description": "Rotate between the traditional and new set each day",
+        "value": "rotating",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "52fb3415-8228-4757-9639-9e401954ad52",
+        "name": "Traditional",
+        "description": "Always use the traditional set (same as Morning Prayer)",
+        "value": "traditional",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "5b4ef919-88d3-454c-a8b9-44fa8b09a2ba",
+        "name": "New",
+        "description": "Always use the newer set, each ending with \"We entreat you, O Lord\"",
+        "value": "new",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "ada2a428-519e-4164-b360-5f7d6f920d5d",
+    "name": "collects",
+    "title": "Additional Collects",
+    "description": "Use a different collect for each day of the week, or use the same two collects (from the classic prayer books) each day.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 9,
+    "setting_string_order": 17,
+    "options": [
+      {
+        "uuid": "3ac5ddd8-a16a-40a3-9bb9-3febaffcd426",
+        "name": "Rotating",
+        "description": "A different collect is said for each day of the week",
+        "value": "rotating",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "6a337620-b2c2-44ee-99b4-786372bacbd0",
+        "name": "Fixed",
+        "description": "The two traditional collects are said every day",
+        "value": "fixed",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "826a2e02-c4b0-4f2d-81d0-b532a8487c55",
+    "name": "mp_great_litany",
+    "title": "Great Litany at Morning Prayer",
+    "description": "Include the Great Litany after the collects at Morning Prayer",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 11,
+    "setting_string_order": 18,
+    "options": [
+      {
+        "uuid": "c024f7f7-f3fa-4dc8-b640-86be90912fe2",
+        "name": "Off",
+        "description": "Do not use the litany",
+        "value": "mp_litany_off",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "e87ec72b-b8be-4b8b-97fb-c73da03995d0",
+        "name": "Wed, Fri, & Sun.",
+        "description": "Litany on Wednesday, Friday, and Sunday (the traditional days)",
+        "value": "mp_litany_w_f_s",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "213a172a-1281-43f8-a2cb-e08884a6b827",
+        "name": "Everyday",
+        "description": "Litany every day",
+        "value": "mp_litany_everyday",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "822a3e4e-050e-4a02-8bf8-5d629c264d1d",
+    "name": "ep_great_litany",
+    "title": "Great Litany at Evening Prayer",
+    "description": "Include the Great Litany after the collects at Evening Prayer",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 12,
+    "setting_string_order": 19,
+    "options": [
+      {
+        "uuid": "0d75919c-b09d-4c38-ae66-62fa9d4d88a9",
+        "name": "Off",
+        "description": "Do not use the litany",
+        "value": "ep_litany_off",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "9aa969f8-1f7f-44b0-8efb-794469338fa5",
+        "name": "Wed, Fri, & Sun.",
+        "description": "Litany on Wednesday, Friday, and Sunday (the traditional days)",
+        "value": "ep_litany_w_f_s",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "3f672e9a-9232-4298-a3ee-3375999dc178",
+        "name": "Everyday",
+        "description": "Litany every day",
+        "value": "ep_litany_everyday",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "d29797ab-9e59-495f-9882-ad690f16bbba",
+    "name": "general_thanksgiving",
+    "title": "General Thanksgiving",
+    "description": "Pray the General Thanksgiving at the end of Morning and Evening Prayer",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 13,
+    "setting_string_order": 20,
+    "options": [
+      {
+        "uuid": "7e3f83dd-7569-4021-b550-076b9c912169",
+        "name": "On",
+        "description": "Add the prayer of general thanksgiving at the end of the office",
+        "value": "on",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "384d3000-859d-4589-86bd-7097c78ff176",
+        "name": "Off",
+        "description": "Hide the prayer of general thanksgiving at the end of the office",
+        "value": "off",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "2a8632ec-39e6-474d-91c5-da852effd1d2",
+    "name": "chrysostom",
+    "title": "Prayer of St. John Chrysostom",
+    "description": "Pray the Prayer of St. John Chrysostom at the end of Morning and Evening Prayer.  This prayer is suitable when praying in a group.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 14,
+    "setting_string_order": 21,
+    "options": [
+      {
+        "uuid": "c45618ef-272a-4d71-b318-d93f334e01b5",
+        "name": "On",
+        "description": "For use when praying in groups of two or more",
+        "value": "on",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "8aac1d14-0f97-407d-83de-a59b9882a942",
+        "name": "Off",
+        "description": "For when praying individually",
+        "value": "off",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "bff50dd3-2f48-41bd-89fd-efaef69de3ef",
+    "name": "grace",
+    "title": "The Grace",
+    "description": "Rotate each day through the three provided conclusions, or always use the same one from the classic prayer books.",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 15,
+    "setting_string_order": 22,
+    "options": [
+      {
+        "uuid": "b5b52b14-a145-4568-937a-a9a3979019ba",
+        "name": "Rotating",
+        "description": "Rotate through three different verses daily",
+        "value": "rotating",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "c3126ee7-fcea-4f86-9104-f908ce629c37",
+        "name": "Traditional",
+        "description": "Conclude with the traditional grace each day",
+        "value": "traditional",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "73569d62-1870-4599-9b50-7f6ba0fbbccc",
+    "name": "o_antiphons",
+    "title": "Advent \"O\" Antiphons",
+    "description": "The traditional \"O\" Antiphons are used before and after the first canticle in Evening Prayer during the last eight days of Advent. You can use literal translations of the original Latin, or the familiar paraphrases used in the hymn \"O Come, O Come Emmanuel\"",
+    "site": 1,
+    "site_name": "Daily Office",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 16,
+    "setting_string_order": 23,
+    "options": [
+      {
+        "uuid": "9d22af2b-68fc-4f8c-9e9e-1869f6e1e829",
+        "name": "Literal",
+        "description": "Literal translation of the original Latin",
+        "value": "literal",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "dd9f57f2-b563-4944-a71a-da2eb0e8ae1c",
+        "name": "Latin",
+        "description": "Original Latin",
+        "value": "latin",
+        "order": 2,
+        "abbreviation": "C"
+      },
+      {
+        "uuid": "4ef930c7-04d1-46e7-b90a-32f440ea54c1",
+        "name": "None",
+        "description": "Hide the antiphons",
+        "value": "none",
+        "order": 3,
+        "abbreviation": "D"
+      },
+      {
+        "uuid": "a3ba0707-19b5-4ab9-be33-83cd54793c40",
+        "name": "Hymnal",
+        "description": "Paraphrase used in, <em>O Come, O Come Emmanuel</em>",
+        "value": "paraphrase",
+        "order": null,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "9915e7ec-3a78-43a9-94e6-3e5ca172796d",
+    "name": "family_readings",
+    "title": "Readings",
+    "description": "",
+    "site": 2,
+    "site_name": "Family Prayer",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 0,
+    "setting_string_order": 24,
+    "options": [
+      {
+        "uuid": "3830995b-82e8-47c6-8bc2-61073970b12a",
+        "name": "Brief",
+        "description": "A brief scripture reading appointed for the time of day",
+        "value": "brief",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "98ad9b23-97cd-4470-b869-351b9dd179d0",
+        "name": "Long",
+        "description": "A longer scripture reading from the continuous lectionary",
+        "value": "long",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "76dd7fee-6387-436f-a002-f3cb268ce51b",
+    "name": "family_reading_audio",
+    "title": "Reading Audio",
+    "description": "Show or hide an audio player to listen to the scripture readings during Morning and Evening Prayer.  Audio is provided by esv.org and currently does not include the Deuterocanon/Apocrypha.",
+    "site": 2,
+    "site_name": "Family Prayer",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 1,
+    "setting_string_order": 25,
+    "options": [
+      {
+        "uuid": "ba4556b9-bd1a-4663-8006-89f2f8bc86fd",
+        "name": "Disable Audio",
+        "description": "No audio controls for scripture readings",
+        "value": "off",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "16e28641-be0b-4671-bcd5-206f7459d786",
+        "name": "Enable Audio",
+        "description": "Enable audio player for scripture readings",
+        "value": "on",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "9210be69-ab3a-4d5b-98ae-ec5942f75e78",
+    "name": "family_collect",
+    "title": "Collect",
+    "description": "",
+    "site": 2,
+    "site_name": "Family Prayer",
+    "setting_type": 1,
+    "setting_type_name": "Settings",
+    "order": 2,
+    "setting_string_order": 26,
+    "options": [
+      {
+        "uuid": "614fcf09-d3e4-4de8-befa-c92f3e40026c",
+        "name": "By Time of Day",
+        "description": "The prayer appointed for the time of day from Family Prayer",
+        "value": "time_of_day",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "ae1cab0c-27f6-48d1-bab1-8319e6a0a1e5",
+        "name": "By Day of Week",
+        "description": "The prayer appointed for the day of the week from the Daily Office",
+        "value": "day_of_week",
+        "order": 1,
+        "abbreviation": "B"
+      },
+      {
+        "uuid": "3461cb29-6da7-4d9e-996a-b1e3bfeb1188",
+        "name": "By Day of the Year",
+        "description": "The prayer appointed for the specific day of the year (or the previous Sunday if there is no feast)",
+        "value": "day_of_year",
+        "order": 2,
+        "abbreviation": "C"
+      }
+    ]
+  },
+  {
+    "uuid": "3c950385-56e8-4118-8379-81379691808d",
+    "name": "family-opening-sentence",
+    "title": "Opening Sentence",
+    "description": "Use the same opening sentences each day based on the time of the day, or use the seasonal options from the Daily Office",
+    "site": 2,
+    "site_name": "Family Prayer",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 0,
+    "setting_string_order": 27,
+    "options": [
+      {
+        "uuid": "600ec687-4787-43b1-91af-c6069203bd17",
+        "name": "Fixed by Time of Day",
+        "description": "An opening sentence based on the time of day",
+        "value": "family-opening-sentence-fixed",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "3ba6b1d0-0795-4c7c-9e79-f4bb51e9e802",
+        "name": "Seasonal",
+        "description": "An opening sentence based on the season",
+        "value": "family-opening-sentence-seasonal",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  },
+  {
+    "uuid": "ac6b2fea-2dea-4a78-8e8b-4966d4521b52",
+    "name": "family-creed",
+    "title": "Apostles' Creed",
+    "description": "Include the Apostle's Creed before the prayers during 'In the Morning' and 'In the Early Evening' Family Prayer",
+    "site": 2,
+    "site_name": "Family Prayer",
+    "setting_type": 2,
+    "setting_type_name": "Additional Settings",
+    "order": 1,
+    "setting_string_order": 28,
+    "options": [
+      {
+        "uuid": "57e06d13-047d-4c91-96bb-6db93926f746",
+        "name": "No",
+        "description": "No creed",
+        "value": "family-creed-no",
+        "order": 0,
+        "abbreviation": "A"
+      },
+      {
+        "uuid": "3cfb2b57-2bd9-4624-8431-3dabbb6dacc0",
+        "name": "Yes",
+        "description": "Include Creed",
+        "value": "family-creed-yes",
+        "order": 1,
+        "abbreviation": "B"
+      }
+    ]
+  }
+]
