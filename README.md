@@ -50,19 +50,21 @@ Each service includes all components:
 pip install -r requirements.txt
 ```
 
-The required packages are:
+This will install:
 - `requests` - for API communication
-
-3. (Optional) For PDF generation, install additional packages:
-
-```bash
-pip install markdown weasyprint
-```
+- `markdown` - for PDF generation
+- `weasyprint` - for PDF generation
 
 **Note**: WeasyPrint requires some system libraries. On most systems:
 - **Ubuntu/Debian**: `sudo apt-get install python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0`
 - **macOS**: `brew install pango`
 - **Windows**: Generally works out of the box
+
+If you only want Markdown output (not PDF), you can install just the required dependency:
+
+```bash
+pip install requests
+```
 
 ## Usage
 
@@ -71,10 +73,18 @@ pip install markdown weasyprint
 Generate morning prayer for today:
 
 ```bash
-python main.py
+python main.py --type morning
 ```
 
 This creates a file named `morning_prayer_YYYY-MM-DD.md` with today's morning prayer.
+
+To see all available options:
+
+```bash
+python main.py
+# or
+python main.py --help
+```
 
 ### Command-Line Options
 

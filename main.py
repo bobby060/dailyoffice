@@ -35,13 +35,17 @@ def parse_date(date_str: str) -> date:
 
 def main():
     """Main CLI entry point."""
+    # If no arguments provided, show help and exit
+    if len(sys.argv) == 1:
+        sys.argv.append('--help')
+
     parser = argparse.ArgumentParser(
         description="Generate Daily Office prayers from The Book of Common Prayer (2019)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   # Generate morning prayer for today
-  python main.py
+  python main.py --type morning
 
   # Generate evening prayer for today
   python main.py --type evening
@@ -50,13 +54,13 @@ Examples:
   python main.py --type midday --date 2025-12-25
 
   # Generate as PDF
-  python main.py --pdf --output morning_prayer.pdf
+  python main.py --type morning --pdf --output morning_prayer.pdf
 
   # Save to a specific file
-  python main.py --output christmas_morning_prayer.md --date 2025-12-25
+  python main.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
 
   # Display to console instead of saving
-  python main.py --print
+  python main.py --type morning --print
 
   # Get help
   python main.py --help
@@ -69,8 +73,8 @@ For more information, visit: https://www.dailyoffice2019.com/
         '--type', '-t',
         type=str,
         choices=['morning', 'evening', 'midday'],
-        default='morning',
-        help='Type of prayer to generate (default: morning)'
+        required=True,
+        help='Type of prayer to generate'
     )
 
     parser.add_argument(
