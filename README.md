@@ -116,14 +116,17 @@ python main.py [OPTIONS]
 
 ```
 dailyoffice/
-├── dailyoffice/              # Main package
-│   ├── __init__.py          # Package initialization
-│   ├── api_client.py        # API communication class
-│   ├── prayer_generator.py  # Markdown generation class
-│   └── prayer_service.py    # Service layer coordinating components
-├── main.py                   # CLI entry point
-├── requirements.txt          # Python dependencies
-└── README.md                # This file
+├── dailyoffice/                   # Main package
+│   ├── __init__.py               # Package initialization
+│   ├── api_client.py             # API communication class
+│   ├── prayer_generator.py       # Markdown generation class
+│   └── prayer_service.py         # Service layer coordinating components
+├── main.py                        # CLI entry point
+├── collect_api_samples.py         # API sample data collection script
+├── test_with_sample_data.py       # Test with sample data
+├── requirements.txt               # Python dependencies
+├── README.md                      # This file
+└── TESTING_INSTRUCTIONS.md        # Instructions for collecting API samples
 ```
 
 ## Architecture
@@ -201,9 +204,29 @@ Example output structure:
 
 ## Development
 
+### Collecting API Sample Data
+
+For development and testing purposes, you can collect sample API responses:
+
+```bash
+python collect_api_samples.py
+```
+
+This script will:
+- Fetch data from various API endpoints
+- Save responses to the `api_samples/` directory
+- Create organized JSON files for testing
+- Generate a summary report
+
+See [TESTING_INSTRUCTIONS.md](TESTING_INSTRUCTIONS.md) for detailed instructions.
+
 ### Running Tests
 
-(Tests to be added in future versions)
+Test the markdown generator with sample data:
+
+```bash
+python test_with_sample_data.py
+```
 
 ### Code Style
 
