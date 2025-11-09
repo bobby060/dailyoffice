@@ -101,6 +101,29 @@ class PrayerService:
         markdown_content = self.markdown_generator.generate_midday_prayer(prayer_data)
         return markdown_content
 
+    def generate_compline_markdown(
+        self,
+        prayer_date: Optional[date] = None
+    ) -> str:
+        """
+        Generate a complete compline (night prayer) document in Markdown format.
+
+        Args:
+            prayer_date: The date for the prayer. Defaults to today.
+
+        Returns:
+            Complete compline as a Markdown string
+
+        Raises:
+            requests.RequestException: If the API request fails
+        """
+        if prayer_date is None:
+            prayer_date = date.today()
+
+        prayer_data = self.api_client.get_compline(prayer_date=prayer_date)
+        markdown_content = self.markdown_generator.generate_compline(prayer_data)
+        return markdown_content
+
     def generate_morning_prayer_latex(
         self,
         prayer_date: Optional[date] = None,
@@ -178,6 +201,31 @@ class PrayerService:
 
         prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date)
         latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data, page_size)
+        return latex_content
+
+    def generate_compline_latex(
+        self,
+        prayer_date: Optional[date] = None,
+        page_size: str = "letter"
+    ) -> str:
+        """
+        Generate a complete compline (night prayer) document in LaTeX format.
+
+        Args:
+            prayer_date: The date for the prayer. Defaults to today.
+            page_size: Page size - "letter" or "remarkable"
+
+        Returns:
+            Complete compline as a LaTeX string
+
+        Raises:
+            requests.RequestException: If the API request fails
+        """
+        if prayer_date is None:
+            prayer_date = date.today()
+
+        prayer_data = self.api_client.get_compline(prayer_date=prayer_date)
+        latex_content = self.markdown_generator.generate_compline_latex(prayer_data, page_size)
         return latex_content
 
     def save_prayer(

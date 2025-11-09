@@ -100,6 +100,18 @@ class MarkdownGenerator:
         """
         return self.generate_prayer(api_response, "Midday Prayer")
 
+    def generate_compline(self, api_response: Dict[str, Any]) -> str:
+        """
+        Generate a complete compline (night prayer) Markdown document.
+
+        Args:
+            api_response: The raw API response dictionary containing modules and calendar data
+
+        Returns:
+            A formatted Markdown string containing the complete compline liturgy
+        """
+        return self.generate_prayer(api_response, "Compline")
+
     def _format_date(self, date_desc: Dict[str, Any]) -> str:
         """Format the date description."""
         weekday = date_desc.get('weekday', '')
@@ -590,6 +602,19 @@ class MarkdownGenerator:
         """
         return self.generate_latex(api_response, "Midday Prayer", page_size)
 
+    def generate_compline_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+        """
+        Generate a complete compline (night prayer) LaTeX document.
+
+        Args:
+            api_response: The raw API response dictionary
+            page_size: Page size - "letter" or "remarkable"
+
+        Returns:
+            A formatted LaTeX string containing the complete compline liturgy
+        """
+        return self.generate_latex(api_response, "Compline", page_size)
+
     def _format_liturgical_info_latex(self, calendar_day: Dict[str, Any]) -> str:
         """Format liturgical season and feast information for LaTeX."""
         lines = []
@@ -645,19 +670,37 @@ class MarkdownGenerator:
                 output.append(r'')
 
         # Process each line
-        for line in lines:
-            formatted_line = self._format_line_latex(line)
+        # Track if the previous rubric should cause indentation
+        indent_next_line = False
+        for i, line in enumerate(lines):
+            formatted_line = self._format_line_latex(line, indent_next_line)
             if formatted_line is not None:
                 output.append(formatted_line)
 
+            # Check if this rubric should cause the next line to be indented
+            line_type = line.get('line_type', '')
+            content = line.get('content', '').strip()
+            if line_type == 'rubric' and content:
+                # Rubrics that indicate someone is speaking should indent the next line
+                content_lower = content.lower()
+                indent_next_line = ('says' in content_lower or
+                                   'say' in content_lower or
+                                   'prays' in content_lower or
+                                   'pray' in content_lower or
+                                   'continues' in content_lower)
+            elif line_type != 'spacer' and content:
+                # Non-spacer content resets the flag
+                indent_next_line = False
+
         return "\n".join(output)
 
-    def _format_line_latex(self, line: Dict[str, Any]) -> str:
+    def _format_line_latex(self, line: Dict[str, Any], force_indent: bool = False) -> str:
         """
         Format a single line from the liturgy for LaTeX.
 
         Args:
             line: A line dictionary containing 'content', 'line_type', and formatting info
+            force_indent: If True, force indentation regardless of the line's indented property
 
         Returns:
             Formatted LaTeX string for the line, or None if the line should be skipped
@@ -666,6 +709,10 @@ class MarkdownGenerator:
         line_type = line.get('line_type', '')
         indented = line.get('indented', False)
         preface = line.get('preface')
+
+        # Apply forced indentation from rubric context
+        if force_indent and not indented:
+            indented = 'indent'
 
         # Skip empty spacer lines
         if line_type == 'spacer' or not content:
@@ -679,16 +726,25 @@ class MarkdownGenerator:
             return r'\subsubsection*{' + escaped_content + r'}'
 
         elif line_type == 'subheading':
-            return r'\textit{' + escaped_content + r'}' + r'\\'
+            # Centered subheading in italics
+            return r'\centerline{\textit{' + escaped_content + r'}}'
 
         elif line_type == 'rubric':
-            return r'\textit{' + escaped_content + r'}' + r'\\'
+            # Rubric with spacing before and after
+            return r'\vspace{0.3em}\noindent\textit{' + escaped_content + r'}\\[0.3em]'
 
         elif line_type == 'citation':
             return r'\hfill --- ' + escaped_content
 
-        elif line_type in ['leader', 'leader_dialogue']:
-            # Leader/officiant lines in normal text
+        elif line_type == 'leader_dialogue':
+            # Leader dialogue: Officiant label aligned with People label using fixed-width box
+            content_clean = content.rstrip()
+            escaped_content = self._escape_latex(content_clean)
+            # Use makebox to create fixed-width label so content aligns with People lines
+            return r'\makebox[4em][l]{\textit{Officiant}}' + escaped_content + r'\\[0.5em]'
+
+        elif line_type == 'leader':
+            # Leader/officiant lines in normal text (non-dialogue)
             # Keep trailing asterisks (psalm pause markers) but escape them
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
@@ -697,8 +753,15 @@ class MarkdownGenerator:
                 escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
             return self._indent_text_latex(escaped_content, indented) + r'\\'
 
-        elif line_type in ['congregation', 'congregation_dialogue']:
-            # Congregation/people lines in bold
+        elif line_type == 'congregation_dialogue':
+            # Congregation dialogue: People label aligned with Officiant label using fixed-width box
+            content_clean = content.rstrip()
+            escaped_content = self._escape_latex(content_clean)
+            # Use makebox to create fixed-width label so content aligns with Officiant lines
+            return r'\makebox[4em][l]{\textit{People}}\textbf{' + escaped_content + r'}\\[0.5em]'
+
+        elif line_type == 'congregation':
+            # Congregation/people lines in bold (non-dialogue)
             # Keep trailing asterisks (psalm pause markers) but escape them
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
