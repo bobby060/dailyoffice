@@ -197,12 +197,18 @@ class MarkdownGenerator:
             # Leader/officiant lines in normal text (no label)
             # Remove trailing asterisks (psalm pause markers)
             content = re.sub(r'\s*\*+\s*$', '', content)
+            # Add verse number if preface is a number (for psalms)
+            if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
+                content = f"<sup>{preface}</sup> {content}"
             return self._indent_text(content, indented)
 
         elif line_type in ['congregation', 'congregation_dialogue']:
             # Congregation/people lines in bold (no label)
             # Remove trailing asterisks (psalm pause markers)
             content = re.sub(r'\s*\*+\s*$', '', content)
+            # Add verse number if preface is a number (for psalms)
+            if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
+                content = f"<sup>{preface}</sup> {content}"
             return self._indent_text(f"**{content}**", indented)
 
         elif line_type == 'reader':
