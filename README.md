@@ -2,6 +2,8 @@
 
 Generate beautifully formatted prayer documents from *The Book of Common Prayer* (2019) using the Daily Office 2019 API.
 
+One of my daily struggles is the tension between the desire to disconnect from my phone and the convenience of not having to flip back and forward between the BCP and the readings. This project is an attempt to solve that problem by generating a single, well-formatted document for each prayer that I can send to my e-reader or print out.
+
 ## Overview
 
 This Python application fetches daily office liturgy from the [Daily Office 2019 API](https://api.dailyoffice2019.com) and generates well-formatted Markdown and PDF documents. The application supports:
@@ -37,7 +39,10 @@ Examples of generated documents are included in the repository for reference.
 
 1. Clone or download this repository
 
-
+```bash
+git clone https://github.com/bobby060/dailyoffice.git
+cd dailyoffice
+```
 
 2. Install dependencies:
 
@@ -47,11 +52,6 @@ Recommend doing this inside a virtual environment
 ```bash
 pip install -r requirements.txt
 ```
-
-This will install:
-- `requests` - for API communication
-- `markdown` - for PDF generation via WeasyPrint
-- `weasyprint` - for PDF generation via WeasyPrint
 
 If you only want Markdown output (not PDF), you can install just the required dependency:
 
@@ -113,7 +113,7 @@ python main.py [OPTIONS]
   python main.py --help
   ```
 
-- `-t, --type {morning|evening|midday}` - Type of prayer to generate (default: morning)
+- `-t, --type {morning|evening|midday}` - Type of prayer to generate, required
   ```bash
   python main.py --type evening
   ```

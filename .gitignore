@@ -38,9 +38,13 @@ env/
 Thumbs.db
 
 # Output files
-morning_prayer_*.md
+*_prayer_*.md
 test_prayer.md
 *.pdf
+*_prayer_*.pdf
+*_prayer_*.tex
+*_prayer_*.log
+*_prayer_*.aux
 
 # Include one morning prayer as an example
 !morning_prayer_2025-11-08.md
