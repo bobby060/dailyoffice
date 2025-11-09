@@ -77,30 +77,37 @@ class MonthlyPrayerGenerator:
             prayer_date = date(year, month, day)
             print(f"  Fetching day {day}/{num_days}: {prayer_date.strftime('%B %d, %Y')}...")
 
+            # Create label for this day
+            day_label = f'day{day}'
+
             # Get the LaTeX content for this day
             if prayer_type == 'morning':
                 latex = self.prayer_service.generate_morning_prayer_latex(
                     prayer_date=prayer_date,
                     page_size=page_size,
-                    psalm_cycle=psalm_cycle
+                    psalm_cycle=psalm_cycle,
+                    label=day_label
                 )
             elif prayer_type == 'evening':
                 latex = self.prayer_service.generate_evening_prayer_latex(
                     prayer_date=prayer_date,
                     page_size=page_size,
-                    psalm_cycle=psalm_cycle
+                    psalm_cycle=psalm_cycle,
+                    label=day_label
                 )
             elif prayer_type == 'midday':
                 latex = self.prayer_service.generate_midday_prayer_latex(
                     prayer_date=prayer_date,
                     page_size=page_size,
-                    psalm_cycle=psalm_cycle
+                    psalm_cycle=psalm_cycle,
+                    label=day_label
                 )
             elif prayer_type == 'compline':
                 latex = self.prayer_service.generate_compline_latex(
                     prayer_date=prayer_date,
                     page_size=page_size,
-                    psalm_cycle=psalm_cycle
+                    psalm_cycle=psalm_cycle,
+                    label=day_label
                 )
 
             # Extract just the body content (between \begin{document} and \end{document})
@@ -183,7 +190,7 @@ class MonthlyPrayerGenerator:
 
         # Set page size based on option
         if page_size == "remarkable":
-            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in, headheight=14pt}')
+            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, left=0.5in, right=0.5in, top=1in, bottom=0.5in, headheight=14pt}')
         else:
             sections.append(r'\geometry{letterpaper, margin=1in, headheight=14pt}')
         sections.append(r'')
@@ -210,15 +217,10 @@ class MonthlyPrayerGenerator:
         sections.append(r'\makeatother')
         sections.append(r'')
 
-        # Define default navigation link (will be redefined for each day)
-        sections.append(r'\newcommand{\currentdaylink}{}')
-        sections.append(r'')
-
         # Configure headers and footers with navigation
-        # Default fancy style - links to current day
         sections.append(r'\fancypagestyle{fancy}{%')
         sections.append(r'  \fancyhf{}')
-        sections.append(r'  \fancyhead[L]{\small\currentdaylink}')  # Left header: dynamic link
+        sections.append(r'  \fancyhead[L]{\small\hyperref[index]{Index}}')  # Left header: link to index
         sections.append(r'  \fancyhead[C]{\small\nouppercase{\leftmark}}')  # Center header: current section
         sections.append(r'  \fancyhead[R]{\small\thepage}')  # Right header: page number
         sections.append(r'  \renewcommand{\headrulewidth}{0.4pt}')
@@ -269,24 +271,12 @@ class MonthlyPrayerGenerator:
             content = item['content']
             date_str = prayer_date.strftime('%B %d')
 
-            # Add label for this day so we can link to it
-            sections.append(r'\label{day' + str(day_num) + r'}')
-
-            # Set the header link for this day
-            # First page of each day links to index, subsequent pages link to top of day
-            sections.append(r'\renewcommand{\currentdaylink}{\hyperref[index]{Index}}')  # First page: to index
-            sections.append(r'')
-
             # Update section mark for header
             sections.append(r'\markboth{' + date_str + r'}{' + date_str + r'}')
             sections.append(r'')
 
-            # Add the day's content
+            # Add the day's content (label is generated within the content)
             sections.append(content)
-
-            # After first page, change link to point to this day
-            sections.append(r'\renewcommand{\currentdaylink}{\hyperref[day' + str(day_num) + r']{' + date_str + r'}}')
-            sections.append(r'')
 
             # Add page break after each day (except the last one)
             if day_num < len(daily_content):

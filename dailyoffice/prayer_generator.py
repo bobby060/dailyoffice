@@ -480,7 +480,7 @@ class MarkdownGenerator:
 
         return result
 
-    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office", page_size: str = "letter") -> str:
+    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office", page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete prayer LaTeX document.
 
@@ -488,6 +488,7 @@ class MarkdownGenerator:
             api_response: The raw API response dictionary containing modules and calendar data
             title: The title for the prayer document
             page_size: Page size - "letter" (8.5x11) or "remarkable" (6.18x8.24)
+            label: Optional LaTeX label to add after the title for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete prayer liturgy
@@ -503,7 +504,7 @@ class MarkdownGenerator:
         # Set page size based on option
         if page_size == "remarkable":
             # Remarkable 2 tablet size: 6.18 x 8.24 inches (157mm x 209mm)
-            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in, headheight=14pt}')
+            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, left=0.5in, right=0.5in, top=1in, bottom=0.5in, headheight=14pt}')
         else:
             # Standard US Letter size
             sections.append(r'\geometry{letterpaper, margin=1in, headheight=14pt}')
@@ -538,6 +539,9 @@ class MarkdownGenerator:
 
         sections.append(r'\begin{center}')
         sections.append(r'{\LARGE \textbf{' + self._escape_latex(title) + r'}}\\[0.5em]')
+        # Add label if provided (for monthly prayer navigation)
+        if label:
+            sections.append(r'\label{' + label + r'}')
         sections.append(r'{\large ' + self._escape_latex(self._format_date(date_desc)) + r'}')
         sections.append(r'\end{center}')
         sections.append(r'')
@@ -563,57 +567,61 @@ class MarkdownGenerator:
 
         return "\n".join(sections)
 
-    def generate_morning_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_morning_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete morning prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete morning prayer liturgy
         """
-        return self.generate_latex(api_response, "Daily Morning Prayer", page_size)
+        return self.generate_latex(api_response, "Daily Morning Prayer", page_size, label)
 
-    def generate_evening_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_evening_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete evening prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete evening prayer liturgy
         """
-        return self.generate_latex(api_response, "Daily Evening Prayer", page_size)
+        return self.generate_latex(api_response, "Daily Evening Prayer", page_size, label)
 
-    def generate_midday_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_midday_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete midday prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete midday prayer liturgy
         """
-        return self.generate_latex(api_response, "Midday Prayer", page_size)
+        return self.generate_latex(api_response, "Midday Prayer", page_size, label)
 
-    def generate_compline_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_compline_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete compline (night prayer) LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete compline liturgy
         """
-        return self.generate_latex(api_response, "Compline", page_size)
+        return self.generate_latex(api_response, "Compline", page_size, label)
 
     def _format_liturgical_info_latex(self, calendar_day: Dict[str, Any]) -> str:
         """Format liturgical season and feast information for LaTeX."""
