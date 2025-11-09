@@ -210,6 +210,10 @@ class MonthlyPrayerGenerator:
         sections.append(r'\makeatother')
         sections.append(r'')
 
+        # Define default navigation link (will be redefined for each day)
+        sections.append(r'\newcommand{\currentdaylink}{}')
+        sections.append(r'')
+
         # Configure headers and footers with navigation
         # Default fancy style - links to current day
         sections.append(r'\fancypagestyle{fancy}{%')
@@ -271,7 +275,7 @@ class MonthlyPrayerGenerator:
 
             # Set the header link for this day
             # First page of each day links to index, subsequent pages link to top of day
-            sections.append(r'\def\currentdaylink{\hyperref[index]{Index}}')  # First page: to index
+            sections.append(r'\renewcommand{\currentdaylink}{\hyperref[index]{Index}}')  # First page: to index
             sections.append(r'')
 
             # Update section mark for header
@@ -282,7 +286,7 @@ class MonthlyPrayerGenerator:
             sections.append(content)
 
             # After first page, change link to point to this day
-            sections.append(r'\def\currentdaylink{\hyperref[day' + str(day_num) + r']{' + date_str + r'}}')
+            sections.append(r'\renewcommand{\currentdaylink}{\hyperref[day' + str(day_num) + r']{' + date_str + r'}}')
             sections.append(r'')
 
             # Add page break after each day (except the last one)
