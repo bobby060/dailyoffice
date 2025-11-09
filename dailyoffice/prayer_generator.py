@@ -735,11 +735,11 @@ class MarkdownGenerator:
             return r'\hfill --- ' + escaped_content
 
         elif line_type == 'leader_dialogue':
-            # Leader dialogue: prefix with "Officiant" label and indent the content
+            # Leader dialogue: Officiant label on same line as content, separated by tab space
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
-            # Output label, then indented content
-            return r'\textit{Officiant}\\' + '\n' + r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}' + escaped_content + r'}' + r'\\'
+            # Output label with tab spacing, then content, then extra vertical space
+            return r'\textit{Officiant}\quad ' + escaped_content + r'\\[0.5em]'
 
         elif line_type == 'leader':
             # Leader/officiant lines in normal text (non-dialogue)
@@ -752,11 +752,11 @@ class MarkdownGenerator:
             return self._indent_text_latex(escaped_content, indented) + r'\\'
 
         elif line_type == 'congregation_dialogue':
-            # Congregation dialogue: prefix with "People" label and indent the content
+            # Congregation dialogue: People label on same line as content, separated by tab space
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
-            # Output label, then indented bold content
-            return r'\textit{People}\\' + '\n' + r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}\textbf{' + escaped_content + r'}}' + r'\\'
+            # Output label with tab spacing, then bold content, then extra vertical space
+            return r'\textit{People}\quad \textbf{' + escaped_content + r'}\\[0.5em]'
 
         elif line_type == 'congregation':
             # Congregation/people lines in bold (non-dialogue)
