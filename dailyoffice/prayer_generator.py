@@ -726,20 +726,22 @@ class MarkdownGenerator:
             return r'\subsubsection*{' + escaped_content + r'}'
 
         elif line_type == 'subheading':
-            return r'\textit{' + escaped_content + r'}' + r'\\'
+            # Centered subheading in italics
+            return r'\centerline{\textit{' + escaped_content + r'}}'
 
         elif line_type == 'rubric':
-            return r'\textit{' + escaped_content + r'}' + r'\\'
+            # Rubric with spacing before and after
+            return r'\vspace{0.3em}\noindent\textit{' + escaped_content + r'}\\[0.3em]'
 
         elif line_type == 'citation':
             return r'\hfill --- ' + escaped_content
 
         elif line_type == 'leader_dialogue':
-            # Leader dialogue: Officiant label on same line as content, separated by tab space
+            # Leader dialogue: Officiant label aligned with People label using fixed-width box
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
-            # Output label with tab spacing, then content, then extra vertical space
-            return r'\textit{Officiant}\quad ' + escaped_content + r'\\[0.5em]'
+            # Use makebox to create fixed-width label so content aligns with People lines
+            return r'\makebox[4em][l]{\textit{Officiant}}' + escaped_content + r'\\[0.5em]'
 
         elif line_type == 'leader':
             # Leader/officiant lines in normal text (non-dialogue)
@@ -752,11 +754,11 @@ class MarkdownGenerator:
             return self._indent_text_latex(escaped_content, indented) + r'\\'
 
         elif line_type == 'congregation_dialogue':
-            # Congregation dialogue: People label on same line as content, separated by tab space
+            # Congregation dialogue: People label aligned with Officiant label using fixed-width box
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
-            # Output label with tab spacing, then bold content, then extra vertical space
-            return r'\textit{People}\quad \textbf{' + escaped_content + r'}\\[0.5em]'
+            # Use makebox to create fixed-width label so content aligns with Officiant lines
+            return r'\makebox[4em][l]{\textit{People}}\textbf{' + escaped_content + r'}\\[0.5em]'
 
         elif line_type == 'congregation':
             # Congregation/people lines in bold (non-dialogue)
