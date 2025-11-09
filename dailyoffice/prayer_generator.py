@@ -305,7 +305,7 @@ class MarkdownGenerator:
             return '\n'.join(lines)
 
         else:
-            # Regular scripture reading - format as blockquote
+            # Regular scripture reading - format as normal text (not blockquote/italic)
             # Remove HTML tags but keep the text
             text = re.sub(r'<[^>]+>', ' ', html_content)
 
@@ -319,11 +319,8 @@ class MarkdownGenerator:
             text = re.sub(r'\s+', ' ', text)
             text = re.sub(r'\n\s*\n', '\n\n', text)
 
-            # Format as blockquote for scripture
-            lines = text.strip().split('\n')
-            formatted_lines = [f"> {line.strip()}" if line.strip() else ">" for line in lines]
-
-            return '\n'.join(formatted_lines)
+            # Return as normal text (no blockquote)
+            return text.strip()
 
     def save_to_file(self, markdown_content: str, filename: str):
         """
@@ -471,13 +468,14 @@ class MarkdownGenerator:
 
         return result
 
-    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office") -> str:
+    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office", page_size: str = "letter") -> str:
         """
         Generate a complete prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary containing modules and calendar data
             title: The title for the prayer document
+            page_size: Page size - "letter" (8.5x11) or "remarkable" (6.18x8.24)
 
         Returns:
             A formatted LaTeX string containing the complete prayer liturgy
@@ -489,7 +487,15 @@ class MarkdownGenerator:
         sections.append(r'\usepackage[utf8]{inputenc}')
         sections.append(r'\usepackage[T1]{fontenc}')
         sections.append(r'\usepackage{geometry}')
-        sections.append(r'\geometry{letterpaper, margin=1in}')
+
+        # Set page size based on option
+        if page_size == "remarkable":
+            # Remarkable 2 tablet size: 6.18 x 8.24 inches (157mm x 209mm)
+            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in}')
+        else:
+            # Standard US Letter size
+            sections.append(r'\geometry{letterpaper, margin=1in}')
+
         sections.append(r'')
         sections.append(r'% Paragraph formatting')
         sections.append(r'\setlength{\parindent}{0pt}')
@@ -504,7 +510,7 @@ class MarkdownGenerator:
         sections.append(r'\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%')
         sections.append(r'  {-3.25ex\@plus -1ex \@minus -.2ex}%')
         sections.append(r'  {1.5ex \@plus .2ex}%')
-        sections.append(r'  {\normalfont\large\bfseries}}')
+        sections.append(r'  {\centering\normalfont\large\bfseries}}')
         sections.append(r'\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%')
         sections.append(r'  {-3.25ex\@plus -1ex \@minus -.2ex}%')
         sections.append(r'  {1.5ex \@plus .2ex}%')
@@ -545,41 +551,44 @@ class MarkdownGenerator:
 
         return "\n".join(sections)
 
-    def generate_morning_prayer_latex(self, api_response: Dict[str, Any]) -> str:
+    def generate_morning_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
         """
         Generate a complete morning prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
+            page_size: Page size - "letter" or "remarkable"
 
         Returns:
             A formatted LaTeX string containing the complete morning prayer liturgy
         """
-        return self.generate_latex(api_response, "Daily Morning Prayer")
+        return self.generate_latex(api_response, "Daily Morning Prayer", page_size)
 
-    def generate_evening_prayer_latex(self, api_response: Dict[str, Any]) -> str:
+    def generate_evening_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
         """
         Generate a complete evening prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
+            page_size: Page size - "letter" or "remarkable"
 
         Returns:
             A formatted LaTeX string containing the complete evening prayer liturgy
         """
-        return self.generate_latex(api_response, "Daily Evening Prayer")
+        return self.generate_latex(api_response, "Daily Evening Prayer", page_size)
 
-    def generate_midday_prayer_latex(self, api_response: Dict[str, Any]) -> str:
+    def generate_midday_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
         """
         Generate a complete midday prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
+            page_size: Page size - "letter" or "remarkable"
 
         Returns:
             A formatted LaTeX string containing the complete midday prayer liturgy
         """
-        return self.generate_latex(api_response, "Midday Prayer")
+        return self.generate_latex(api_response, "Midday Prayer", page_size)
 
     def _format_liturgical_info_latex(self, calendar_day: Dict[str, Any]) -> str:
         """Format liturgical season and feast information for LaTeX."""
@@ -680,9 +689,9 @@ class MarkdownGenerator:
 
         elif line_type in ['leader', 'leader_dialogue']:
             # Leader/officiant lines in normal text
-            # Remove trailing asterisks (psalm pause markers)
-            content = re.sub(r'\*+\s*$', '', content).rstrip()
-            escaped_content = self._escape_latex(content)
+            # Keep trailing asterisks (psalm pause markers) but escape them
+            content_clean = content.rstrip()
+            escaped_content = self._escape_latex(content_clean)
             # Add verse number if preface is a number (for psalms)
             if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
                 escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
@@ -690,9 +699,9 @@ class MarkdownGenerator:
 
         elif line_type in ['congregation', 'congregation_dialogue']:
             # Congregation/people lines in bold
-            # Remove trailing asterisks (psalm pause markers)
-            content = re.sub(r'\*+\s*$', '', content).rstrip()
-            escaped_content = self._escape_latex(content)
+            # Keep trailing asterisks (psalm pause markers) but escape them
+            content_clean = content.rstrip()
+            escaped_content = self._escape_latex(content_clean)
             # Add verse number if preface is a number (for psalms)
             if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
                 escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
@@ -713,19 +722,21 @@ class MarkdownGenerator:
     def _indent_text_latex(self, text: str, indented: Any) -> str:
         """
         Apply indentation to text for LaTeX based on the indented parameter.
+        Uses hanging indent so wrapped lines maintain the indentation.
 
         Args:
             text: The text to indent (should already be escaped)
             indented: Boolean, string, or other indicator of indentation
 
         Returns:
-            Indented text
+            Indented text with hanging indent commands
         """
         if not indented or indented == False:
             return text
 
         if indented in ['indent', 'hangingIndent', 'hangingIdent', True]:
-            return r'\hspace*{2em}' + text
+            # Use hanging indent: first line indents 2em, subsequent lines also indent 2em
+            return r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}' + text + r'}'
 
         return text
 
@@ -761,8 +772,8 @@ class MarkdownGenerator:
                     # Remove the sup tag from para
                     para = re.sub(r'<sup[^>]*>\d+</sup>\s*', '', para)
 
-                # Remove asterisk spans
-                para = re.sub(r'<span class=["\']asterisk["\']>\*</span>', '', para)
+                # Keep asterisks but remove the span tags around them
+                para = re.sub(r'<span class=["\']asterisk["\']>(\*)</span>', r'\1', para)
 
                 # Check if this is a strong/bold line (people's response)
                 has_strong = '<strong>' in para
@@ -771,16 +782,16 @@ class MarkdownGenerator:
                 text = re.sub(r'<[^>]+>', '', para)
                 text = unescape(text)
 
-                # Remove trailing asterisks
-                text = re.sub(r'\*+\s*$', '', text).rstrip()
+                # Keep trailing asterisks
+                text = text.rstrip()
 
                 # Escape for LaTeX
                 text = self._escape_latex(text)
 
                 if text:
-                    # If has strong tags, make the whole line bold
+                    # If has strong tags, make the whole line bold with hanging indent
                     if has_strong:
-                        lines.append(r'\hspace*{2em}' + verse_num + r'\textbf{' + text + r'}')
+                        lines.append(r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}' + verse_num + r'\textbf{' + text + r'}}')
                     else:
                         lines.append(verse_num + text)
 
@@ -804,8 +815,8 @@ class MarkdownGenerator:
             # Now add verse numbers as superscripts (after escaping, so they don't get escaped)
             text = re.sub(r'(\d+)\s+', lambda m: r'\textsuperscript{' + m.group(1) + r'} ', text)
 
-            # Format as quote environment for scripture
-            return r'\begin{quote}' + '\n' + r'\itshape ' + text + '\n' + r'\end{quote}'
+            # Format as quote environment for scripture (no italic - use normal text)
+            return r'\begin{quote}' + '\n' + text + '\n' + r'\end{quote}'
 
     def save_to_latex(self, latex_content: str, filename: str):
         """

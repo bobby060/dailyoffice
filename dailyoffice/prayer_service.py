@@ -103,13 +103,15 @@ class PrayerService:
 
     def generate_morning_prayer_latex(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        page_size: str = "letter"
     ) -> str:
         """
         Generate a complete morning prayer document in LaTeX format.
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            page_size: Page size - "letter" or "remarkable"
 
         Returns:
             Complete morning prayer as a LaTeX string
@@ -124,19 +126,21 @@ class PrayerService:
         prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date)
 
         # Generate LaTeX from the API response
-        latex_content = self.markdown_generator.generate_morning_prayer_latex(prayer_data)
+        latex_content = self.markdown_generator.generate_morning_prayer_latex(prayer_data, page_size)
 
         return latex_content
 
     def generate_evening_prayer_latex(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        page_size: str = "letter"
     ) -> str:
         """
         Generate a complete evening prayer document in LaTeX format.
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            page_size: Page size - "letter" or "remarkable"
 
         Returns:
             Complete evening prayer as a LaTeX string
@@ -148,18 +152,20 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date)
-        latex_content = self.markdown_generator.generate_evening_prayer_latex(prayer_data)
+        latex_content = self.markdown_generator.generate_evening_prayer_latex(prayer_data, page_size)
         return latex_content
 
     def generate_midday_prayer_latex(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        page_size: str = "letter"
     ) -> str:
         """
         Generate a complete midday prayer document in LaTeX format.
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            page_size: Page size - "letter" or "remarkable"
 
         Returns:
             Complete midday prayer as a LaTeX string
@@ -171,7 +177,7 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date)
-        latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data)
+        latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data, page_size)
         return latex_content
 
     def save_prayer(

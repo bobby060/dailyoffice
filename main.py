@@ -62,6 +62,9 @@ Examples:
   # Generate PDF with LaTeX and also save the .tex file
   python main.py --type morning --latex --save-tex
 
+  # Generate PDF for Remarkable 2 tablet (6.18x8.24 inches)
+  python main.py --type morning --latex --remarkable
+
   # Save to a specific file
   python main.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
 
@@ -116,6 +119,12 @@ For more information, visit: https://www.dailyoffice2019.com/
     )
 
     parser.add_argument(
+        '--remarkable',
+        action='store_true',
+        help='When using --latex, format for Remarkable 2 tablet (6.18x8.24 inches) instead of letter size'
+    )
+
+    parser.add_argument(
         '--print',
         action='store_true',
         help='Print to console instead of saving to file'
@@ -130,6 +139,10 @@ For more information, visit: https://www.dailyoffice2019.com/
 
     if args.save_tex and not args.latex:
         print("Error: --save-tex can only be used with --latex", file=sys.stderr)
+        return 1
+
+    if args.remarkable and not args.latex:
+        print("Error: --remarkable can only be used with --latex", file=sys.stderr)
         return 1
 
     # Parse the date
@@ -157,13 +170,16 @@ For more information, visit: https://www.dailyoffice2019.com/
         with PrayerService() as service:
             # Determine which format to generate
             if args.latex:
+                # Determine page size
+                page_size = "remarkable" if args.remarkable else "letter"
+
                 # Generate LaTeX
                 if args.type == 'morning':
-                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date)
+                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date, page_size=page_size)
                 elif args.type == 'evening':
-                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date)
+                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date, page_size=page_size)
                 elif args.type == 'midday':
-                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date)
+                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date, page_size=page_size)
 
                 if args.print:
                     # Print LaTeX to console
