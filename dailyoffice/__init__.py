@@ -11,9 +11,11 @@ __author__ = "Daily Office Generator"
 from .api_client import DailyOfficeAPIClient
 from .prayer_generator import MarkdownGenerator
 from .prayer_service import PrayerService
+from .monthly_prayer_generator import MonthlyPrayerGenerator
 
 __all__ = [
     "DailyOfficeAPIClient",
     "MarkdownGenerator",
     "PrayerService",
+    "MonthlyPrayerGenerator",
 ]

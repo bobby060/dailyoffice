@@ -18,9 +18,11 @@ Examples of generated documents are included in the repository for reference.
 
 ## Features
 
-- ✅ **Three prayer types**: Morning, Evening, and Midday Prayer
+- ✅ **Four prayer types**: Morning, Evening, Midday Prayer, and Compline
+- ✅ **Monthly generation**: Create a complete month of prayers in one PDF with hyperlinked navigation
 - ✅ **Multiple output formats**: Markdown, PDF (via WeasyPrint), and PDF (via LaTeX)
 - ✅ **LaTeX generation**: Generate beautiful PDFs with LaTeX for professional typesetting
+- ✅ **Multiple page sizes**: Letter and Remarkable 2 tablet sizes
 - ✅ **Clean formatting**: People's responses in bold, no labels needed
 - ✅ **Psalm formatting**: Responsive reading format (officiant normal, people bold)
 - ✅ **Fetch prayers for any date**
@@ -82,8 +84,9 @@ LaTeX provides professional typesetting and is recommended for the best-looking 
 
 ## Usage
 
-### Basic Usage
+### Quick Start
 
+**Single Day Prayer:**
 Generate morning prayer for today:
 
 ```bash
@@ -92,12 +95,20 @@ python main.py --type morning
 
 This creates a file named `morning_prayer_YYYY-MM-DD.md` with today's morning prayer.
 
+**Monthly Prayer:**
+Generate all prayers for a month:
+
+```bash
+python generate_monthly.py --type morning
+```
+
+This creates a PDF with all morning prayers for the current month, including a title page, index, and hyperlinked navigation.
+
 To see all available options:
 
 ```bash
-python main.py
-# or
 python main.py --help
+python generate_monthly.py --help
 ```
 
 ### Command-Line Options
@@ -187,21 +198,48 @@ python main.py [OPTIONS]
    python main.py --type evening --date 2025-11-23 --output sunday_evening.md
    ```
 
+### Monthly Prayer Generation
+
+For a complete month of prayers in one PDF document, use `generate_monthly.py`:
+
+```bash
+# Generate morning prayers for current month
+python generate_monthly.py --type morning
+
+# Generate for a specific month
+python generate_monthly.py --type evening --year 2025 --month December
+
+# Format for Remarkable 2 tablet
+python generate_monthly.py --type morning --remarkable
+```
+
+**Monthly PDF Features:**
+- Title page with month and prayer type
+- Hyperlinked index of all days
+- Navigation bar on each day (back to index, jump to top of day)
+- Current day shown in page header
+- Supports all page sizes (letter and remarkable)
+
+See [MONTHLY_GENERATOR.md](MONTHLY_GENERATOR.md) for complete documentation on monthly generation.
+
 ## Project Structure
 
 ```
 dailyoffice/
-├── dailyoffice/                   # Main package
-│   ├── __init__.py               # Package initialization
-│   ├── api_client.py             # API communication class
-│   ├── prayer_generator.py       # Markdown generation class
-│   └── prayer_service.py         # Service layer coordinating components
-├── main.py                        # CLI entry point
-├── collect_api_samples.py         # API sample data collection script
-├── test_with_sample_data.py       # Test with sample data
-├── requirements.txt               # Python dependencies
-├── README.md                      # This file
-└── TESTING_INSTRUCTIONS.md        # Instructions for collecting API samples
+├── dailyoffice/                      # Main package
+│   ├── __init__.py                  # Package initialization
+│   ├── api_client.py                # API communication class
+│   ├── prayer_generator.py          # Markdown/LaTeX generation class
+│   ├── prayer_service.py            # Service layer coordinating components
+│   └── monthly_prayer_generator.py  # Monthly prayer generation class
+├── main.py                           # CLI entry point for single prayers
+├── generate_monthly.py               # CLI entry point for monthly prayers
+├── collect_api_samples.py            # API sample data collection script
+├── test_with_sample_data.py          # Test with sample data
+├── requirements.txt                  # Python dependencies
+├── README.md                         # This file
+├── MONTHLY_GENERATOR.md              # Monthly generator documentation
+└── TESTING_INSTRUCTIONS.md           # Instructions for collecting API samples
 ```
 
 ## API Information
@@ -267,13 +305,14 @@ The codebase follows Python PEP 8 style guidelines with comprehensive docstrings
 
 ## Future Enhancements
 
-- [ ] Compline support
+- [x] Compline support
+- [x] Monthly prayer generation with navigation
+- [x] Multiple page sizes (letter, remarkable)
 - [ ] Custom canticle selection
 - [ ] Configuration file support
 - [ ] Multiple output formats (HTML, DOCX)
 - [ ] Week-at-a-time generation
 - [ ] Custom CSS styling for PDF output
-- [ ] Combine morning, midday, and evening prayers into a single document
 
 ## License
 
