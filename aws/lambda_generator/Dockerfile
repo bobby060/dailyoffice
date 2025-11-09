@@ -13,7 +13,7 @@ RUN yum update -y && \
     rm -rf /var/cache/yum
 
 # Verify pdflatex installation
-RUN which pdflatex && pdflatex --version
+# RUN which pdflatex && pdflatex --version
 
 # Copy Python requirements and install dependencies
 COPY requirements.txt ${LAMBDA_TASK_ROOT}/

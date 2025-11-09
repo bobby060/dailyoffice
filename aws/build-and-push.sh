@@ -1,6 +1,11 @@
 #!/bin/bash
 # Build and push the Docker image for the PDF generator Lambda
 
+BUILD_ONLY=false
+if [[ "$1" == "--build-only" ]]; then
+    BUILD_ONLY=true
+fi
+
 set -e
 
 # Configuration
@@ -18,23 +23,37 @@ echo "ECR Repository: $ECR_REPOSITORY_NAME"
 echo "Image Tag: $IMAGE_TAG"
 echo "=========================================="
 
-# Step 1: Create ECR repository if it doesn't exist
-echo ""
-echo "[1/5] Creating ECR repository..."
-aws ecr describe-repositories \
-    --repository-names "$ECR_REPOSITORY_NAME" \
-    --region "$AWS_REGION" 2>/dev/null || \
-aws ecr create-repository \
-    --repository-name "$ECR_REPOSITORY_NAME" \
-    --region "$AWS_REGION" \
-    --image-scanning-configuration scanOnPush=true
 
-# Step 2: Get ECR login credentials
-echo ""
-echo "[2/5] Logging into ECR..."
-aws ecr get-login-password --region "$AWS_REGION" | \
-    docker login --username AWS --password-stdin \
-    "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+if [ "$BUILD_ONLY" = true ]; then
+
+    echo ""
+    echo "Build only mode enabled. Skipping ECR repository creation and login."
+    echo "You can find the image locally as: $ECR_REPOSITORY_NAME:$IMAGE_TAG"
+    echo "To push to ECR later, run this script without the --build-only flag"
+
+
+else
+
+
+    # Step 1: Create ECR repository if it doesn't exist
+    echo ""
+    echo "[1/5] Creating ECR repository..."
+    aws ecr describe-repositories \
+        --repository-names "$ECR_REPOSITORY_NAME" \
+        --region "$AWS_REGION" 2>/dev/null || \
+    aws ecr create-repository \
+        --repository-name "$ECR_REPOSITORY_NAME" \
+        --region "$AWS_REGION" \
+        --image-scanning-configuration scanOnPush=true
+
+    # Step 2: Get ECR login credentials
+    echo ""
+    echo "[2/5] Logging into ECR..."
+    aws ecr get-login-password --region "$AWS_REGION" | \
+        docker login --username AWS --password-stdin \
+        "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+
+fi
 
 # Step 3: Build the Docker image
 echo ""
@@ -55,6 +74,13 @@ docker build \
 
 # Clean up copied package
 rm -rf dailyoffice
+
+if [ "$BUILD_ONLY" = true ]; then
+    echo ""
+    echo "Build complete. Skipping push to ECR."
+    echo "You can find the image locally as: $ECR_REPOSITORY_NAME:$IMAGE_TAG"
+    exit 0
+fi
 
 # Step 4: Tag the image for ECR
 echo ""
