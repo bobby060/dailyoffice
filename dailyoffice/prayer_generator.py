@@ -1,14 +1,18 @@
 """
-Markdown Generator for Daily Office Prayer
+Markdown and LaTeX Generator for Daily Office Prayer
 
 This module converts API responses from the Daily Office 2019 API
-into well-formatted Markdown documents and PDFs.
+into well-formatted Markdown documents, LaTeX documents, and PDFs.
 """
 
 import re
+import os
+import subprocess
+import tempfile
 from typing import Dict, Any, List, Optional
 from html import unescape
 from datetime import date
+from pathlib import Path
 
 
 class MarkdownGenerator:
@@ -420,3 +424,450 @@ class MarkdownGenerator:
 
         # Generate PDF
         HTML(string=full_html).write_pdf(filename, stylesheets=[css])
+
+    # ===== LaTeX Generation Methods =====
+
+    def _escape_latex(self, text: str) -> str:
+        """
+        Escape special LaTeX characters.
+
+        Args:
+            text: Text to escape
+
+        Returns:
+            LaTeX-safe text
+        """
+        # Mapping of special characters to their LaTeX escaped versions
+        replacements = {
+            '\\': r'\textbackslash{}',
+            '&': r'\&',
+            '%': r'\%',
+            '$': r'\$',
+            '#': r'\#',
+            '_': r'\_',
+            '{': r'\{',
+            '}': r'\}',
+            '~': r'\textasciitilde{}',
+            '^': r'\textasciicircum{}',
+        }
+
+        # First handle backslash, then others
+        result = text.replace('\\', replacements['\\'])
+        for char, replacement in replacements.items():
+            if char != '\\':
+                result = result.replace(char, replacement)
+
+        return result
+
+    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office") -> str:
+        """
+        Generate a complete prayer LaTeX document.
+
+        Args:
+            api_response: The raw API response dictionary containing modules and calendar data
+            title: The title for the prayer document
+
+        Returns:
+            A formatted LaTeX string containing the complete prayer liturgy
+        """
+        sections = []
+
+        # LaTeX preamble
+        sections.append(r'\documentclass[12pt,letterpaper]{article}')
+        sections.append(r'\usepackage[utf8]{inputenc}')
+        sections.append(r'\usepackage[T1]{fontenc}')
+        sections.append(r'\usepackage{geometry}')
+        sections.append(r'\geometry{letterpaper, margin=1in}')
+        sections.append(r'\usepackage{setspace}')
+        sections.append(r'\usepackage{titlesec}')
+        sections.append(r'\usepackage{parskip}')
+        sections.append(r'\setlength{\parindent}{0pt}')
+        sections.append(r'\setlength{\parskip}{0.5em}')
+        sections.append(r'')
+        sections.append(r'% Center section headings')
+        sections.append(r'\titleformat{\section}{\Large\bfseries\centering}{\thesection}{1em}{}')
+        sections.append(r'\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}')
+        sections.append(r'')
+        sections.append(r'\begin{document}')
+        sections.append(r'')
+
+        # Add title and date
+        calendar_day = api_response.get('calendar_day', {})
+        date_desc = calendar_day.get('date_description', {})
+
+        sections.append(r'\begin{center}')
+        sections.append(r'{\LARGE \textbf{' + self._escape_latex(title) + r'}}\\[0.5em]')
+        sections.append(r'{\large ' + self._escape_latex(self._format_date(date_desc)) + r'}')
+        sections.append(r'\end{center}')
+        sections.append(r'')
+
+        # Add liturgical information
+        liturg_info = self._format_liturgical_info_latex(calendar_day)
+        if liturg_info:
+            sections.append(liturg_info)
+            sections.append(r'')
+
+        sections.append(r'\noindent\rule{\textwidth}{0.4pt}')
+        sections.append(r'')
+
+        # Process each module
+        modules = api_response.get('modules', [])
+        for module in modules:
+            module_tex = self._format_module_latex(module)
+            if module_tex:
+                sections.append(module_tex)
+                sections.append(r'')
+
+        sections.append(r'\end{document}')
+
+        return "\n".join(sections)
+
+    def generate_morning_prayer_latex(self, api_response: Dict[str, Any]) -> str:
+        """
+        Generate a complete morning prayer LaTeX document.
+
+        Args:
+            api_response: The raw API response dictionary
+
+        Returns:
+            A formatted LaTeX string containing the complete morning prayer liturgy
+        """
+        return self.generate_latex(api_response, "Daily Morning Prayer")
+
+    def generate_evening_prayer_latex(self, api_response: Dict[str, Any]) -> str:
+        """
+        Generate a complete evening prayer LaTeX document.
+
+        Args:
+            api_response: The raw API response dictionary
+
+        Returns:
+            A formatted LaTeX string containing the complete evening prayer liturgy
+        """
+        return self.generate_latex(api_response, "Daily Evening Prayer")
+
+    def generate_midday_prayer_latex(self, api_response: Dict[str, Any]) -> str:
+        """
+        Generate a complete midday prayer LaTeX document.
+
+        Args:
+            api_response: The raw API response dictionary
+
+        Returns:
+            A formatted LaTeX string containing the complete midday prayer liturgy
+        """
+        return self.generate_latex(api_response, "Midday Prayer")
+
+    def _format_liturgical_info_latex(self, calendar_day: Dict[str, Any]) -> str:
+        """Format liturgical season and feast information for LaTeX."""
+        lines = []
+
+        # Primary feast
+        primary_feast = calendar_day.get('primary_feast', '')
+        if primary_feast:
+            lines.append(r'\begin{center}')
+            lines.append(r'\textbf{' + self._escape_latex(primary_feast) + r'}')
+
+        # Season
+        season = calendar_day.get('season', {})
+        season_name = season.get('name', '')
+        colors = season.get('colors', [])
+        if season_name:
+            color_str = f" ({', '.join(colors)})" if colors else ""
+            if not primary_feast:
+                lines.append(r'\begin{center}')
+            else:
+                lines.append(r'\\')
+            lines.append(r'\textit{' + self._escape_latex(season_name + color_str) + r'}')
+
+        if lines:
+            lines.append(r'\end{center}')
+
+        return "\n".join(lines) if lines else ""
+
+    def _format_module_latex(self, module: Dict[str, Any]) -> str:
+        """
+        Format a single module (section) of the prayer for LaTeX.
+
+        Args:
+            module: A module dictionary containing 'name' and 'lines'
+
+        Returns:
+            Formatted LaTeX for the module
+        """
+        module_name = module.get('name', '')
+        lines = module.get('lines', [])
+
+        if not lines:
+            return ""
+
+        output = []
+
+        # Module heading - only add if not duplicated in first line
+        if module_name:
+            # Check if first line is a heading with same content
+            first_line = lines[0] if lines else {}
+            if not (first_line.get('line_type') == 'heading' and
+                    first_line.get('content', '').strip() == module_name):
+                output.append(r'\subsection*{' + self._escape_latex(module_name) + r'}')
+                output.append(r'')
+
+        # Process each line
+        for line in lines:
+            formatted_line = self._format_line_latex(line)
+            if formatted_line is not None:
+                output.append(formatted_line)
+
+        return "\n".join(output)
+
+    def _format_line_latex(self, line: Dict[str, Any]) -> str:
+        """
+        Format a single line from the liturgy for LaTeX.
+
+        Args:
+            line: A line dictionary containing 'content', 'line_type', and formatting info
+
+        Returns:
+            Formatted LaTeX string for the line, or None if the line should be skipped
+        """
+        content = line.get('content', '').strip()
+        line_type = line.get('line_type', '')
+        indented = line.get('indented', False)
+        preface = line.get('preface')
+
+        # Skip empty spacer lines
+        if line_type == 'spacer' or not content:
+            return r''
+
+        # Escape content for LaTeX
+        escaped_content = self._escape_latex(content)
+
+        # Handle different line types
+        if line_type == 'heading':
+            return r'\subsubsection*{' + escaped_content + r'}'
+
+        elif line_type == 'subheading':
+            return r'\textit{' + escaped_content + r'}'
+
+        elif line_type == 'rubric':
+            return r'\textit{' + escaped_content + r'}'
+
+        elif line_type == 'citation':
+            return r'\hfill --- ' + escaped_content
+
+        elif line_type in ['leader', 'leader_dialogue']:
+            # Leader/officiant lines in normal text
+            # Remove trailing asterisks (psalm pause markers)
+            content = re.sub(r'\*+\s*$', '', content).rstrip()
+            escaped_content = self._escape_latex(content)
+            # Add verse number if preface is a number (for psalms)
+            if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
+                escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
+            return self._indent_text_latex(escaped_content, indented)
+
+        elif line_type in ['congregation', 'congregation_dialogue']:
+            # Congregation/people lines in bold
+            # Remove trailing asterisks (psalm pause markers)
+            content = re.sub(r'\*+\s*$', '', content).rstrip()
+            escaped_content = self._escape_latex(content)
+            # Add verse number if preface is a number (for psalms)
+            if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
+                escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
+            return self._indent_text_latex(r'\textbf{' + escaped_content + r'}', indented)
+
+        elif line_type == 'reader':
+            # Reader lines in normal text
+            return self._indent_text_latex(escaped_content, indented)
+
+        elif line_type == 'html':
+            # Process HTML content (psalms, scripture)
+            return self._format_html_content_latex(content)
+
+        else:
+            # Default formatting for unknown types
+            return self._indent_text_latex(escaped_content, indented)
+
+    def _indent_text_latex(self, text: str, indented: Any) -> str:
+        """
+        Apply indentation to text for LaTeX based on the indented parameter.
+
+        Args:
+            text: The text to indent (should already be escaped)
+            indented: Boolean, string, or other indicator of indentation
+
+        Returns:
+            Indented text
+        """
+        if not indented or indented == False:
+            return text
+
+        if indented in ['indent', 'hangingIndent', 'hangingIdent', True]:
+            return r'\hspace*{2em}' + text
+
+        return text
+
+    def _format_html_content_latex(self, html_content: str) -> str:
+        """
+        Extract and format text from HTML scripture readings and psalms for LaTeX.
+
+        Args:
+            html_content: HTML content from scripture readings or psalms
+
+        Returns:
+            Cleaned, formatted LaTeX text
+        """
+        # Remove script tags and their content
+        html_content = re.sub(r'<script[^>]*>.*?</script>', '', html_content, flags=re.DOTALL)
+
+        # Check if this is psalm content
+        is_psalm = 'class=\'psalm\'' in html_content or 'class="psalm"' in html_content
+
+        if is_psalm:
+            # Handle psalm formatting specially
+            lines = []
+
+            # Extract paragraphs
+            paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', html_content, re.DOTALL)
+
+            for para in paragraphs:
+                # Extract verse numbers and preserve them as superscripts
+                verse_num = ''
+                verse_match = re.search(r'<sup[^>]*>(\d+)</sup>', para)
+                if verse_match:
+                    verse_num = r'\textsuperscript{' + verse_match.group(1) + r'} '
+                    # Remove the sup tag from para
+                    para = re.sub(r'<sup[^>]*>\d+</sup>\s*', '', para)
+
+                # Remove asterisk spans
+                para = re.sub(r'<span class=["\']asterisk["\']>\*</span>', '', para)
+
+                # Check if this is a strong/bold line (people's response)
+                has_strong = '<strong>' in para
+
+                # Remove all HTML tags but preserve content
+                text = re.sub(r'<[^>]+>', '', para)
+                text = unescape(text)
+
+                # Remove trailing asterisks
+                text = re.sub(r'\*+\s*$', '', text).rstrip()
+
+                # Escape for LaTeX
+                text = self._escape_latex(text)
+
+                if text:
+                    # If has strong tags, make the whole line bold
+                    if has_strong:
+                        lines.append(r'\hspace*{2em}' + verse_num + r'\textbf{' + text + r'}')
+                    else:
+                        lines.append(verse_num + text)
+
+            return '\n\n'.join(lines)
+
+        else:
+            # Regular scripture reading - format as quote environment
+            # Remove HTML tags but keep the text
+            text = re.sub(r'<[^>]+>', ' ', html_content)
+
+            # Clean up verse numbers - make them superscript
+            text = re.sub(r'(\d+)\s+', lambda m: r'\textsuperscript{' + m.group(1) + r'} ', text)
+
+            # Unescape HTML entities
+            text = unescape(text)
+
+            # Clean up excessive whitespace
+            text = re.sub(r'\s+', ' ', text)
+            text = text.strip()
+
+            # Escape for LaTeX
+            text = self._escape_latex(text)
+
+            # Format as quote environment for scripture
+            return r'\begin{quote}' + '\n' + r'\itshape ' + text + '\n' + r'\end{quote}'
+
+    def save_to_latex(self, latex_content: str, filename: str):
+        """
+        Save the generated LaTeX to a file.
+
+        Args:
+            latex_content: The LaTeX content to save
+            filename: The output filename
+        """
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(latex_content)
+
+    def compile_latex_to_pdf(self, latex_content: str, output_pdf: str, save_tex: bool = False, tex_filename: str = None):
+        """
+        Compile LaTeX content to PDF using pdflatex.
+
+        Args:
+            latex_content: The LaTeX content to compile
+            output_pdf: The output PDF filename
+            save_tex: Whether to save the .tex file
+            tex_filename: Custom .tex filename (if save_tex is True)
+
+        Raises:
+            RuntimeError: If pdflatex is not available or compilation fails
+        """
+        # Check if pdflatex is available
+        try:
+            subprocess.run(['pdflatex', '--version'],
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE,
+                         check=True)
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            raise RuntimeError(
+                "pdflatex is not available. Please install a LaTeX distribution:\n"
+                "  - Ubuntu/Debian: sudo apt-get install texlive-latex-base\n"
+                "  - macOS: brew install --cask mactex-no-gui\n"
+                "  - Windows: Install MiKTeX or TeX Live"
+            )
+
+        # Determine if we should save the .tex file
+        if save_tex:
+            if tex_filename:
+                tex_file = tex_filename
+            else:
+                # Generate .tex filename from PDF filename
+                tex_file = str(Path(output_pdf).with_suffix('.tex'))
+            self.save_to_latex(latex_content, tex_file)
+            tex_path = Path(tex_file).resolve()
+            temp_dir = tex_path.parent
+            tex_basename = tex_path.stem
+        else:
+            # Use a temporary directory and file
+            temp_dir = Path(tempfile.mkdtemp())
+            tex_basename = 'prayer'
+            tex_file = temp_dir / f'{tex_basename}.tex'
+            self.save_to_latex(latex_content, str(tex_file))
+
+        try:
+            # Run pdflatex twice for proper formatting (TOC, references, etc.)
+            for run in range(2):
+                result = subprocess.run(
+                    ['pdflatex', '-interaction=nonstopmode', f'{tex_basename}.tex'],
+                    cwd=str(temp_dir),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True
+                )
+
+                if result.returncode != 0:
+                    # pdflatex failed
+                    error_log = result.stdout + result.stderr
+                    raise RuntimeError(f"LaTeX compilation failed:\n{error_log}")
+
+            # Move the generated PDF to the desired location
+            generated_pdf = temp_dir / f'{tex_basename}.pdf'
+            if not generated_pdf.exists():
+                raise RuntimeError("PDF was not generated by pdflatex")
+
+            # Copy to output location
+            output_path = Path(output_pdf).resolve()
+            generated_pdf.replace(output_path)
+
+        finally:
+            # Clean up temporary files if not saving .tex
+            if not save_tex:
+                # Remove temporary directory and all its contents
+                import shutil
+                shutil.rmtree(temp_dir, ignore_errors=True)

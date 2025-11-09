@@ -44,7 +44,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Generate morning prayer for today
+  # Generate morning prayer for today (as Markdown)
   python main.py --type morning
 
   # Generate evening prayer for today
@@ -53,8 +53,14 @@ Examples:
   # Generate midday prayer for a specific date
   python main.py --type midday --date 2025-12-25
 
-  # Generate as PDF
-  python main.py --type morning --pdf --output morning_prayer.pdf
+  # Generate as PDF using WeasyPrint
+  python main.py --type morning --pdf
+
+  # Generate as PDF using LaTeX (requires pdflatex)
+  python main.py --type morning --latex
+
+  # Generate PDF with LaTeX and also save the .tex file
+  python main.py --type morning --latex --save-tex
 
   # Save to a specific file
   python main.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
@@ -94,7 +100,19 @@ For more information, visit: https://www.dailyoffice2019.com/
     parser.add_argument(
         '--pdf',
         action='store_true',
-        help='Generate PDF output instead of Markdown (requires markdown and weasyprint packages)'
+        help='Generate PDF output using WeasyPrint (requires markdown and weasyprint packages)'
+    )
+
+    parser.add_argument(
+        '--latex',
+        action='store_true',
+        help='Generate PDF using LaTeX (requires pdflatex). Default: output PDF only.'
+    )
+
+    parser.add_argument(
+        '--save-tex',
+        action='store_true',
+        help='When using --latex, also save the .tex file (in addition to PDF)'
     )
 
     parser.add_argument(
@@ -104,6 +122,15 @@ For more information, visit: https://www.dailyoffice2019.com/
     )
 
     args = parser.parse_args()
+
+    # Validate arguments
+    if args.pdf and args.latex:
+        print("Error: Cannot specify both --pdf and --latex. Use one or the other.", file=sys.stderr)
+        return 1
+
+    if args.save_tex and not args.latex:
+        print("Error: --save-tex can only be used with --latex", file=sys.stderr)
+        return 1
 
     # Parse the date
     try:
@@ -120,7 +147,7 @@ For more information, visit: https://www.dailyoffice2019.com/
         output_file = args.output
     else:
         date_str = prayer_date.strftime("%Y-%m-%d")
-        ext = 'pdf' if args.pdf else 'md'
+        ext = 'pdf' if (args.pdf or args.latex) else 'md'
         output_file = f"{args.type}_prayer_{date_str}.{ext}"
 
     # Generate the prayer
@@ -128,27 +155,63 @@ For more information, visit: https://www.dailyoffice2019.com/
         print(f"Generating {args.type} prayer for {prayer_date}...")
 
         with PrayerService() as service:
-            # Generate markdown based on prayer type
-            if args.type == 'morning':
-                markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date)
-            elif args.type == 'evening':
-                markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date)
-            elif args.type == 'midday':
-                markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date)
+            # Determine which format to generate
+            if args.latex:
+                # Generate LaTeX
+                if args.type == 'morning':
+                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date)
+                elif args.type == 'evening':
+                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date)
+                elif args.type == 'midday':
+                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date)
 
-            if args.print:
-                # Print to console
-                print("\n" + "="*80 + "\n")
-                print(markdown_content)
-                print("\n" + "="*80)
-            else:
-                # Save to file (PDF or Markdown)
-                if args.pdf:
-                    service.markdown_generator.save_to_pdf(markdown_content, output_file)
-                    print(f"✓ {args.type.capitalize()} prayer saved as PDF to: {output_file}")
+                if args.print:
+                    # Print LaTeX to console
+                    print("\n" + "="*80 + "\n")
+                    print(latex_content)
+                    print("\n" + "="*80)
                 else:
-                    service.markdown_generator.save_to_file(markdown_content, output_file)
-                    print(f"✓ {args.type.capitalize()} prayer saved to: {output_file}")
+                    # Compile to PDF (and optionally save .tex)
+                    tex_filename = None
+                    if args.save_tex:
+                        # Determine .tex filename
+                        if args.output:
+                            tex_filename = str(Path(output_file).with_suffix('.tex'))
+                        else:
+                            date_str = prayer_date.strftime("%Y-%m-%d")
+                            tex_filename = f"{args.type}_prayer_{date_str}.tex"
+
+                    service.markdown_generator.compile_latex_to_pdf(
+                        latex_content,
+                        output_file,
+                        save_tex=args.save_tex,
+                        tex_filename=tex_filename
+                    )
+                    print(f"✓ {args.type.capitalize()} prayer compiled to PDF: {output_file}")
+                    if args.save_tex:
+                        print(f"✓ LaTeX source saved to: {tex_filename}")
+            else:
+                # Generate markdown based on prayer type
+                if args.type == 'morning':
+                    markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date)
+                elif args.type == 'evening':
+                    markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date)
+                elif args.type == 'midday':
+                    markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date)
+
+                if args.print:
+                    # Print to console
+                    print("\n" + "="*80 + "\n")
+                    print(markdown_content)
+                    print("\n" + "="*80)
+                else:
+                    # Save to file (PDF or Markdown)
+                    if args.pdf:
+                        service.markdown_generator.save_to_pdf(markdown_content, output_file)
+                        print(f"✓ {args.type.capitalize()} prayer saved as PDF to: {output_file}")
+                    else:
+                        service.markdown_generator.save_to_file(markdown_content, output_file)
+                        print(f"✓ {args.type.capitalize()} prayer saved to: {output_file}")
 
         return 0
 
@@ -158,6 +221,11 @@ For more information, visit: https://www.dailyoffice2019.com/
             print(f"Install them with: pip install markdown weasyprint", file=sys.stderr)
         else:
             print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+    except RuntimeError as e:
+        # Handle LaTeX compilation errors
+        print(f"Error: {e}", file=sys.stderr)
         return 1
 
     except Exception as e:
