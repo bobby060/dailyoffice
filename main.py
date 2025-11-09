@@ -81,7 +81,7 @@ For more information, visit: https://www.dailyoffice2019.com/
     parser.add_argument(
         '--type', '-t',
         type=str,
-        choices=['morning', 'evening', 'midday'],
+        choices=['morning', 'evening', 'midday', 'compline'],
         required=True,
         help='Type of prayer to generate'
     )
@@ -180,6 +180,8 @@ For more information, visit: https://www.dailyoffice2019.com/
                     latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date, page_size=page_size)
                 elif args.type == 'midday':
                     latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                elif args.type == 'compline':
+                    latex_content = service.generate_compline_latex(prayer_date=prayer_date, page_size=page_size)
 
                 if args.print:
                     # Print LaTeX to console
@@ -214,6 +216,8 @@ For more information, visit: https://www.dailyoffice2019.com/
                     markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date)
                 elif args.type == 'midday':
                     markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date)
+                elif args.type == 'compline':
+                    markdown_content = service.generate_compline_markdown(prayer_date=prayer_date)
 
                 if args.print:
                     # Print to console

@@ -734,8 +734,15 @@ class MarkdownGenerator:
         elif line_type == 'citation':
             return r'\hfill --- ' + escaped_content
 
-        elif line_type in ['leader', 'leader_dialogue']:
-            # Leader/officiant lines in normal text
+        elif line_type == 'leader_dialogue':
+            # Leader dialogue: prefix with "Officiant" label and indent the content
+            content_clean = content.rstrip()
+            escaped_content = self._escape_latex(content_clean)
+            # Output label, then indented content
+            return r'\textit{Officiant}\\' + '\n' + r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}' + escaped_content + r'}' + r'\\'
+
+        elif line_type == 'leader':
+            # Leader/officiant lines in normal text (non-dialogue)
             # Keep trailing asterisks (psalm pause markers) but escape them
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
@@ -744,8 +751,15 @@ class MarkdownGenerator:
                 escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
             return self._indent_text_latex(escaped_content, indented) + r'\\'
 
-        elif line_type in ['congregation', 'congregation_dialogue']:
-            # Congregation/people lines in bold
+        elif line_type == 'congregation_dialogue':
+            # Congregation dialogue: prefix with "People" label and indent the content
+            content_clean = content.rstrip()
+            escaped_content = self._escape_latex(content_clean)
+            # Output label, then indented bold content
+            return r'\textit{People}\\' + '\n' + r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}\textbf{' + escaped_content + r'}}' + r'\\'
+
+        elif line_type == 'congregation':
+            # Congregation/people lines in bold (non-dialogue)
             # Keep trailing asterisks (psalm pause markers) but escape them
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
