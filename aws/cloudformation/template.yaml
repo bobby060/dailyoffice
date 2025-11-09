@@ -1,0 +1,406 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Daily Office Prayer Generator - Lambda-based PDF generation service with S3 caching
+
+Parameters:
+  CacheTTLDays:
+    Type: Number
+    Default: 30
+    Description: Number of days to cache generated PDFs
+    MinValue: 1
+    MaxValue: 365
+
+  GeneratorMemorySize:
+    Type: Number
+    Default: 2048
+    Description: Memory size for PDF generator Lambda (MB)
+    MinValue: 512
+    MaxValue: 10240
+
+  GeneratorTimeout:
+    Type: Number
+    Default: 300
+    Description: Timeout for PDF generator Lambda (seconds)
+    MinValue: 30
+    MaxValue: 900
+
+  RouterMemorySize:
+    Type: Number
+    Default: 512
+    Description: Memory size for router Lambda (MB)
+    MinValue: 128
+    MaxValue: 3008
+
+  RouterTimeout:
+    Type: Number
+    Default: 60
+    Description: Timeout for router Lambda (seconds)
+    MinValue: 10
+    MaxValue: 900
+
+  ImageUri:
+    Type: String
+    Description: ECR image URI for the generator Lambda (must be built and pushed before deployment)
+
+Resources:
+  # ============================================
+  # S3 Bucket for PDF Cache
+  # ============================================
+  CacheBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'dailyoffice-pdf-cache-${AWS::AccountId}'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireOldPDFs
+            Status: Enabled
+            ExpirationInDays: !Ref CacheTTLDays
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+        - Key: Purpose
+          Value: PDFCache
+
+  # ============================================
+  # IAM Role for PDF Generator Lambda
+  # ============================================
+  GeneratorLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'DailyOfficeGeneratorLambdaRole-${AWS::Region}'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: GeneratorPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*'
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+
+  # ============================================
+  # IAM Role for Router Lambda
+  # ============================================
+  RouterLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'DailyOfficeRouterLambdaRole-${AWS::Region}'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: RouterPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              # CloudWatch Logs
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*'
+              # S3 Cache Access
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:HeadObject
+                Resource: !Sub '${CacheBucket.Arn}/*'
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                Resource: !GetAtt CacheBucket.Arn
+              # Invoke Generator Lambda
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: !GetAtt GeneratorLambda.Arn
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+
+  # ============================================
+  # Lambda Function - PDF Generator
+  # ============================================
+  GeneratorLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: DailyOfficePDFGenerator
+      Description: Generates Daily Office prayer PDFs using LaTeX
+      Role: !GetAtt GeneratorLambdaRole.Arn
+      PackageType: Image
+      Code:
+        ImageUri: !Ref ImageUri
+      MemorySize: !Ref GeneratorMemorySize
+      Timeout: !Ref GeneratorTimeout
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          LOG_LEVEL: INFO
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+        - Key: Component
+          Value: Generator
+
+  # CloudWatch Log Group for Generator
+  GeneratorLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${GeneratorLambda}'
+      RetentionInDays: 14
+
+  # ============================================
+  # Lambda Function - Router (with Caching)
+  # ============================================
+  RouterLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: DailyOfficePDFRouter
+      Description: Routes requests and caches PDFs in S3
+      Role: !GetAtt RouterLambdaRole.Arn
+      Runtime: python3.11
+      Handler: handler.lambda_handler
+      Code:
+        ZipFile: |
+          # Placeholder code - will be replaced during deployment
+          import json
+          def lambda_handler(event, context):
+              return {
+                  'statusCode': 503,
+                  'body': json.dumps({'error': 'Router Lambda not yet deployed'})
+              }
+      MemorySize: !Ref RouterMemorySize
+      Timeout: !Ref RouterTimeout
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          CACHE_BUCKET: !Ref CacheBucket
+          GENERATOR_FUNCTION_NAME: !Ref GeneratorLambda
+          CACHE_TTL_DAYS: !Ref CacheTTLDays
+          LOG_LEVEL: INFO
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+        - Key: Component
+          Value: Router
+
+  # CloudWatch Log Group for Router
+  RouterLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${RouterLambda}'
+      RetentionInDays: 14
+
+  # ============================================
+  # API Gateway REST API
+  # ============================================
+  DailyOfficeAPI:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: DailyOfficePrayerAPI
+      Description: API for generating Daily Office prayer PDFs
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      BinaryMediaTypes:
+        - application/pdf
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+
+  # API Gateway Resource (prayer endpoint)
+  PrayerResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ParentId: !GetAtt DailyOfficeAPI.RootResourceId
+      PathPart: prayer
+
+  # API Gateway Method (GET /prayer)
+  PrayerGetMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ResourceId: !Ref PrayerResource
+      HttpMethod: GET
+      AuthorizationType: NONE
+      RequestParameters:
+        method.request.querystring.type: true
+        method.request.querystring.date: false
+        method.request.querystring.remarkable: false
+        method.request.querystring.nocache: false
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${RouterLambda.Arn}/invocations'
+        IntegrationResponses:
+          - StatusCode: 200
+            ContentHandling: CONVERT_TO_BINARY
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/pdf: Empty
+
+  # OPTIONS method for CORS
+  PrayerOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ResourceId: !Ref PrayerResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # Lambda Permission for API Gateway to invoke Router
+  RouterLambdaApiPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref RouterLambda
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${DailyOfficeAPI}/*/*'
+
+  # API Gateway Deployment
+  APIDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - PrayerGetMethod
+      - PrayerOptionsMethod
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      Description: Production deployment
+
+  # API Gateway Stage
+  APIStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      DeploymentId: !Ref APIDeployment
+      StageName: prod
+      Description: Production stage
+      MethodSettings:
+        - ResourcePath: '/*'
+          HttpMethod: '*'
+          LoggingLevel: INFO
+          DataTraceEnabled: true
+          MetricsEnabled: true
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+        - Key: Environment
+          Value: Production
+
+  # ============================================
+  # CloudWatch Alarms
+  # ============================================
+  GeneratorErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: DailyOffice-GeneratorErrors
+      AlarmDescription: Alert when generator Lambda has errors
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref GeneratorLambda
+      TreatMissingData: notBreaching
+
+  RouterErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: DailyOffice-RouterErrors
+      AlarmDescription: Alert when router Lambda has errors
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 10
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref RouterLambda
+      TreatMissingData: notBreaching
+
+Outputs:
+  APIEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${DailyOfficeAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/prayer'
+    Export:
+      Name: DailyOfficeAPIEndpoint
+
+  CacheBucketName:
+    Description: S3 bucket name for PDF cache
+    Value: !Ref CacheBucket
+    Export:
+      Name: DailyOfficeCacheBucket
+
+  GeneratorFunctionArn:
+    Description: ARN of the PDF generator Lambda function
+    Value: !GetAtt GeneratorLambda.Arn
+    Export:
+      Name: DailyOfficeGeneratorArn
+
+  RouterFunctionArn:
+    Description: ARN of the router Lambda function
+    Value: !GetAtt RouterLambda.Arn
+    Export:
+      Name: DailyOfficeRouterArn
+
+  SampleURL:
+    Description: Sample API call for morning prayer
+    Value: !Sub 'https://${DailyOfficeAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/prayer?type=morning'
