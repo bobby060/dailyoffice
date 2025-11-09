@@ -429,7 +429,7 @@ class MarkdownGenerator:
 
     def _escape_latex(self, text: str) -> str:
         """
-        Escape special LaTeX characters.
+        Escape special LaTeX characters and handle Unicode issues.
 
         Args:
             text: Text to escape
@@ -437,6 +437,18 @@ class MarkdownGenerator:
         Returns:
             LaTeX-safe text
         """
+        # First, handle Unicode small caps (used for LORD/God in liturgical texts)
+        # Convert Unicode small caps to regular uppercase
+        # Note: Only actual Unicode small cap characters, not regular ASCII
+        small_caps_map = {
+            'ᴀ': 'A', 'ʙ': 'B', 'ᴄ': 'C', 'ᴅ': 'D', 'ᴇ': 'E', 'ғ': 'F', 'ɢ': 'G', 'ʜ': 'H',
+            'ɪ': 'I', 'ᴊ': 'J', 'ᴋ': 'K', 'ʟ': 'L', 'ᴍ': 'M', 'ɴ': 'N', 'ᴏ': 'O', 'ᴘ': 'P',
+            'ǫ': 'Q', 'ʀ': 'R', 'ꜱ': 'S', 'ᴛ': 'T', 'ᴜ': 'U', 'ᴠ': 'V', 'ᴡ': 'W',
+            'ʏ': 'Y', 'ᴢ': 'Z'
+        }
+        for small_cap, regular in small_caps_map.items():
+            text = text.replace(small_cap, regular)
+
         # Mapping of special characters to their LaTeX escaped versions
         replacements = {
             '\\': r'\textbackslash{}',
@@ -658,10 +670,10 @@ class MarkdownGenerator:
             return r'\subsubsection*{' + escaped_content + r'}'
 
         elif line_type == 'subheading':
-            return r'\textit{' + escaped_content + r'}'
+            return r'\textit{' + escaped_content + r'}' + r'\\'
 
         elif line_type == 'rubric':
-            return r'\textit{' + escaped_content + r'}'
+            return r'\textit{' + escaped_content + r'}' + r'\\'
 
         elif line_type == 'citation':
             return r'\hfill --- ' + escaped_content
@@ -674,7 +686,7 @@ class MarkdownGenerator:
             # Add verse number if preface is a number (for psalms)
             if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
                 escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
-            return self._indent_text_latex(escaped_content, indented)
+            return self._indent_text_latex(escaped_content, indented) + r'\\'
 
         elif line_type in ['congregation', 'congregation_dialogue']:
             # Congregation/people lines in bold
@@ -684,19 +696,19 @@ class MarkdownGenerator:
             # Add verse number if preface is a number (for psalms)
             if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
                 escaped_content = r'\textsuperscript{' + str(preface) + r'} ' + escaped_content
-            return self._indent_text_latex(r'\textbf{' + escaped_content + r'}', indented)
+            return self._indent_text_latex(r'\textbf{' + escaped_content + r'}', indented) + r'\\'
 
         elif line_type == 'reader':
             # Reader lines in normal text
-            return self._indent_text_latex(escaped_content, indented)
+            return self._indent_text_latex(escaped_content, indented) + r'\\'
 
         elif line_type == 'html':
-            # Process HTML content (psalms, scripture)
+            # Process HTML content (psalms, scripture) - these handle their own formatting
             return self._format_html_content_latex(content)
 
         else:
             # Default formatting for unknown types
-            return self._indent_text_latex(escaped_content, indented)
+            return self._indent_text_latex(escaped_content, indented) + r'\\'
 
     def _indent_text_latex(self, text: str, indented: Any) -> str:
         """
@@ -779,9 +791,6 @@ class MarkdownGenerator:
             # Remove HTML tags but keep the text
             text = re.sub(r'<[^>]+>', ' ', html_content)
 
-            # Clean up verse numbers - make them superscript
-            text = re.sub(r'(\d+)\s+', lambda m: r'\textsuperscript{' + m.group(1) + r'} ', text)
-
             # Unescape HTML entities
             text = unescape(text)
 
@@ -789,8 +798,11 @@ class MarkdownGenerator:
             text = re.sub(r'\s+', ' ', text)
             text = text.strip()
 
-            # Escape for LaTeX
+            # Escape for LaTeX FIRST (before adding LaTeX commands)
             text = self._escape_latex(text)
+
+            # Now add verse numbers as superscripts (after escaping, so they don't get escaped)
+            text = re.sub(r'(\d+)\s+', lambda m: r'\textsuperscript{' + m.group(1) + r'} ', text)
 
             # Format as quote environment for scripture
             return r'\begin{quote}' + '\n' + r'\itshape ' + text + '\n' + r'\end{quote}'
