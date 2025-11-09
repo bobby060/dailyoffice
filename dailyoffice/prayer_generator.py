@@ -195,8 +195,8 @@ class MarkdownGenerator:
 
         elif line_type in ['leader', 'leader_dialogue']:
             # Leader/officiant lines in normal text (no label)
-            # Remove trailing asterisks (psalm pause markers)
-            content = re.sub(r'\s*\*+\s*$', '', content)
+            # Escape trailing asterisks (psalm pause markers) so they don't break markdown
+            content = re.sub(r'(\*+)\s*$', r'\\\1', content).rstrip()
             # Add verse number if preface is a number (for psalms)
             if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
                 content = f"<sup>{preface}</sup> {content}"
@@ -204,8 +204,8 @@ class MarkdownGenerator:
 
         elif line_type in ['congregation', 'congregation_dialogue']:
             # Congregation/people lines in bold (no label)
-            # Remove trailing asterisks (psalm pause markers)
-            content = re.sub(r'\s*\*+\s*$', '', content)
+            # Escape trailing asterisks (psalm pause markers) so they don't break markdown
+            content = re.sub(r'(\*+)\s*$', r'\\\1', content).rstrip()
             # Add verse number if preface is a number (for psalms)
             if preface and isinstance(preface, (int, str)) and str(preface).isdigit():
                 content = f"<sup>{preface}</sup> {content}"
@@ -288,10 +288,8 @@ class MarkdownGenerator:
                 text = re.sub(r'<[^>]+>', '', para)
                 text = unescape(text)
 
-                # Remove trailing asterisks (pause markers) that interfere with markdown
-                text = re.sub(r'\s*\*+\s*$', '', text)
-
-                text = text.strip()
+                # Escape trailing asterisks (psalm pause markers) so they don't break markdown
+                text = re.sub(r'(\*+)\s*$', r'\\\1', text).rstrip()
 
                 if text:
                     # If has strong tags, make the whole line bold
