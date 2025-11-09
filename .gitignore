@@ -41,3 +41,7 @@ Thumbs.db
 morning_prayer_*.md
 test_prayer.md
 *.pdf
+
+# Include one morning prayer as an example
+!morning_prayer_2025-11-08.md
+!morning_prayer_2025-11-08.pdf
