@@ -46,6 +46,7 @@ def lambda_handler(event, context):
     - type: Prayer type (morning, evening, or midday) [REQUIRED]
     - date: Date in YYYY-MM-DD format (default: today)
     - remarkable: Boolean flag for Remarkable 2 tablet format (default: false)
+    - psalter: Psalter cycle - "30" or "60" (default: 60)
 
     Returns:
         API Gateway compatible response with PDF as base64-encoded binary
@@ -76,16 +77,30 @@ def lambda_handler(event, context):
         remarkable = params.get('remarkable', 'false').lower() in ['true', '1', 'yes']
         page_size = 'remarkable' if remarkable else 'letter'
 
-        print(f"Generating {prayer_type} prayer for {prayer_date} (page_size={page_size})")
+        # Get psalter cycle (30 or 60 day)
+        psalter = params.get('psalter', '60')
+        if psalter not in ['30', '60']:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({
+                    'error': 'Invalid psalter value. Must be "30" or "60"'
+                })
+            }
+
+        print(f"Generating {prayer_type} prayer for {prayer_date} (page_size={page_size}, psalter={psalter})")
 
         # Generate LaTeX content using existing service
         with PrayerService() as service:
             if prayer_type == 'morning':
-                latex_content = service.generate_morning_prayer_latex(prayer_date, page_size)
+                latex_content = service.generate_morning_prayer_latex(prayer_date, page_size, psalter)
             elif prayer_type == 'evening':
-                latex_content = service.generate_evening_prayer_latex(prayer_date, page_size)
+                latex_content = service.generate_evening_prayer_latex(prayer_date, page_size, psalter)
             else:  # midday
-                latex_content = service.generate_midday_prayer_latex(prayer_date, page_size)
+                latex_content = service.generate_midday_prayer_latex(prayer_date, page_size, psalter)
 
             # Compile LaTeX to PDF in temporary directory
             with tempfile.TemporaryDirectory() as temp_dir:

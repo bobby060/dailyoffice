@@ -173,7 +173,7 @@ API Endpoint: https://abc123xyz.execute-api.us-east-1.amazonaws.com/prod/prayer
 | `type` | **Yes** | string | Prayer type: `morning`, `evening`, or `midday` | `type=morning` |
 | `date` | No | string | Date in YYYY-MM-DD format (default: today) | `date=2025-12-25` |
 | `remarkable` | No | boolean | Format for Remarkable 2 tablet (default: false) | `remarkable=true` |
-| `nocache` | No | boolean | Bypass cache and force regeneration (default: false) | `nocache=true` |
+| `psalter` | No | string | Psalter cycle: `30` (30-day) or `60` (60-day) (default: 60) | `psalter=30` |
 
 ### Example API Calls
 
@@ -192,8 +192,8 @@ curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morn
 # Midday prayer for specific date
 curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=midday&date=2025-01-01' -o new_year_midday.pdf
 
-# Bypass cache (force regeneration)
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&nocache=true' -o morning_fresh.pdf
+# Morning prayer with 30-day psalter cycle
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&psalter=30' -o morning_30day.pdf
 ```
 
 #### Using wget
@@ -255,13 +255,15 @@ The API returns helpful headers:
 PDFs are cached based on:
 - Prayer type (morning, evening, midday)
 - Date (YYYY-MM-DD)
+- Psalter cycle (30 or 60)
 - Page size (letter or remarkable)
 
 **Example S3 cache keys:**
 ```
-prayers/morning/2025-12-25/letter.pdf
-prayers/evening/2025-12-25/letter.pdf
-prayers/morning/2025-12-25/remarkable.pdf
+prayers/morning/2025-12-25/psalter60/letter.pdf
+prayers/evening/2025-12-25/psalter60/letter.pdf
+prayers/morning/2025-12-25/psalter30/letter.pdf
+prayers/morning/2025-12-25/psalter60/remarkable.pdf
 ```
 
 ### Cache Lifecycle
@@ -269,13 +271,6 @@ prayers/morning/2025-12-25/remarkable.pdf
 - **Default TTL**: 30 days (configurable via CloudFormation parameter)
 - **Storage**: S3 Standard with versioning enabled
 - **Expiration**: Automatic deletion after TTL via S3 lifecycle policy
-
-### Cache Bypass
-
-To force regeneration of a PDF (e.g., after API data changes):
-```bash
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&nocache=true' -o fresh.pdf
-```
 
 ## Monitoring and Logs
 

@@ -37,7 +37,8 @@ class DailyOfficeAPIClient:
 
     def get_morning_prayer(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalter: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Fetch morning prayer liturgy for a specific date.
@@ -48,6 +49,8 @@ class DailyOfficeAPIClient:
         Args:
             prayer_date: The date for which to fetch morning prayer.
                         Defaults to today if not specified.
+            psalter: Psalter cycle to use: "30" (30-day) or "60" (60-day).
+                    Defaults to API default (60-day) if not specified.
 
         Returns:
             Dictionary containing the complete morning prayer liturgy with all
@@ -67,8 +70,13 @@ class DailyOfficeAPIClient:
         endpoint = f"office/morning_prayer/{date_str}"
         url = urljoin(self.base_url, endpoint)
 
+        # Add query parameters if specified
+        params = {}
+        if psalter:
+            params['psalter'] = psalter
+
         try:
-            response = self.session.get(url, timeout=30)
+            response = self.session.get(url, params=params, timeout=30)
             response.raise_for_status()
 
             data = response.json()
@@ -85,7 +93,8 @@ class DailyOfficeAPIClient:
 
     def get_evening_prayer(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalter: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Fetch evening prayer liturgy for a specific date.
@@ -93,6 +102,8 @@ class DailyOfficeAPIClient:
         Args:
             prayer_date: The date for which to fetch evening prayer.
                         Defaults to today if not specified.
+            psalter: Psalter cycle to use: "30" (30-day) or "60" (60-day).
+                    Defaults to API default (60-day) if not specified.
 
         Returns:
             Dictionary containing the complete evening prayer liturgy
@@ -108,8 +119,13 @@ class DailyOfficeAPIClient:
         endpoint = f"office/evening_prayer/{date_str}"
         url = urljoin(self.base_url, endpoint)
 
+        # Add query parameters if specified
+        params = {}
+        if psalter:
+            params['psalter'] = psalter
+
         try:
-            response = self.session.get(url, timeout=30)
+            response = self.session.get(url, params=params, timeout=30)
             response.raise_for_status()
             return response.json()
 
@@ -124,7 +140,8 @@ class DailyOfficeAPIClient:
 
     def get_midday_prayer(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalter: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Fetch midday prayer liturgy for a specific date.
@@ -132,6 +149,8 @@ class DailyOfficeAPIClient:
         Args:
             prayer_date: The date for which to fetch midday prayer.
                         Defaults to today if not specified.
+            psalter: Psalter cycle to use: "30" (30-day) or "60" (60-day).
+                    Defaults to API default (60-day) if not specified.
 
         Returns:
             Dictionary containing the complete midday prayer liturgy
@@ -147,8 +166,13 @@ class DailyOfficeAPIClient:
         endpoint = f"office/midday_prayer/{date_str}"
         url = urljoin(self.base_url, endpoint)
 
+        # Add query parameters if specified
+        params = {}
+        if psalter:
+            params['psalter'] = psalter
+
         try:
-            response = self.session.get(url, timeout=30)
+            response = self.session.get(url, params=params, timeout=30)
             response.raise_for_status()
             return response.json()
 

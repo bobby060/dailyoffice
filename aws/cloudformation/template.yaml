@@ -262,7 +262,7 @@ Resources:
         method.request.querystring.type: true
         method.request.querystring.date: false
         method.request.querystring.remarkable: false
-        method.request.querystring.nocache: false
+        method.request.querystring.psalter: false
       Integration:
         Type: AWS_PROXY
         IntegrationHttpMethod: POST

@@ -53,6 +53,9 @@ curl 'YOUR_API_ENDPOINT?type=evening&date=2025-12-25' -o christmas.pdf
 
 # Remarkable tablet format
 curl 'YOUR_API_ENDPOINT?type=morning&remarkable=true' -o remarkable.pdf
+
+# 30-day psalter cycle
+curl 'YOUR_API_ENDPOINT?type=morning&psalter=30' -o morning_30day.pdf
 ```
 
 ## Clean Up

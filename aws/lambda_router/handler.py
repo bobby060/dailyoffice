@@ -25,7 +25,7 @@ GENERATOR_FUNCTION_NAME = os.environ.get('GENERATOR_FUNCTION_NAME')
 CACHE_TTL_DAYS = int(os.environ.get('CACHE_TTL_DAYS', '30'))
 
 
-def generate_cache_key(prayer_type, date_string, remarkable):
+def generate_cache_key(prayer_type, date_string, remarkable, psalter):
     """
     Generate a unique cache key for the prayer parameters.
 
@@ -33,6 +33,7 @@ def generate_cache_key(prayer_type, date_string, remarkable):
         prayer_type: Type of prayer (morning, evening, midday)
         date_string: Date in YYYY-MM-DD format
         remarkable: Boolean flag for page size
+        psalter: Psalter cycle (30 or 60)
 
     Returns:
         S3 object key for caching
@@ -43,7 +44,7 @@ def generate_cache_key(prayer_type, date_string, remarkable):
 
     # Create a unique key based on parameters
     page_size = 'remarkable' if remarkable else 'letter'
-    cache_key = f"prayers/{prayer_type}/{date_string}/{page_size}.pdf"
+    cache_key = f"prayers/{prayer_type}/{date_string}/psalter{psalter}/{page_size}.pdf"
 
     return cache_key
 
@@ -130,7 +131,7 @@ def lambda_handler(event, context):
     - type: Prayer type (morning, evening, or midday) [REQUIRED]
     - date: Date in YYYY-MM-DD format (default: today)
     - remarkable: Boolean flag for Remarkable 2 tablet format (default: false)
-    - nocache: Boolean flag to bypass cache (default: false)
+    - psalter: Psalter cycle - "30" or "60" (default: 60)
 
     Returns:
         API Gateway compatible response with PDF as base64-encoded binary
@@ -142,7 +143,7 @@ def lambda_handler(event, context):
         prayer_type = params.get('type', '').lower()
         date_string = params.get('date')
         remarkable = params.get('remarkable', 'false').lower() in ['true', '1', 'yes']
-        bypass_cache = params.get('nocache', 'false').lower() in ['true', '1', 'yes']
+        psalter = params.get('psalter', '60')
 
         # Validate prayer type
         if prayer_type not in ['morning', 'evening', 'midday']:
@@ -157,17 +158,29 @@ def lambda_handler(event, context):
                 })
             }
 
-        # Generate cache key
-        cache_key = generate_cache_key(prayer_type, date_string, remarkable)
+        # Validate psalter
+        if psalter not in ['30', '60']:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({
+                    'error': 'Invalid psalter value. Must be "30" or "60"'
+                })
+            }
 
-        # Check cache unless bypass requested
+        # Generate cache key
+        cache_key = generate_cache_key(prayer_type, date_string, remarkable, psalter)
+
+        # Check cache
         pdf_data = None
         cache_hit = False
 
-        if not bypass_cache:
-            pdf_data = check_cache(cache_key)
-            if pdf_data:
-                cache_hit = True
+        pdf_data = check_cache(cache_key)
+        if pdf_data:
+            cache_hit = True
 
         # If not in cache, generate new PDF
         if pdf_data is None:
