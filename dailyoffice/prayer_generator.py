@@ -503,10 +503,10 @@ class MarkdownGenerator:
         # Set page size based on option
         if page_size == "remarkable":
             # Remarkable 2 tablet size: 6.18 x 8.24 inches (157mm x 209mm)
-            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in}')
+            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in, headheight=14pt}')
         else:
             # Standard US Letter size
-            sections.append(r'\geometry{letterpaper, margin=1in}')
+            sections.append(r'\geometry{letterpaper, margin=1in, headheight=14pt}')
 
         sections.append(r'')
         sections.append(r'% Paragraph formatting')
@@ -938,8 +938,11 @@ class MarkdownGenerator:
             self.save_to_latex(latex_content, str(tex_file))
 
         try:
-            # Run pdflatex twice for proper formatting (TOC, references, etc.)
-            for run in range(2):
+            # Run pdflatex three times for proper formatting (TOC, references, hyperlinks)
+            # First run: processes content and creates .aux file
+            # Second run: resolves references and creates hyperlinks
+            # Third run: finalizes all cross-references and page numbers
+            for run in range(3):
                 result = subprocess.run(
                     ['pdflatex', '-interaction=nonstopmode', f'{tex_basename}.tex'],
                     cwd=str(temp_dir),

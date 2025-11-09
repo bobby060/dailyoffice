@@ -183,9 +183,9 @@ class MonthlyPrayerGenerator:
 
         # Set page size based on option
         if page_size == "remarkable":
-            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in}')
+            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in, headheight=14pt}')
         else:
-            sections.append(r'\geometry{letterpaper, margin=1in}')
+            sections.append(r'\geometry{letterpaper, margin=1in, headheight=14pt}')
         sections.append(r'')
 
         # Paragraph formatting
