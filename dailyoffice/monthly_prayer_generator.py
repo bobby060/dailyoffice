@@ -244,8 +244,7 @@ class MonthlyPrayerGenerator:
         sections.append(r'')
 
         # Index page
-        sections.append(r'\label{index}')
-        sections.append(r'\section*{Index}')
+        sections.append(r'\section*{Index}\label{index}')
         sections.append(r'\addcontentsline{toc}{section}{Index}')
         sections.append(r'')
         sections.append(r'\begin{itemize}')
