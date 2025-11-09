@@ -1,0 +1,166 @@
+{
+  "id": "90a6ff69-02d1-4a27-b8f8-a183b232397b",
+  "number": 51,
+  "latin_title": "Miserere mei, Deus",
+  "topics": [
+    {
+      "id": "4aba596e-d2df-4b84-8c1c-f2aa2974b000",
+      "topic_name": "Penitential Psalms",
+      "order": 26
+    }
+  ],
+  "verses": [
+    {
+      "id": "91fbdf1d-f63e-40cf-9235-8aedbc46768a",
+      "number": 1,
+      "first_half": " Have mercy upon me, O God, in your great goodness;",
+      "second_half": " according to the multitude of your mercies wipe away my offences.",
+      "first_half_tle": " Have mercy upon me, O God, after thy great goodness;",
+      "second_half_tle": " according to the multitude of thy mercies do away mine offenses."
+    },
+    {
+      "id": "41ae8548-cd22-4332-9bc5-7d28df3128fc",
+      "number": 2,
+      "first_half": " Wash me thoroughly from my wickedness",
+      "second_half": " and cleanse me from my sin.",
+      "first_half_tle": " Wash me throughly from my wickedness,",
+      "second_half_tle": " and cleanse me from my sin."
+    },
+    {
+      "id": "5832cbd2-2e50-4c97-9a9a-b615e7edeca5",
+      "number": 3,
+      "first_half": " For I acknowledge my faults,",
+      "second_half": " and my sin is ever before me.",
+      "first_half_tle": " For I acknowledge my faults,",
+      "second_half_tle": " and my sin is ever before me."
+    },
+    {
+      "id": "a6d43004-a42f-47c6-a50c-2500bd6cc7d7",
+      "number": 4,
+      "first_half": " Against you only have I sinned, and done this evil in your sight,",
+      "second_half": " so that you are justified in your sentence, and blameless in your judgment.",
+      "first_half_tle": " Against thee only have I sinned, and done this evil in thy sight;",
+      "second_half_tle": " that thou mightest be justified in thy saying, and clear when thou shalt judge."
+    },
+    {
+      "id": "52ea5d84-16b2-4745-be0f-df97923fa0f9",
+      "number": 5,
+      "first_half": " Behold, I was brought forth in wickedness,",
+      "second_half": " and in sin my mother conceived me.",
+      "first_half_tle": " Behold, I was shapen in wickedness,",
+      "second_half_tle": " and in sin hath my mother conceived me."
+    },
+    {
+      "id": "07ef15f3-d197-4ae6-a65a-4e5fdedeecf3",
+      "number": 6,
+      "first_half": " But behold, you desire truth in the inward parts",
+      "second_half": " and shall make me understand wisdom secretly.",
+      "first_half_tle": " But lo, thou requirest truth in the inward parts,",
+      "second_half_tle": " and shalt make me to understand wisdom secretly."
+    },
+    {
+      "id": "7f83ecdb-3959-4687-852b-97fea3b84541",
+      "number": 7,
+      "first_half": " You shall purge me with hyssop, and I shall be clean;",
+      "second_half": " you shall wash me, and I shall be whiter than snow.",
+      "first_half_tle": " Thou shalt purge me with hyssop, and I shall be clean;",
+      "second_half_tle": " thou shalt wash me, and I shall be whiter than snow."
+    },
+    {
+      "id": "a73942ab-5d9a-4ad5-b07b-2b6c052f559f",
+      "number": 8,
+      "first_half": " You shall make me hear of joy and gladness,",
+      "second_half": " that the bones which you have broken may rejoice.",
+      "first_half_tle": " Thou shalt make me hear of joy and gladness,",
+      "second_half_tle": " that the bones which thou hast broken may rejoice."
+    },
+    {
+      "id": "d7473d30-b9a1-4299-877d-573fe4daeb84",
+      "number": 9,
+      "first_half": " Turn your face from my sins,",
+      "second_half": " and blot out all my misdeeds.",
+      "first_half_tle": " Turn thy face from my sins,",
+      "second_half_tle": " and put out all my misdeeds."
+    },
+    {
+      "id": "7282a1e1-45d2-4fe0-9fbc-6992b584a341",
+      "number": 10,
+      "first_half": " Create in me a clean heart, O God,",
+      "second_half": " and renew a right spirit within me.",
+      "first_half_tle": " Make me a clean heart, O God,",
+      "second_half_tle": " and renew a right spirit within me."
+    },
+    {
+      "id": "d802eddd-b453-470d-958f-3dcce6f26ffd",
+      "number": 11,
+      "first_half": " Cast me not away from your presence,",
+      "second_half": " and take not your holy Spirit from me.",
+      "first_half_tle": " Cast me not away from thy presence,",
+      "second_half_tle": " and take not thy holy Spirit from me."
+    },
+    {
+      "id": "ab1087bc-68bc-4b27-977c-80fe78eb2601",
+      "number": 12,
+      "first_half": " O give me the comfort of your help again,",
+      "second_half": " and sustain me with your willing Spirit.",
+      "first_half_tle": " O give me the comfort of thy help again,",
+      "second_half_tle": " and stablish me with thy free Spirit."
+    },
+    {
+      "id": "b90b474b-fcc4-48a7-ae3b-d17d7cb8d89e",
+      "number": 13,
+      "first_half": " Then shall I teach your ways unto the wicked,",
+      "second_half": " and sinners shall return unto you.",
+      "first_half_tle": " Then shall I teach thy ways unto the wicked,",
+      "second_half_tle": " and sinners shall be converted unto thee."
+    },
+    {
+      "id": "701192fb-d1f5-46cc-b2dd-432d06ee0d0d",
+      "number": 14,
+      "first_half": " Deliver me from blood-guilt, O God, the God of my salvation,",
+      "second_half": " and my tongue shall sing of your righteousness.",
+      "first_half_tle": " Deliver me from blood-guiltiness, O God, thou that art the God of my health;",
+      "second_half_tle": " and my tongue shall sing of thy righteousness."
+    },
+    {
+      "id": "97042fea-d3e4-4a17-9efd-1f0558b800b3",
+      "number": 15,
+      "first_half": " O Lord, open my lips,",
+      "second_half": " and my mouth shall show forth your praise.",
+      "first_half_tle": " Thou shalt open my lips, O Lord,",
+      "second_half_tle": " and my mouth shall show thy praise."
+    },
+    {
+      "id": "e9f1c793-cb89-4ca2-8995-304802e4f9a7",
+      "number": 16,
+      "first_half": " For you desire no sacrifice, or else I would give it to you;",
+      "second_half": " but you delight not in burnt-offerings.",
+      "first_half_tle": " For thou desirest no sacrifice, else would I give it thee;",
+      "second_half_tle": " but thou delightest not in burnt-offerings."
+    },
+    {
+      "id": "6f78d7aa-0c07-4d53-a049-b902c70aacd2",
+      "number": 17,
+      "first_half": " The sacrifice of God is a troubled spirit;",
+      "second_half": " a broken and contrite heart, O God, you shall not despise.",
+      "first_half_tle": " The sacrifice of God is a troubled spirit:",
+      "second_half_tle": " a broken and contrite heart, O God, shalt thou not despise."
+    },
+    {
+      "id": "4a6b2957-f868-445a-b68b-0c92762bbd4b",
+      "number": 18,
+      "first_half": " O be favorable and gracious unto Zion;",
+      "second_half": " may you build up the walls of Jerusalem.",
+      "first_half_tle": " O be favorable and gracious unto Zion;",
+      "second_half_tle": " build thou the walls of Jerusalem."
+    },
+    {
+      "id": "23fa8823-d20a-4922-a686-e458342b93fd",
+      "number": 19,
+      "first_half": " Then you shall be pleased with the sacrifice of righteousness, with the burnt-offerings and oblations;",
+      "second_half": " then shall they offer young bullocks upon your altar.",
+      "first_half_tle": " Then shalt thou be pleased with the sacrifice of righteousness, with the burnt-offerings and oblations;",
+      "second_half_tle": " then shall they offer young bullocks upon thine altar."
+    }
+  ]
+}

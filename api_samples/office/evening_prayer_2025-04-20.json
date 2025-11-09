@@ -1,0 +1,2864 @@
+{
+  "modules": [
+    {
+      "name": "Opening Sentence",
+      "lines": [
+        {
+          "content": "Opening Sentence",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "2adda36e-ccae-53c6-b065-e3efa7561b75",
+          "id": "openingsentence_0_2adda36e-ccae-53c6-b065-e3efa7561b75"
+        },
+        {
+          "content": "Thanks be to God, who gives us the victory through our Lord Jesus Christ.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f4d256a3-5c10-5e27-8cc9-e7ba4a128fca",
+          "id": "openingsentence_1_f4d256a3-5c10-5e27-8cc9-e7ba4a128fca"
+        },
+        {
+          "content": "1 CORINTHIANS 15:57",
+          "line_type": "citation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ff393852-e22c-5fc0-b322-52d55d2650d0",
+          "id": "openingsentence_2_ff393852-e22c-5fc0-b322-52d55d2650d0"
+        }
+      ]
+    },
+    {
+      "name": "Confession of Sin",
+      "lines": [
+        {
+          "content": "Confession of Sin",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9066cd63-17b2-5cf2-8aa8-5947d68875b5",
+          "id": "confessionofsin_0_9066cd63-17b2-5cf2-8aa8-5947d68875b5"
+        },
+        {
+          "content": "The Officiant says to the People",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "555e39fb-a4b2-502f-a8ca-2867b82e5f23",
+          "id": "confessionofsin_1_555e39fb-a4b2-502f-a8ca-2867b82e5f23"
+        },
+        {
+          "content": "Let us humbly confess our sins to Almighty God.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "903dca26-a75e-5b83-b4de-dd31be199c96",
+          "id": "confessionofsin_2_903dca26-a75e-5b83-b4de-dd31be199c96"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "confessionofsin_3_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "Almighty and most merciful Father,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f3714abb-ef4c-5cdb-9b67-4bbd20b15aa3",
+          "id": "confessionofsin_4_f3714abb-ef4c-5cdb-9b67-4bbd20b15aa3"
+        },
+        {
+          "content": "we have erred and strayed from your ways like lost sheep.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d6cfa235-9e40-5efe-b2a8-13bed6878a96",
+          "id": "confessionofsin_5_d6cfa235-9e40-5efe-b2a8-13bed6878a96"
+        },
+        {
+          "content": "We have followed too much the devices and desires",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "715e3e4f-5e76-534f-92b2-92a762b47ea4",
+          "id": "confessionofsin_6_715e3e4f-5e76-534f-92b2-92a762b47ea4"
+        },
+        {
+          "content": "of our own hearts.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7d7e3b3e-e153-58df-b6f5-b8462ebbb85c",
+          "id": "confessionofsin_7_7d7e3b3e-e153-58df-b6f5-b8462ebbb85c"
+        },
+        {
+          "content": "We have offended against your holy laws.",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c6229872-099c-50e8-9910-844edbd136d5",
+          "id": "confessionofsin_8_c6229872-099c-50e8-9910-844edbd136d5"
+        },
+        {
+          "content": "We have left undone those things which we ought to have done,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a318d9eb-8ad8-53d1-9c91-4f95614c2d51",
+          "id": "confessionofsin_9_a318d9eb-8ad8-53d1-9c91-4f95614c2d51"
+        },
+        {
+          "content": "and we have done those things which we ought not",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "30e73a53-94d7-5117-bc2f-b2efeada7825",
+          "id": "confessionofsin_10_30e73a53-94d7-5117-bc2f-b2efeada7825"
+        },
+        {
+          "content": "to have done;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9273cd2d-7fbf-56c0-ba0d-e558053765fd",
+          "id": "confessionofsin_11_9273cd2d-7fbf-56c0-ba0d-e558053765fd"
+        },
+        {
+          "content": "and apart from your grace, there is no health in us.",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ab052816-5b54-5475-8a12-89b4765423e2",
+          "id": "confessionofsin_12_ab052816-5b54-5475-8a12-89b4765423e2"
+        },
+        {
+          "content": "O Lord, have mercy upon us.",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "13ff8a51-24bf-5c25-9987-76401765a7f2",
+          "id": "confessionofsin_13_13ff8a51-24bf-5c25-9987-76401765a7f2"
+        },
+        {
+          "content": "Spare all those who confess their faults.",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f736d024-0137-5bd0-a9d3-ce834fe9a9d4",
+          "id": "confessionofsin_14_f736d024-0137-5bd0-a9d3-ce834fe9a9d4"
+        },
+        {
+          "content": "Restore all those who are penitent, according to your promises",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "abb2745f-f490-54a0-acf4-ca357e04f4ec",
+          "id": "confessionofsin_15_abb2745f-f490-54a0-acf4-ca357e04f4ec"
+        },
+        {
+          "content": "declared to all people in Christ Jesus our Lord.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3c37d312-51f1-59da-a5f1-570dfd6675ba",
+          "id": "confessionofsin_16_3c37d312-51f1-59da-a5f1-570dfd6675ba"
+        },
+        {
+          "content": "And grant, O most merciful Father, for his sake,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "63dc3b2c-30da-545c-b50c-626cdd80ec11",
+          "id": "confessionofsin_17_63dc3b2c-30da-545c-b50c-626cdd80ec11"
+        },
+        {
+          "content": "that we may now live a godly, righteous, and sober life,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6a8b8a61-68cd-5a5e-a284-217acce5000c",
+          "id": "confessionofsin_18_6a8b8a61-68cd-5a5e-a284-217acce5000c"
+        },
+        {
+          "content": "to the glory of your holy Name. Amen.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3f0a6661-c6ee-5990-bb06-40d49bc178cd",
+          "id": "confessionofsin_19_3f0a6661-c6ee-5990-bb06-40d49bc178cd"
+        },
+        {
+          "content": "A Deacon or layperson remains kneeling and prays",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "92646207-962f-58cc-a43b-d31a52e26c2b",
+          "id": "confessionofsin_20_92646207-962f-58cc-a43b-d31a52e26c2b"
+        },
+        {
+          "content": "Grant to your faithful people, merciful Lord, pardon and peace; that we may be cleansed from all our sins, and serve you with a quiet mind; through Jesus Christ our Lord.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "45e1fc0a-262a-556e-b69b-8d9a24d92789",
+          "id": "confessionofsin_21_45e1fc0a-262a-556e-b69b-8d9a24d92789"
+        },
+        {
+          "content": "Amen.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a37f1b05-3e1d-5b85-8066-e8d1f17edde6",
+          "id": "confessionofsin_22_a37f1b05-3e1d-5b85-8066-e8d1f17edde6"
+        }
+      ]
+    },
+    {
+      "name": "Preces",
+      "lines": [
+        {
+          "content": "The Preces",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d5a06288-8839-5f1f-a195-f645c6f253d0",
+          "id": "preces_0_d5a06288-8839-5f1f-a195-f645c6f253d0"
+        },
+        {
+          "content": "All stand.",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e975d0b3-d74e-5036-9d93-9c8521ef1bb5",
+          "id": "preces_1_e975d0b3-d74e-5036-9d93-9c8521ef1bb5"
+        },
+        {
+          "content": "O Lord, open our lips;",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "77833a50-a794-5d84-9c41-2a865d38a88f",
+          "id": "preces_2_77833a50-a794-5d84-9c41-2a865d38a88f"
+        },
+        {
+          "content": "And our mouth shall proclaim your praise.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "959ee267-eba7-5120-86e7-bdb12d51d2fd",
+          "id": "preces_3_959ee267-eba7-5120-86e7-bdb12d51d2fd"
+        },
+        {
+          "content": "O God, make speed to save us;",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebdc333-d193-554b-8092-f038b7e3ae64",
+          "id": "preces_4_4ebdc333-d193-554b-8092-f038b7e3ae64"
+        },
+        {
+          "content": "O Lord, make haste to help us.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6188ee6a-ce15-5773-b19d-bc2d7c4778ce",
+          "id": "preces_5_6188ee6a-ce15-5773-b19d-bc2d7c4778ce"
+        },
+        {
+          "content": "Glory be to the Father, and to the Son, and to the Holy Spirit;",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5e6e91c6-a800-5b46-9314-fe4f898f2313",
+          "id": "preces_6_5e6e91c6-a800-5b46-9314-fe4f898f2313"
+        },
+        {
+          "content": "As it was in the beginning, is now, and ever shall be, world without end. Amen.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e6aaa1b0-e1a5-55c8-8306-3ff71bff13c9",
+          "id": "preces_7_e6aaa1b0-e1a5-55c8-8306-3ff71bff13c9"
+        },
+        {
+          "content": "Praise the Lord.",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "97f01387-9e31-5c24-807f-ec608fe5c6c2",
+          "id": "preces_8_97f01387-9e31-5c24-807f-ec608fe5c6c2"
+        },
+        {
+          "content": "The Lord’s Name be praised.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "edc7e2e7-ea1c-551a-ac8a-fc72d4111530",
+          "id": "preces_9_edc7e2e7-ea1c-551a-ac8a-fc72d4111530"
+        }
+      ]
+    },
+    {
+      "name": "Invitatory",
+      "lines": [
+        {
+          "content": "PHOS HILARON",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "fbedf502-720d-508f-9563-b101e85cc350",
+          "id": "invitatory_0_fbedf502-720d-508f-9563-b101e85cc350"
+        },
+        {
+          "content": "O Gladsome Light",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a7b36b95-8a48-57ce-b74e-b8fa859c9758",
+          "id": "invitatory_1_a7b36b95-8a48-57ce-b74e-b8fa859c9758"
+        },
+        {
+          "content": "O gladsome light,",
+          "line_type": "congregation",
+          "indented": "hangingIdent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5cf0fad3-26a4-5f30-a62c-882d52eb6884",
+          "id": "invitatory_2_5cf0fad3-26a4-5f30-a62c-882d52eb6884"
+        },
+        {
+          "content": "pure brightness of the everliving Father in heaven, *",
+          "line_type": "congregation",
+          "indented": "hangingIdent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3d957f41-5b33-5b7f-a3bc-d83fd609c1ad",
+          "id": "invitatory_3_3d957f41-5b33-5b7f-a3bc-d83fd609c1ad"
+        },
+        {
+          "content": "O Jesus Christ, holy and blessed!",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "8e3d7540-928d-591c-ad88-5bf5f0e6e5ad",
+          "id": "invitatory_4_8e3d7540-928d-591c-ad88-5bf5f0e6e5ad"
+        },
+        {
+          "content": "Now as we come to the setting of the sun,",
+          "line_type": "congregation",
+          "indented": "hangingIdent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9ad4e649-1661-5432-9854-e44b53dcbf62",
+          "id": "invitatory_5_9ad4e649-1661-5432-9854-e44b53dcbf62"
+        },
+        {
+          "content": "and our eyes behold the vesper light, *",
+          "line_type": "congregation",
+          "indented": "hangingIdent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3beb06d1-f561-5d01-82fb-16a10f1d0700",
+          "id": "invitatory_6_3beb06d1-f561-5d01-82fb-16a10f1d0700"
+        },
+        {
+          "content": "we sing your praises, O God: Father, Son, and Holy Spirit.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "83192bd4-6dcb-5b70-986d-66434049676c",
+          "id": "invitatory_7_83192bd4-6dcb-5b70-986d-66434049676c"
+        },
+        {
+          "content": "You are worthy at all times to be praised by happy voices, *",
+          "line_type": "congregation",
+          "indented": "hangingIdent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "913f2f2c-40b1-52e7-9b85-824f234082b0",
+          "id": "invitatory_8_913f2f2c-40b1-52e7-9b85-824f234082b0"
+        },
+        {
+          "content": "O Son of God, O Giver of Life,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e6f0611e-9b7d-5475-bc07-7af88174dd4f",
+          "id": "invitatory_9_e6f0611e-9b7d-5475-bc07-7af88174dd4f"
+        },
+        {
+          "content": "and to be glorified through all the worlds.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3162f6c9-ae6f-523d-b0c1-d86e0db49e2d",
+          "id": "invitatory_10_3162f6c9-ae6f-523d-b0c1-d86e0db49e2d"
+        }
+      ]
+    },
+    {
+      "name": "Psalms",
+      "lines": [
+        {
+          "content": "The Psalms Appointed",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d2ac21ac-068b-5404-84ae-a48c51d64a9e",
+          "id": "psalms_0_d2ac21ac-068b-5404-84ae-a48c51d64a9e"
+        },
+        {
+          "content": "Sixty Day Cycle",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "eff2e679-5d24-5a4c-b7a6-a53d6efcfa67",
+          "id": "psalms_1_eff2e679-5d24-5a4c-b7a6-a53d6efcfa67"
+        },
+        {
+          "content": "Psalm 111",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "b5f4794a-bf46-57f7-a7bc-0cd4633715da",
+          "id": "psalms_2_b5f4794a-bf46-57f7-a7bc-0cd4633715da"
+        },
+        {
+          "content": "Confitebor tibi",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3b997fea-c912-5982-be25-771d92152df4",
+          "id": "psalms_3_3b997fea-c912-5982-be25-771d92152df4"
+        },
+        {
+          "content": "Praise the Lᴏʀᴅ. I will give thanks unto the Lᴏʀᴅ with my whole heart, *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 1,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a6103bd4-a51c-5b48-9c1b-b15d12ec918c",
+          "id": "psalms_4_a6103bd4-a51c-5b48-9c1b-b15d12ec918c"
+        },
+        {
+          "content": "in the company of the upright, and among the congregation.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "80b9fc1f-9675-53c8-b397-2b19c486193f",
+          "id": "psalms_5_80b9fc1f-9675-53c8-b397-2b19c486193f"
+        },
+        {
+          "content": "The works of the Lᴏʀᴅ are great, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 2,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e991b97e-5c09-522f-941a-ee6052e10a00",
+          "id": "psalms_6_e991b97e-5c09-522f-941a-ee6052e10a00"
+        },
+        {
+          "content": "sought out by all who have pleasure in them.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5f1429ed-34f9-5af3-8763-27f1d1cc57e0",
+          "id": "psalms_7_5f1429ed-34f9-5af3-8763-27f1d1cc57e0"
+        },
+        {
+          "content": "His work is worthy to be praised and held in honor, *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 3,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4d2c63fa-8a84-5b51-b606-9caea0c404c5",
+          "id": "psalms_8_4d2c63fa-8a84-5b51-b606-9caea0c404c5"
+        },
+        {
+          "content": "and his righteousness endures for ever.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4381ccd7-f06f-5fb9-b144-d887f2b742a8",
+          "id": "psalms_9_4381ccd7-f06f-5fb9-b144-d887f2b742a8"
+        },
+        {
+          "content": "He has made his marvelous works to be had in remembrance; *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 4,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4f674cff-9c3e-5c33-9b1f-f957e94b1a1d",
+          "id": "psalms_10_4f674cff-9c3e-5c33-9b1f-f957e94b1a1d"
+        },
+        {
+          "content": "The Lᴏʀᴅ is gracious and merciful.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "abe722d3-2387-53ce-a97d-d0de0b6a03ab",
+          "id": "psalms_11_abe722d3-2387-53ce-a97d-d0de0b6a03ab"
+        },
+        {
+          "content": "He has given food to those who fear him; *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 5,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6f5e0e36-a2a2-5865-a538-f9443c4fa6bc",
+          "id": "psalms_12_6f5e0e36-a2a2-5865-a538-f9443c4fa6bc"
+        },
+        {
+          "content": "he shall ever be mindful of his covenant.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "67d695fa-5495-5a9e-b702-f23d36f8659d",
+          "id": "psalms_13_67d695fa-5495-5a9e-b702-f23d36f8659d"
+        },
+        {
+          "content": "He has shown his people the power of his works, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 6,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "570a77d0-8add-5e7e-b4b6-05aadea25b7e",
+          "id": "psalms_14_570a77d0-8add-5e7e-b4b6-05aadea25b7e"
+        },
+        {
+          "content": "that he may give them the heritage of the nations.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "0272e653-2057-5caa-a786-d7ba3dcdbc04",
+          "id": "psalms_15_0272e653-2057-5caa-a786-d7ba3dcdbc04"
+        },
+        {
+          "content": "The works of his hands are faithfulness and justice; *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 7,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "46ee995d-6872-5e42-808e-485a826ce08c",
+          "id": "psalms_16_46ee995d-6872-5e42-808e-485a826ce08c"
+        },
+        {
+          "content": "all his commandments are true.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5c4cbcfd-189b-561d-a7d0-d847401cdc60",
+          "id": "psalms_17_5c4cbcfd-189b-561d-a7d0-d847401cdc60"
+        },
+        {
+          "content": "They stand fast for ever and ever, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 8,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4c1c7a61-5734-5148-a34c-3dc7e3cd0b6d",
+          "id": "psalms_18_4c1c7a61-5734-5148-a34c-3dc7e3cd0b6d"
+        },
+        {
+          "content": "and are done in truth and equity.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "69f88976-bfdf-5d4f-9506-a0d1a990b17c",
+          "id": "psalms_19_69f88976-bfdf-5d4f-9506-a0d1a990b17c"
+        },
+        {
+          "content": "He sent redemption to his people; he has commanded his covenant for ever; *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 9,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "0950bf27-9f2e-5e4c-aa50-adc552b733c7",
+          "id": "psalms_20_0950bf27-9f2e-5e4c-aa50-adc552b733c7"
+        },
+        {
+          "content": "holy and awesome is his Name.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3d050c12-514c-525e-9354-dafc8d195d4f",
+          "id": "psalms_21_3d050c12-514c-525e-9354-dafc8d195d4f"
+        },
+        {
+          "content": "The fear of the Lᴏʀᴅ is the beginning of wisdom; *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 10,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "142b7f13-346e-5c33-a474-f5c25a1db180",
+          "id": "psalms_22_142b7f13-346e-5c33-a474-f5c25a1db180"
+        },
+        {
+          "content": "a good understanding have all those who live accordingly; his praise endures for ever.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "109b31e7-38e2-5be5-9473-207e65daa8ba",
+          "id": "psalms_23_109b31e7-38e2-5be5-9473-207e65daa8ba"
+        },
+        {
+          "content": "Psalm 113",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6c4ba834-398d-5b98-9c07-f073af13c20a",
+          "id": "psalms_24_6c4ba834-398d-5b98-9c07-f073af13c20a"
+        },
+        {
+          "content": "Laudate, pueri",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "af8653ac-7040-5b89-9346-78be9623e1fd",
+          "id": "psalms_25_af8653ac-7040-5b89-9346-78be9623e1fd"
+        },
+        {
+          "content": "Praise the Lᴏʀᴅ. Sing praises, you servants of the Lᴏʀᴅ; *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 1,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9e4875ca-c827-5f89-974e-1a2426aa4b82",
+          "id": "psalms_26_9e4875ca-c827-5f89-974e-1a2426aa4b82"
+        },
+        {
+          "content": "O praise the Name of the Lᴏʀᴅ.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "74f86bc4-2394-5b07-9021-7e277b8bf239",
+          "id": "psalms_27_74f86bc4-2394-5b07-9021-7e277b8bf239"
+        },
+        {
+          "content": "Blessed be the Name of the Lᴏʀᴅ, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 2,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6b1d2112-9207-5510-82f6-99d0cdca1c81",
+          "id": "psalms_28_6b1d2112-9207-5510-82f6-99d0cdca1c81"
+        },
+        {
+          "content": "from this time forth for evermore.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f52d93a5-e9d9-564c-8f31-1a657b6080f2",
+          "id": "psalms_29_f52d93a5-e9d9-564c-8f31-1a657b6080f2"
+        },
+        {
+          "content": "The Lᴏʀᴅ’s Name be praised *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 3,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e60990b0-cb2f-5fa8-b15f-3c5664b19f9a",
+          "id": "psalms_30_e60990b0-cb2f-5fa8-b15f-3c5664b19f9a"
+        },
+        {
+          "content": "from the rising up of the sun to the going down of the same.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7a6aaa33-b140-5cd1-9502-9f4542235d09",
+          "id": "psalms_31_7a6aaa33-b140-5cd1-9502-9f4542235d09"
+        },
+        {
+          "content": "The Lᴏʀᴅ is high above all nations, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 4,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7aac682c-136b-5d14-95d4-700f2ad46542",
+          "id": "psalms_32_7aac682c-136b-5d14-95d4-700f2ad46542"
+        },
+        {
+          "content": "and his glory above the heavens.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "13eb9979-738c-51de-9801-de275e234cec",
+          "id": "psalms_33_13eb9979-738c-51de-9801-de275e234cec"
+        },
+        {
+          "content": "Who is like the Lᴏʀᴅ our God, who has his dwelling so high, *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 5,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5c18791e-aef5-5dbb-b0c6-d868c65b6d58",
+          "id": "psalms_34_5c18791e-aef5-5dbb-b0c6-d868c65b6d58"
+        },
+        {
+          "content": "and yet humbles himself to behold the things that are in heaven and earth?",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "041aa7b8-027b-5809-bce7-9e66e38d977a",
+          "id": "psalms_35_041aa7b8-027b-5809-bce7-9e66e38d977a"
+        },
+        {
+          "content": "He takes up the lowly out of the dust, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 6,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9b09974a-616c-556a-8be3-41137a2bd549",
+          "id": "psalms_36_9b09974a-616c-556a-8be3-41137a2bd549"
+        },
+        {
+          "content": "and lifts the poor out of the ashes,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e7aa8be4-c452-5f76-9ffe-9f091e0f51c3",
+          "id": "psalms_37_e7aa8be4-c452-5f76-9ffe-9f091e0f51c3"
+        },
+        {
+          "content": "That he may set them with the princes, *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 7,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "0795e7d0-184b-51ab-b5be-7240cf50e748",
+          "id": "psalms_38_0795e7d0-184b-51ab-b5be-7240cf50e748"
+        },
+        {
+          "content": "even with the princes of his people.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a483f50d-d4cb-5ab6-b75a-a954ce5911e7",
+          "id": "psalms_39_a483f50d-d4cb-5ab6-b75a-a954ce5911e7"
+        },
+        {
+          "content": "He gives the barren woman a home to dwell in, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 8,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "aa0c7913-7dbe-5565-8d73-cf6391005665",
+          "id": "psalms_40_aa0c7913-7dbe-5565-8d73-cf6391005665"
+        },
+        {
+          "content": "and makes her to be a joyful mother of children. Praise the Lᴏʀᴅ.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3f1835d3-957f-52ba-a5f8-ede88456f629",
+          "id": "psalms_41_3f1835d3-957f-52ba-a5f8-ede88456f629"
+        },
+        {
+          "content": "Psalm 114",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a1ee74f5-d09d-5067-a09f-97be078142f3",
+          "id": "psalms_42_a1ee74f5-d09d-5067-a09f-97be078142f3"
+        },
+        {
+          "content": "In exitu Israel",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "1db5f732-e163-57bb-9b4a-91f6970e8f92",
+          "id": "psalms_43_1db5f732-e163-57bb-9b4a-91f6970e8f92"
+        },
+        {
+          "content": "When Israel came out of Egypt, *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 1,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7cf4f8b3-7979-5da3-8536-6813319929fc",
+          "id": "psalms_44_7cf4f8b3-7979-5da3-8536-6813319929fc"
+        },
+        {
+          "content": "and the house of Jacob from among a people of a foreign tongue,",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d620c387-f200-50d1-9117-74406e6c18ae",
+          "id": "psalms_45_d620c387-f200-50d1-9117-74406e6c18ae"
+        },
+        {
+          "content": "Judah was God’s sanctuary, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 2,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6c2a8f5f-8e17-554a-8abe-5dad5c2be0df",
+          "id": "psalms_46_6c2a8f5f-8e17-554a-8abe-5dad5c2be0df"
+        },
+        {
+          "content": "and Israel his dominion.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d6e2da7f-5be0-5db1-9791-a9652d9a4507",
+          "id": "psalms_47_d6e2da7f-5be0-5db1-9791-a9652d9a4507"
+        },
+        {
+          "content": "The sea beheld it and fled; *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 3,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "be253b51-d17f-5b65-9a7d-ec7c86d2a2a9",
+          "id": "psalms_48_be253b51-d17f-5b65-9a7d-ec7c86d2a2a9"
+        },
+        {
+          "content": "Jordan was driven back.",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "fbabbd27-f90a-524e-86ff-35eafd3faad5",
+          "id": "psalms_49_fbabbd27-f90a-524e-86ff-35eafd3faad5"
+        },
+        {
+          "content": "The mountains skipped like rams, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 4,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "89e90932-0333-57b0-92c1-84faec675323",
+          "id": "psalms_50_89e90932-0333-57b0-92c1-84faec675323"
+        },
+        {
+          "content": "and the little hills like young sheep.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7153ced7-59c2-5165-aa27-c31356ddd4b3",
+          "id": "psalms_51_7153ced7-59c2-5165-aa27-c31356ddd4b3"
+        },
+        {
+          "content": "What ailed you, O sea, that you fled? *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 5,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c41a8f37-7a62-52ee-94e5-d0a5faa594c2",
+          "id": "psalms_52_c41a8f37-7a62-52ee-94e5-d0a5faa594c2"
+        },
+        {
+          "content": "O Jordan, that you were driven back?",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6f7905b1-0f8b-5131-ad88-c19dc104e775",
+          "id": "psalms_53_6f7905b1-0f8b-5131-ad88-c19dc104e775"
+        },
+        {
+          "content": "You mountains, that you skipped like rams, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 6,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "79ee4dd3-0396-58e2-905d-b65dcab281e6",
+          "id": "psalms_54_79ee4dd3-0396-58e2-905d-b65dcab281e6"
+        },
+        {
+          "content": "and you little hills like young sheep?",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3278ef3b-9f4d-50ff-855a-25e391bec4ad",
+          "id": "psalms_55_3278ef3b-9f4d-50ff-855a-25e391bec4ad"
+        },
+        {
+          "content": "Tremble, O earth, at the presence of the Lord, *",
+          "line_type": "leader",
+          "indented": "hangingIndent",
+          "preface": 7,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9b0f8a11-3569-5db2-951c-2f360c583e0c",
+          "id": "psalms_56_9b0f8a11-3569-5db2-951c-2f360c583e0c"
+        },
+        {
+          "content": "at the presence of the God of Jacob,",
+          "line_type": "leader",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "78b2c41b-ffeb-5d18-8ef6-7a52a7b5f382",
+          "id": "psalms_57_78b2c41b-ffeb-5d18-8ef6-7a52a7b5f382"
+        },
+        {
+          "content": "Who turned the hard rock into a pool of water, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": 8,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c42d20e2-385c-5591-b3df-f62a0d4d7990",
+          "id": "psalms_58_c42d20e2-385c-5591-b3df-f62a0d4d7990"
+        },
+        {
+          "content": "and the flint stone into a springing well.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f4b90134-7fc5-52ae-8604-9da5579f0fd8",
+          "id": "psalms_59_f4b90134-7fc5-52ae-8604-9da5579f0fd8"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "psalms_60_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "Glory be to the Father, and to the Son, and to the Holy Spirit; *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5b226533-35d1-560c-9243-eacd82a5c381",
+          "id": "psalms_61_5b226533-35d1-560c-9243-eacd82a5c381"
+        },
+        {
+          "content": "as it was in the beginning, is now, and ever shall be, world without end. Amen.",
+          "line_type": "congregation",
+          "indented": "indent       ",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a3c4c376-7774-552d-b02b-aa34c568ada1",
+          "id": "psalms_62_a3c4c376-7774-552d-b02b-aa34c568ada1"
+        }
+      ]
+    },
+    {
+      "name": "First Reading",
+      "lines": [
+        {
+          "content": "The First Lesson",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c0689364-38d9-551b-8e7c-a6c146d16938",
+          "id": "firstreading_0_c0689364-38d9-551b-8e7c-a6c146d16938"
+        },
+        {
+          "content": "Romans 6",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c8ef79be-7520-50f4-904c-9d4937a5fa85",
+          "id": "firstreading_1_c8ef79be-7520-50f4-904c-9d4937a5fa85"
+        },
+        {
+          "content": "A reading from St. Paul's Epistle to the Romans, beginning with the sixth chapter, the first verse",
+          "line_type": "reader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5af364f7-c802-5d88-8ef5-0e7243cfa6c7",
+          "id": "firstreading_2_5af364f7-c802-5d88-8ef5-0e7243cfa6c7"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "firstreading_3_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "<span data-line-id='firstreading_e6f58803-1223-59f3-a1ef-8491e19427f7'></span><div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n<p class=\"chapter-1\"><span class=\"text Rom-6-1\"><span class=\"chapternum\">6 </span>What shall we say then?<span data-line-id='firstreading_fef2ff25-5675-50d9-ba6f-ca4ed9885eca'></span> Are we to continue in sin that grace may abound?<span data-line-id='firstreading_4924dbe3-07a8-58ad-b082-ae6a8ea95849'></span></span> <span class=\"text Rom-6-2\" id=\"en-ESV-28055\"><sup class=\"versenum\">2 </sup>By no means!<span data-line-id='firstreading_53ff0f99-0dac-5cb4-9d9c-b8363c49c2ea'></span> How can we who died to sin still live in it?<span data-line-id='firstreading_d8a90e79-1fc8-56b0-80a5-b4faa2d7879d'></span></span> <span class=\"text Rom-6-3\" id=\"en-ESV-28056\"><sup class=\"versenum\">3 </sup>Do you not know that all of us who have been baptized into Christ Jesus were baptized into his death?<span data-line-id='firstreading_9d7bb928-23b5-50aa-a002-d419971da85f'></span></span> <span class=\"text Rom-6-4\" id=\"en-ESV-28057\"><sup class=\"versenum\">4 </sup>We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life.<span data-line-id='firstreading_1f6669b0-0a77-5eff-95ee-62012fca5b80'></span></span></p> <p><span class=\"text Rom-6-5\" id=\"en-ESV-28058\"><sup class=\"versenum\">5 </sup>For if we have been united with him in a death like his, we shall certainly be united with him in a resurrection like his.<span data-line-id='firstreading_3a5a8172-80d1-551d-a1e7-d3f3be34a62d'></span></span> <span class=\"text Rom-6-6\" id=\"en-ESV-28059\"><sup class=\"versenum\">6 </sup>We know that our old self was crucified with him in order that the body of sin might be brought to nothing, so that we would no longer be enslaved to sin.<span data-line-id='firstreading_23174bb9-b9ca-5cf4-a90e-45c480a0ace4'></span></span> <span class=\"text Rom-6-7\" id=\"en-ESV-28060\"><sup class=\"versenum\">7 </sup>For one who has died has been set free from sin.<span data-line-id='firstreading_4517ab5b-8dbb-5550-96f2-1ecae472317a'></span></span> <span class=\"text Rom-6-8\" id=\"en-ESV-28061\"><sup class=\"versenum\">8 </sup>Now if we have died with Christ, we believe that we will also live with him.<span data-line-id='firstreading_0eccbe4d-7b05-513f-8c05-58cdb0b72901'></span></span> <span class=\"text Rom-6-9\" id=\"en-ESV-28062\"><sup class=\"versenum\">9 </sup>We know that Christ, being raised from the dead, will never die again; death no longer has dominion over him.<span data-line-id='firstreading_3fdaaacf-5a64-5fa2-aaef-a3cab18154c8'></span></span> <span class=\"text Rom-6-10\" id=\"en-ESV-28063\"><sup class=\"versenum\">10 </sup>For the death he died he died to sin, once for all, but the life he lives he lives to God.<span data-line-id='firstreading_459bc85f-9409-5d5b-b0f8-269c5e917293'></span></span> <span class=\"text Rom-6-11\" id=\"en-ESV-28064\"><sup class=\"versenum\">11 </sup>So you also must consider yourselves dead to sin and alive to God in Christ Jesus.<span data-line-id='firstreading_9ad0bf38-12c7-515a-9686-15aaf1d27b79'></span></span></p> <p><span class=\"text Rom-6-12\" id=\"en-ESV-28065\"><sup class=\"versenum\">12 </sup>Let not sin therefore reign in your mortal body, to make you obey its passions.<span data-line-id='firstreading_050303c5-7a4c-5b03-abd7-c42d42e038f7'></span></span> <span class=\"text Rom-6-13\" id=\"en-ESV-28066\"><sup class=\"versenum\">13 </sup>Do not present your members to sin as instruments for unrighteousness, but present yourselves to God as those who have been brought from death to life, and your members to God as instruments for righteousness.<span data-line-id='firstreading_f25b1166-30cc-5893-8797-98d6e4e9eab7'></span></span> <span class=\"text Rom-6-14\" id=\"en-ESV-28067\"><sup class=\"versenum\">14 </sup>For sin will have no dominion over you, since you are not under law but under grace.<span data-line-id='firstreading_44f3ff77-1d4f-57c0-a399-5c10d7153e24'></span></span></p> <p><span class=\"text Rom-6-15\"><sup class=\"versenum\">15 </sup>What then?<span data-line-id='firstreading_7b435317-8521-560f-88b1-4201d5a1112d'></span> Are we to sin because we are not under law but under grace?<span data-line-id='firstreading_4924dbe3-07a8-58ad-b082-ae6a8ea95849'></span> By no means!<span data-line-id='firstreading_de4e3084-a6f8-588f-9f21-617b5e29aba2'></span></span> <span class=\"text Rom-6-16\" id=\"en-ESV-28069\"><sup class=\"versenum\">16 </sup>Do you not know that if you present yourselves to anyone as obedient slaves, you are slaves of the one whom you obey, either of sin, which leads to death, or of obedience, which leads to righteousness?<span data-line-id='firstreading_375b7d22-3998-58f7-93ab-b3751612a502'></span></span> <span class=\"text Rom-6-17\" id=\"en-ESV-28070\"><sup class=\"versenum\">17 </sup>But thanks be to God, that you who were once slaves of sin have become obedient from the heart to the standard of teaching to which you were committed,</span> <span class=\"text Rom-6-18\" id=\"en-ESV-28071\"><sup class=\"versenum\">18 </sup>and, having been set free from sin, have become slaves of righteousness.<span data-line-id='firstreading_86081780-e85d-5463-96c9-b3e51c917dbb'></span></span> <span class=\"text Rom-6-19\" id=\"en-ESV-28072\"><sup class=\"versenum\">19 </sup>I am speaking in human terms, because of your natural limitations.<span data-line-id='firstreading_a039c98f-2747-57f1-b323-f9e14e1d8c9d'></span> For just as you once presented your members as slaves to impurity and to lawlessness leading to more lawlessness, so now present your members as slaves to righteousness leading to sanctification.<span data-line-id='firstreading_71c96eee-59d5-5f3e-923b-a7f0299eb57b'></span></span></p> <p><span class=\"text Rom-6-20\" id=\"en-ESV-28073\"><sup class=\"versenum\">20 </sup>For when you were slaves of sin, you were free in regard to righteousness.<span data-line-id='firstreading_c4e7a01e-4fd0-5254-9d89-4ec263652168'></span></span> <span class=\"text Rom-6-21\" id=\"en-ESV-28074\"><sup class=\"versenum\">21 </sup>But what fruit were you getting at that time from the things of which you are now ashamed?<span data-line-id='firstreading_09fb0eed-eb08-5204-b5cd-d6ef2d631bf6'></span> For the end of those things is death.<span data-line-id='firstreading_2b078dfc-c4b1-56e8-9caa-bc40ba7baa1f'></span></span> <span class=\"text Rom-6-22\" id=\"en-ESV-28075\"><sup class=\"versenum\">22 </sup>But now that you have been set free from sin and have become slaves of God, the fruit you get leads to sanctification and its end, eternal life.<span data-line-id='firstreading_0e4543e6-67f2-5607-b9ee-4f93a44a7d5d'></span></span> <span class=\"text Rom-6-23\" id=\"en-ESV-28076\"><sup class=\"versenum\">23 </sup>For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.<span data-line-id='firstreading_7b494638-2f25-5b1d-91e6-071f0c18cb3d'></span></span></p> <!<span data-line-id='firstreading_006e2a89-ba1d-5637-8ce4-068e8cc21d83'></span>\n<!<span data-line-id='firstreading_d936271c-7cfd-52bf-850a-bd28bdc69ecc'></span>\n</div>\n</div>",
+          "line_type": "html",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "27714bec-8719-57d4-ac34-3b666934db22",
+          "id": "firstreading_4_27714bec-8719-57d4-ac34-3b666934db22"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "firstreading_5_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "The Word of the Lord.",
+          "line_type": "reader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e8f42a37-c894-53f0-bfcf-70970bbe5c6d",
+          "id": "firstreading_6_e8f42a37-c894-53f0-bfcf-70970bbe5c6d"
+        },
+        {
+          "content": "Thanks be to God.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "747a551b-1c7f-541f-b065-c3776b0e1ce6",
+          "id": "firstreading_7_747a551b-1c7f-541f-b065-c3776b0e1ce6"
+        }
+      ]
+    },
+    {
+      "name": "First Canticle",
+      "lines": [
+        {
+          "content": "MAGNIFICAT",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d1e82b52-da90-5e20-a0e9-1a97bbb0fca6",
+          "id": "firstcanticle_0_d1e82b52-da90-5e20-a0e9-1a97bbb0fca6"
+        },
+        {
+          "content": "The Song of Mary",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "bf1740a3-8587-5d3d-b477-764fc09194b3",
+          "id": "firstcanticle_1_bf1740a3-8587-5d3d-b477-764fc09194b3"
+        },
+        {
+          "content": "The following Canticle is sung or said, all standing",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "aecec0cb-d5ad-50e8-b93a-78e3b8b8ebb2",
+          "id": "firstcanticle_2_aecec0cb-d5ad-50e8-b93a-78e3b8b8ebb2"
+        },
+        {
+          "content": "My soul magnifies the Lord, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c7f62ecf-487d-563f-8c61-5f9d3ed2670f",
+          "id": "firstcanticle_3_c7f62ecf-487d-563f-8c61-5f9d3ed2670f"
+        },
+        {
+          "content": "and my spirit rejoices in God my Savior;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "99cdf21f-55c8-5474-bde9-f48e4bb879a2",
+          "id": "firstcanticle_4_99cdf21f-55c8-5474-bde9-f48e4bb879a2"
+        },
+        {
+          "content": "For he has regarded *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "964d87ee-9115-53f4-9286-88c403bcd2c0",
+          "id": "firstcanticle_5_964d87ee-9115-53f4-9286-88c403bcd2c0"
+        },
+        {
+          "content": "the lowliness of his handmaiden.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "793f4362-6f9f-5152-adfd-06ff20ab8756",
+          "id": "firstcanticle_6_793f4362-6f9f-5152-adfd-06ff20ab8756"
+        },
+        {
+          "content": "For behold, from now on, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ce741d42-1c2b-5ed7-bca3-40242ee7adac",
+          "id": "firstcanticle_7_ce741d42-1c2b-5ed7-bca3-40242ee7adac"
+        },
+        {
+          "content": "all generations will call me blessed;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "2b86062f-4eb3-56f9-87ae-f8c622171881",
+          "id": "firstcanticle_8_2b86062f-4eb3-56f9-87ae-f8c622171881"
+        },
+        {
+          "content": "For he that is mighty has magnified me, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5b8e9f71-60a9-5e3f-955d-2301b4944816",
+          "id": "firstcanticle_9_5b8e9f71-60a9-5e3f-955d-2301b4944816"
+        },
+        {
+          "content": "and holy is his Name.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c2de16f5-aea9-5dbb-b70f-77c47d813c2a",
+          "id": "firstcanticle_10_c2de16f5-aea9-5dbb-b70f-77c47d813c2a"
+        },
+        {
+          "content": "And his mercy is on those who fear him, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d945c847-1c47-5815-9c7e-273a2721859f",
+          "id": "firstcanticle_11_d945c847-1c47-5815-9c7e-273a2721859f"
+        },
+        {
+          "content": "throughout all generations.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "b96e2904-7156-51aa-b8eb-b9b46fd5cca7",
+          "id": "firstcanticle_12_b96e2904-7156-51aa-b8eb-b9b46fd5cca7"
+        },
+        {
+          "content": "He has shown the strength of his arm; *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "20f8a70d-e3ce-538c-978f-2211846094af",
+          "id": "firstcanticle_13_20f8a70d-e3ce-538c-978f-2211846094af"
+        },
+        {
+          "content": "he has scattered the proud in the imagination of their hearts.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ffc9c268-cf78-5146-810f-9f538cac7d4c",
+          "id": "firstcanticle_14_ffc9c268-cf78-5146-810f-9f538cac7d4c"
+        },
+        {
+          "content": "He has brought down the mighty from their thrones, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "cc7d7abb-315d-5dec-b8bc-651e609e07c4",
+          "id": "firstcanticle_15_cc7d7abb-315d-5dec-b8bc-651e609e07c4"
+        },
+        {
+          "content": "and has exalted the humble and meek.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5785cf02-a888-5955-8a15-1fef54a6af7c",
+          "id": "firstcanticle_16_5785cf02-a888-5955-8a15-1fef54a6af7c"
+        },
+        {
+          "content": "He has filled the hungry with good things, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e3f5aa21-b91c-512c-a4f3-9bd4b5eba8c9",
+          "id": "firstcanticle_17_e3f5aa21-b91c-512c-a4f3-9bd4b5eba8c9"
+        },
+        {
+          "content": "and the rich he has sent empty away.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "0d8ad90c-a26d-5806-b7af-79f3667258ba",
+          "id": "firstcanticle_18_0d8ad90c-a26d-5806-b7af-79f3667258ba"
+        },
+        {
+          "content": "He, remembering his mercy, has helped his servant Israel, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "84c609d0-01de-58fa-adb3-06d85ebd8ed3",
+          "id": "firstcanticle_19_84c609d0-01de-58fa-adb3-06d85ebd8ed3"
+        },
+        {
+          "content": "as he promised to our fathers, Abraham and his seed for ever.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6ed211a4-833d-5db4-89c5-63a8fab06597",
+          "id": "firstcanticle_20_6ed211a4-833d-5db4-89c5-63a8fab06597"
+        },
+        {
+          "content": "LUKE 1:46-55",
+          "line_type": "citation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "39d37499-8059-5829-94d2-df023892a5da",
+          "id": "firstcanticle_21_39d37499-8059-5829-94d2-df023892a5da"
+        },
+        {
+          "content": "Glory be to the Father, and to the Son, and to the Holy Spirit; *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5b226533-35d1-560c-9243-eacd82a5c381",
+          "id": "firstcanticle_22_5b226533-35d1-560c-9243-eacd82a5c381"
+        },
+        {
+          "content": "as it was in the beginning, is now, and ever shall be, world without end. Amen.",
+          "line_type": "congregation",
+          "indented": "indent       ",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a3c4c376-7774-552d-b02b-aa34c568ada1",
+          "id": "firstcanticle_23_a3c4c376-7774-552d-b02b-aa34c568ada1"
+        }
+      ]
+    },
+    {
+      "name": "Second Reading",
+      "lines": [
+        {
+          "content": "The Second Lesson",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9eb86e13-d737-5d68-bea6-5a9957b6b33c",
+          "id": "secondreading_0_9eb86e13-d737-5d68-bea6-5a9957b6b33c"
+        },
+        {
+          "content": "Luke 24:13-43",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c1dc7b07-a8fc-5fae-8049-3f3faa069978",
+          "id": "secondreading_1_c1dc7b07-a8fc-5fae-8049-3f3faa069978"
+        },
+        {
+          "content": "A reading from the Gospel of our Lord Jesus Christ according to St. Luke, beginning with the twenty-fourth chapter, the thirteenth verse",
+          "line_type": "reader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "36f5682b-425a-5dde-944e-65dbd1e3b950",
+          "id": "secondreading_2_36f5682b-425a-5dde-944e-65dbd1e3b950"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "secondreading_3_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "<span data-line-id='secondreading_2a116565-1eb9-5e36-8ec9-8896905c3e2a'></span><div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n<p><span class=\"text Luke-24-13\"><sup class=\"versenum\">13 </sup>That very day two of them were going to a village named Emmaus, about seven miles from Jerusalem,</span> <span class=\"text Luke-24-14\" id=\"en-ESV-25995\"><sup class=\"versenum\">14 </sup>and they were talking with each other about all these things that had happened.<span data-line-id='secondreading_5a56fb16-88e3-5ff0-8859-b6242f416cd8'></span></span> <span class=\"text Luke-24-15\" id=\"en-ESV-25996\"><sup class=\"versenum\">15 </sup>While they were talking and discussing together, Jesus himself drew near and went with them.<span data-line-id='secondreading_9bab59fc-6822-533d-b531-43bc8c01bced'></span></span> <span class=\"text Luke-24-16\" id=\"en-ESV-25997\"><sup class=\"versenum\">16 </sup>But their eyes were kept from recognizing him.<span data-line-id='secondreading_f8d9a748-dfd5-5309-b964-1437ecd27156'></span></span> <span class=\"text Luke-24-17\" id=\"en-ESV-25998\"><sup class=\"versenum\">17 </sup>And he said to them, <span class=\"woj\">“What is this conversation that you are holding with each other as you walk?<span data-line-id='secondreading_b8ece3f9-e77b-546d-8696-09e1cc705993'></span>”</span> And they stood still, looking sad.<span data-line-id='secondreading_65e5949f-ef02-5a40-8d76-386558e90181'></span></span> <span class=\"text Luke-24-18\" id=\"en-ESV-25999\"><sup class=\"versenum\">18 </sup>Then one of them, named Cleopas, answered him, “Are you the only visitor to Jerusalem who does not know the things that have happened there in these days?<span data-line-id='secondreading_949cb0dc-1c16-5132-afd8-72a2de6a4954'></span>”</span> <span class=\"text Luke-24-19\" id=\"en-ESV-26000\"><sup class=\"versenum\">19 </sup>And he said to them, <span class=\"woj\">“What things?<span data-line-id='secondreading_4bcc5ceb-4854-5830-8c8b-1956194f8716'></span>”</span> And they said to him, “Concerning Jesus of Nazareth, a man who was a prophet mighty in deed and word before God and all the people,</span> <span class=\"text Luke-24-20\" id=\"en-ESV-26001\"><sup class=\"versenum\">20 </sup>and how our chief priests and rulers delivered him up to be condemned to death, and crucified him.<span data-line-id='secondreading_632ef5cb-6503-5e78-aea6-8148306426f3'></span></span> <span class=\"text Luke-24-21\" id=\"en-ESV-26002\"><sup class=\"versenum\">21 </sup>But we had hoped that he was the one to redeem Israel.<span data-line-id='secondreading_9243c243-cfba-53e4-8ec8-c763c5d81060'></span> Yes, and besides all this, it is now the third day since these things happened.<span data-line-id='secondreading_2b60e6be-66cc-52f0-9162-e41fed892105'></span></span> <span class=\"text Luke-24-22\" id=\"en-ESV-26003\"><sup class=\"versenum\">22 </sup>Moreover, some women of our company amazed us.<span data-line-id='secondreading_b898e8ff-486a-5c68-a6b7-e10d82525f64'></span> They were at the tomb early in the morning,</span> <span class=\"text Luke-24-23\" id=\"en-ESV-26004\"><sup class=\"versenum\">23 </sup>and when they did not find his body, they came back saying that they had even seen a vision of angels, who said that he was alive.<span data-line-id='secondreading_12813b09-b4ad-5539-82f6-e49a103f35d4'></span></span> <span class=\"text Luke-24-24\" id=\"en-ESV-26005\"><sup class=\"versenum\">24 </sup>Some of those who were with us went to the tomb and found it just as the women had said, but him they did not see.<span data-line-id='secondreading_9d1e7d47-710b-55de-9f80-307d309fb58e'></span>”</span> <span class=\"text Luke-24-25\" id=\"en-ESV-26006\"><sup class=\"versenum\">25 </sup>And he said to them, <span class=\"woj\">“O foolish ones, and slow of heart to believe all that the prophets have spoken!<span data-line-id='secondreading_cfb6a93c-3968-558c-a533-d336ec9ddc66'></span></span></span> <span class=\"text Luke-24-26\" id=\"en-ESV-26007\"><span class=\"woj\"><sup class=\"versenum\">26 </sup>Was it not necessary that the Christ should suffer these things and enter into his glory?<span data-line-id='secondreading_817bbaeb-5fe0-577f-8d15-4ad04f4521de'></span>”</span></span> <span class=\"text Luke-24-27\" id=\"en-ESV-26008\"><sup class=\"versenum\">27 </sup>And beginning with Moses and all the Prophets, he interpreted to them in all the Scriptures the things concerning himself.<span data-line-id='secondreading_57ac1fc5-d36d-57ad-8b3d-e90554d4dd34'></span></span></p> <p><span class=\"text Luke-24-28\" id=\"en-ESV-26009\"><sup class=\"versenum\">28 </sup>So they drew near to the village to which they were going.<span data-line-id='secondreading_7c0bb9fd-7a34-5017-9488-e3096246afef'></span> He acted as if he were going farther,</span> <span class=\"text Luke-24-29\" id=\"en-ESV-26010\"><sup class=\"versenum\">29 </sup>but they urged him strongly, saying, “Stay with us, for it is toward evening and the day is now far spent.<span data-line-id='secondreading_0f0c97ec-c84a-5dc4-a2c5-b0968aa1a5d7'></span>” So he went in to stay with them.<span data-line-id='secondreading_0a333196-dca2-5532-9423-243b5998ed0b'></span></span> <span class=\"text Luke-24-30\" id=\"en-ESV-26011\"><sup class=\"versenum\">30 </sup>When he was at table with them, he took the bread and blessed and broke it and gave it to them.<span data-line-id='secondreading_fb5dd71f-574a-550d-a327-ba60d5fb28e1'></span></span> <span class=\"text Luke-24-31\" id=\"en-ESV-26012\"><sup class=\"versenum\">31 </sup>And their eyes were opened, and they recognized him.<span data-line-id='secondreading_18937045-57e4-51cb-88ea-05eaa5b06c84'></span> And he vanished from their sight.<span data-line-id='secondreading_86571225-cfc8-5d9b-9ace-1c108efd287e'></span></span> <span class=\"text Luke-24-32\" id=\"en-ESV-26013\"><sup class=\"versenum\">32 </sup>They said to each other, “Did not our hearts burn within us while he talked to us on the road, while he opened to us the Scriptures?<span data-line-id='secondreading_5b3cf2d0-3ba3-5149-b81a-b2def21d479c'></span>”</span> <span class=\"text Luke-24-33\" id=\"en-ESV-26014\"><sup class=\"versenum\">33 </sup>And they rose that same hour and returned to Jerusalem.<span data-line-id='secondreading_caed120e-a75c-5757-92f9-69c5cf52119d'></span> And they found the eleven and those who were with them gathered together,</span> <span class=\"text Luke-24-34\" id=\"en-ESV-26015\"><sup class=\"versenum\">34 </sup>saying, “The Lord has risen indeed, and has appeared to Simon!<span data-line-id='secondreading_67548fe4-ffed-5b35-8345-8345f055401d'></span>”</span> <span class=\"text Luke-24-35\" id=\"en-ESV-26016\"><sup class=\"versenum\">35 </sup>Then they told what had happened on the road, and how he was known to them in the breaking of the bread.<span data-line-id='secondreading_54715263-7390-5028-a618-1122599d487c'></span></span></p> <p><span class=\"text Luke-24-36\"><sup class=\"versenum\">36 </sup>As they were talking about these things, Jesus himself stood among them, and said to them, <span class=\"woj\">“Peace to you!<span data-line-id='secondreading_23bc9739-8cb2-5a14-81bf-f60517162a76'></span>”</span></span> <span class=\"text Luke-24-37\" id=\"en-ESV-26018\"><sup class=\"versenum\">37 </sup>But they were startled and frightened and thought they saw a spirit.<span data-line-id='secondreading_5c37532e-cd1f-50c3-b900-689ee9bb4987'></span></span> <span class=\"text Luke-24-38\" id=\"en-ESV-26019\"><sup class=\"versenum\">38 </sup>And he said to them, <span class=\"woj\">“Why are you troubled, and why do doubts arise in your hearts?<span data-line-id='secondreading_9a4ff4b7-f48f-50e6-931a-7cfe716319e2'></span></span></span> <span class=\"text Luke-24-39\" id=\"en-ESV-26020\"><span class=\"woj\"><sup class=\"versenum\">39 </sup>See my hands and my feet, that it is I myself.<span data-line-id='secondreading_a45927fc-e7f3-5b27-bfbf-f303554900ec'></span> Touch me, and see.<span data-line-id='secondreading_f6f56057-1bf6-5d93-8890-16986df6c831'></span> For a spirit does not have flesh and bones as you see that I have.<span data-line-id='secondreading_69425907-7793-5dcf-94cd-e145e3550825'></span>”</span></span> <span class=\"text Luke-24-40\" id=\"en-ESV-26021\"><sup class=\"versenum\">40 </sup>And when he had said this, he showed them his hands and his feet.<span data-line-id='secondreading_a4d38844-d0a2-5e89-ac40-465c438e2364'></span></span> <span class=\"text Luke-24-41\" id=\"en-ESV-26022\"><sup class=\"versenum\">41 </sup>And while they still disbelieved for joy and were marveling, he said to them, <span class=\"woj\">“Have you anything here to eat?<span data-line-id='secondreading_cc091810-4fcb-5723-8f44-a0e865c00172'></span>”</span></span> <span class=\"text Luke-24-42\" id=\"en-ESV-26023\"><sup class=\"versenum\">42 </sup>They gave him a piece of broiled fish,</span> <span class=\"text Luke-24-43\" id=\"en-ESV-26024\"><sup class=\"versenum\">43 </sup>and he took it and ate before them.<span data-line-id='secondreading_c59719e3-f76f-5ae8-974e-9314d2c2081d'></span></span></p>\n<!<span data-line-id='secondreading_006e2a89-ba1d-5637-8ce4-068e8cc21d83'></span>\n<!<span data-line-id='secondreading_d936271c-7cfd-52bf-850a-bd28bdc69ecc'></span>\n</div>\n</div>",
+          "line_type": "html",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "aaaef717-2623-5625-9d67-e4b9689cd1d8",
+          "id": "secondreading_4_aaaef717-2623-5625-9d67-e4b9689cd1d8"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "secondreading_5_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "The Word of the Lord.",
+          "line_type": "reader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e8f42a37-c894-53f0-bfcf-70970bbe5c6d",
+          "id": "secondreading_6_e8f42a37-c894-53f0-bfcf-70970bbe5c6d"
+        },
+        {
+          "content": "Thanks be to God.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "747a551b-1c7f-541f-b065-c3776b0e1ce6",
+          "id": "secondreading_7_747a551b-1c7f-541f-b065-c3776b0e1ce6"
+        }
+      ]
+    },
+    {
+      "name": "Second Canticle",
+      "lines": [
+        {
+          "content": "NUNC DIMITTIS",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "cc9be738-aafe-5d1c-ac2b-6564826e5e84",
+          "id": "secondcanticle_0_cc9be738-aafe-5d1c-ac2b-6564826e5e84"
+        },
+        {
+          "content": "The Song of Simeon",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c507d419-cb5a-5b36-bd13-ee21d2979ac9",
+          "id": "secondcanticle_1_c507d419-cb5a-5b36-bd13-ee21d2979ac9"
+        },
+        {
+          "content": "The following Canticle is sung or said, all standing",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "aecec0cb-d5ad-50e8-b93a-78e3b8b8ebb2",
+          "id": "secondcanticle_2_aecec0cb-d5ad-50e8-b93a-78e3b8b8ebb2"
+        },
+        {
+          "content": "Lord, now let your servant depart in peace, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "1cdfd82f-452f-5598-a094-42f552e096f9",
+          "id": "secondcanticle_3_1cdfd82f-452f-5598-a094-42f552e096f9"
+        },
+        {
+          "content": "according to your word.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "be4e6f4e-6dbe-56a9-9769-f36466eb46e4",
+          "id": "secondcanticle_4_be4e6f4e-6dbe-56a9-9769-f36466eb46e4"
+        },
+        {
+          "content": "For my eyes have seen your salvation, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "73d3b947-5706-52b1-ad51-bce830f258fb",
+          "id": "secondcanticle_5_73d3b947-5706-52b1-ad51-bce830f258fb"
+        },
+        {
+          "content": "which you have prepared before the face of all people;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "576bba88-c936-5ef3-9c93-35a59e62b652",
+          "id": "secondcanticle_6_576bba88-c936-5ef3-9c93-35a59e62b652"
+        },
+        {
+          "content": "To be a light to lighten the Gentiles, *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c56fe5c5-41ca-5cf4-a6e4-c3c883e75f1b",
+          "id": "secondcanticle_7_c56fe5c5-41ca-5cf4-a6e4-c3c883e75f1b"
+        },
+        {
+          "content": "and to be the glory of your people Israel.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ad40a17d-3b8c-547e-926b-0c44d7c3175d",
+          "id": "secondcanticle_8_ad40a17d-3b8c-547e-926b-0c44d7c3175d"
+        },
+        {
+          "content": "LUKE 2:29-32",
+          "line_type": "citation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "dd329ab4-ddd3-5783-b933-3b0ebda4551a",
+          "id": "secondcanticle_9_dd329ab4-ddd3-5783-b933-3b0ebda4551a"
+        },
+        {
+          "content": "Glory be to the Father, and to the Son, and to the Holy Spirit; *",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5b226533-35d1-560c-9243-eacd82a5c381",
+          "id": "secondcanticle_10_5b226533-35d1-560c-9243-eacd82a5c381"
+        },
+        {
+          "content": "as it was in the beginning, is now, and ever shall be, world without end. Amen.",
+          "line_type": "congregation",
+          "indented": "indent       ",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a3c4c376-7774-552d-b02b-aa34c568ada1",
+          "id": "secondcanticle_11_a3c4c376-7774-552d-b02b-aa34c568ada1"
+        }
+      ]
+    },
+    {
+      "name": "The Apostle's Creed",
+      "lines": [
+        {
+          "content": "The Apostles' Creed",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "8a06454f-a88a-5c2a-9059-d6b9736f3773",
+          "id": "theapostlescreed_0_8a06454f-a88a-5c2a-9059-d6b9736f3773"
+        },
+        {
+          "content": "Officiant and People together, all standing",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3e804b6b-08a9-5fe3-a33d-201d802f2e26",
+          "id": "theapostlescreed_1_3e804b6b-08a9-5fe3-a33d-201d802f2e26"
+        },
+        {
+          "content": "I believe in God, the Father almighty,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7143cc50-985b-534a-b2f3-463a643652be",
+          "id": "theapostlescreed_2_7143cc50-985b-534a-b2f3-463a643652be"
+        },
+        {
+          "content": "creator of heaven and earth.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f1782643-82e6-5ed5-abc7-e26ac592da27",
+          "id": "theapostlescreed_3_f1782643-82e6-5ed5-abc7-e26ac592da27"
+        },
+        {
+          "content": "I believe in Jesus Christ, his only Son, our Lord.",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5abfffc4-b8ce-54ae-8c3f-24e8d0c17330",
+          "id": "theapostlescreed_4_5abfffc4-b8ce-54ae-8c3f-24e8d0c17330"
+        },
+        {
+          "content": "He was conceived by the Holy Spirit",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5bf0d4c5-c062-5692-a142-d442a024a2d8",
+          "id": "theapostlescreed_5_5bf0d4c5-c062-5692-a142-d442a024a2d8"
+        },
+        {
+          "content": "and born of the Virgin Mary.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c07600ba-f063-5941-9928-b4ef3bcd7de9",
+          "id": "theapostlescreed_6_c07600ba-f063-5941-9928-b4ef3bcd7de9"
+        },
+        {
+          "content": "He suffered under Pontius Pilate,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "9eff503b-8073-58f5-b711-dfddfe6971e1",
+          "id": "theapostlescreed_7_9eff503b-8073-58f5-b711-dfddfe6971e1"
+        },
+        {
+          "content": "was crucified, died, and was buried.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d3a1e753-b7c4-50e7-a80f-e11e5f7cbdb6",
+          "id": "theapostlescreed_8_d3a1e753-b7c4-50e7-a80f-e11e5f7cbdb6"
+        },
+        {
+          "content": "He descended to the dead.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "76c3e32d-96ed-5757-a02c-d5a016aff8f2",
+          "id": "theapostlescreed_9_76c3e32d-96ed-5757-a02c-d5a016aff8f2"
+        },
+        {
+          "content": "On the third day he rose again.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a39cb95f-5053-573e-882f-74b82cd32f8a",
+          "id": "theapostlescreed_10_a39cb95f-5053-573e-882f-74b82cd32f8a"
+        },
+        {
+          "content": "He ascended into heaven,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3e39f922-5395-51d3-b79a-f61def8149af",
+          "id": "theapostlescreed_11_3e39f922-5395-51d3-b79a-f61def8149af"
+        },
+        {
+          "content": "and is seated at the right hand of the Father.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "0cd3d8d5-c78d-5893-b62a-b94546f816e5",
+          "id": "theapostlescreed_12_0cd3d8d5-c78d-5893-b62a-b94546f816e5"
+        },
+        {
+          "content": "He will come again to judge the living and the dead.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4446f1c4-dd77-5223-b3b8-81d63152c7a1",
+          "id": "theapostlescreed_13_4446f1c4-dd77-5223-b3b8-81d63152c7a1"
+        },
+        {
+          "content": "I believe in the Holy Spirit,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a54fbaf6-742c-5098-bccb-460a2682bc9c",
+          "id": "theapostlescreed_14_a54fbaf6-742c-5098-bccb-460a2682bc9c"
+        },
+        {
+          "content": "the holy catholic Church,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "1973ad31-5a91-576a-9adb-bc4db75f9752",
+          "id": "theapostlescreed_15_1973ad31-5a91-576a-9adb-bc4db75f9752"
+        },
+        {
+          "content": "the communion of saints,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6a08c5fd-ff85-5ed6-832f-f1b805f34108",
+          "id": "theapostlescreed_16_6a08c5fd-ff85-5ed6-832f-f1b805f34108"
+        },
+        {
+          "content": "the forgiveness of sins,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "cbcfc029-69a7-5112-b47c-89ebb3b55463",
+          "id": "theapostlescreed_17_cbcfc029-69a7-5112-b47c-89ebb3b55463"
+        },
+        {
+          "content": "the resurrection of the body,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "10b5e94f-6d62-52cc-9984-e6c8f9004d22",
+          "id": "theapostlescreed_18_10b5e94f-6d62-52cc-9984-e6c8f9004d22"
+        },
+        {
+          "content": "and the life everlasting. Amen.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "1e76b4e7-6231-58e3-bf08-418ecbc70919",
+          "id": "theapostlescreed_19_1e76b4e7-6231-58e3-bf08-418ecbc70919"
+        }
+      ]
+    },
+    {
+      "name": "The Prayers",
+      "lines": [
+        {
+          "content": "The Prayers",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d2a544da-08cd-582b-b186-71cdc0f3894a",
+          "id": "theprayers_0_d2a544da-08cd-582b-b186-71cdc0f3894a"
+        },
+        {
+          "content": "The Lord be with you.",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": "Officiant",
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "594863c6-6a21-598e-a887-242ef78124ac",
+          "id": "theprayers_1_594863c6-6a21-598e-a887-242ef78124ac"
+        },
+        {
+          "content": "And with your spirit.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": "People",
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "bfdb3f58-21e4-5317-8af6-79dd8ce8d73f",
+          "id": "theprayers_2_bfdb3f58-21e4-5317-8af6-79dd8ce8d73f"
+        },
+        {
+          "content": "Let us pray.",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": "Officiant",
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "7039834b-8831-52b0-9e88-34eb45c3730e",
+          "id": "theprayers_3_7039834b-8831-52b0-9e88-34eb45c3730e"
+        },
+        {
+          "content": "The People kneel or stand.",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "69460d0f-8c3f-5045-bbf2-87ee50ec328f",
+          "id": "theprayers_4_69460d0f-8c3f-5045-bbf2-87ee50ec328f"
+        },
+        {
+          "content": "Lord, have mercy upon us",
+          "line_type": "leader",
+          "indented": "hanging",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ad0aad27-4e5d-5ce3-8947-2bef1e5a5586",
+          "id": "theprayers_5_ad0aad27-4e5d-5ce3-8947-2bef1e5a5586"
+        },
+        {
+          "content": "Christ, have mercy upon us",
+          "line_type": "congregation",
+          "indented": "hanging",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "39b4a3a0-2b96-5a9e-a7f8-2d1a75fe9db0",
+          "id": "theprayers_6_39b4a3a0-2b96-5a9e-a7f8-2d1a75fe9db0"
+        },
+        {
+          "content": "Lord, have mercy upon us",
+          "line_type": "leader",
+          "indented": "hanging",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ad0aad27-4e5d-5ce3-8947-2bef1e5a5586",
+          "id": "theprayers_7_ad0aad27-4e5d-5ce3-8947-2bef1e5a5586"
+        },
+        {
+          "content": "Officiant and People",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "aca82253-3d37-5de2-a29f-b360c6b3bd70",
+          "id": "theprayers_8_aca82253-3d37-5de2-a29f-b360c6b3bd70"
+        },
+        {
+          "content": "Our Father, who art in heaven,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "074c3df1-0fb7-5003-b1da-db757196afbe",
+          "id": "theprayers_9_074c3df1-0fb7-5003-b1da-db757196afbe"
+        },
+        {
+          "content": "hallowed be thy Name,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "b1403a5d-4193-58e7-a0a8-d10469d52765",
+          "id": "theprayers_10_b1403a5d-4193-58e7-a0a8-d10469d52765"
+        },
+        {
+          "content": "thy kingdom come,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6e58b184-d088-5731-af5f-b4da618d941c",
+          "id": "theprayers_11_6e58b184-d088-5731-af5f-b4da618d941c"
+        },
+        {
+          "content": "thy will be done,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "c0ad9cdd-5fca-5408-b6ab-14b454f1553a",
+          "id": "theprayers_12_c0ad9cdd-5fca-5408-b6ab-14b454f1553a"
+        },
+        {
+          "content": "on earth as it is in heaven.",
+          "line_type": "congregation",
+          "indented": "indent       ",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ad2a806-a43d-55ee-98b2-64bf5aafac61",
+          "id": "theprayers_13_4ad2a806-a43d-55ee-98b2-64bf5aafac61"
+        },
+        {
+          "content": "Give us this day our daily bread.",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "8cd962e7-4bb9-59f6-8bf1-c44d98c7e6e9",
+          "id": "theprayers_14_8cd962e7-4bb9-59f6-8bf1-c44d98c7e6e9"
+        },
+        {
+          "content": "And forgive us our trespasses,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "77c82c1d-78ac-53cf-bc04-5bbf54484f41",
+          "id": "theprayers_15_77c82c1d-78ac-53cf-bc04-5bbf54484f41"
+        },
+        {
+          "content": "as we forgive those",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "ae6a4efe-0df6-561a-9ba1-5cbdbff3d325",
+          "id": "theprayers_16_ae6a4efe-0df6-561a-9ba1-5cbdbff3d325"
+        },
+        {
+          "content": "who trespass against us.",
+          "line_type": "congregation",
+          "indented": "indent       ",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "02997e24-5ca5-5b52-8b63-abeb2f06aa98",
+          "id": "theprayers_17_02997e24-5ca5-5b52-8b63-abeb2f06aa98"
+        },
+        {
+          "content": "And lead us not into temptation,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "741f137e-4c37-5617-942f-5511571a9d8f",
+          "id": "theprayers_18_741f137e-4c37-5617-942f-5511571a9d8f"
+        },
+        {
+          "content": "but deliver us from evil.",
+          "line_type": "congregation",
+          "indented": "indent       ",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a38870cf-0295-52b9-ab84-9de568b517be",
+          "id": "theprayers_19_a38870cf-0295-52b9-ab84-9de568b517be"
+        },
+        {
+          "content": "For thine is the kingdom,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "20738769-186a-503b-bb66-46686f82337a",
+          "id": "theprayers_20_20738769-186a-503b-bb66-46686f82337a"
+        },
+        {
+          "content": "and the power, and the glory,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "de64e415-3cac-53ea-8db7-b1e20afa35a9",
+          "id": "theprayers_21_de64e415-3cac-53ea-8db7-b1e20afa35a9"
+        },
+        {
+          "content": "for ever and ever. Amen.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f894e041-b827-594b-883b-e295d076d902",
+          "id": "theprayers_22_f894e041-b827-594b-883b-e295d076d902"
+        },
+        {
+          "content": "The Suffrages",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a2329a69-d968-51e4-b653-edbe2301fbd5",
+          "id": "theprayers_23_a2329a69-d968-51e4-b653-edbe2301fbd5"
+        },
+        {
+          "content": "O Lord, show your mercy upon us;",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "8c4dc907-c418-5d55-a80f-2e30b1d04028",
+          "id": "theprayers_24_8c4dc907-c418-5d55-a80f-2e30b1d04028"
+        },
+        {
+          "content": "And grant us your salvation.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "62365e0e-0313-5a81-a8df-71acc2553d38",
+          "id": "theprayers_25_62365e0e-0313-5a81-a8df-71acc2553d38"
+        },
+        {
+          "content": "O Lord, guide those who govern us",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "39381200-ae9b-5966-a096-b2fbe818adfc",
+          "id": "theprayers_26_39381200-ae9b-5966-a096-b2fbe818adfc"
+        },
+        {
+          "content": "And lead us in the way of justice and truth.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "eeea15e3-6b85-5b8a-9336-03c7de8b5091",
+          "id": "theprayers_27_eeea15e3-6b85-5b8a-9336-03c7de8b5091"
+        },
+        {
+          "content": "Clothe your ministers with righteousness",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5061c399-18e5-58db-82be-aa554207c287",
+          "id": "theprayers_28_5061c399-18e5-58db-82be-aa554207c287"
+        },
+        {
+          "content": "And let your people sing with joy.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "823882db-40a0-56d0-a1c8-964deb00792f",
+          "id": "theprayers_29_823882db-40a0-56d0-a1c8-964deb00792f"
+        },
+        {
+          "content": "O Lord, save your people",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "71bbce04-4309-53b4-ade1-5510e6a665a6",
+          "id": "theprayers_30_71bbce04-4309-53b4-ade1-5510e6a665a6"
+        },
+        {
+          "content": "And bless your inheritance.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "fdaaf4ba-1e1d-506d-bccc-705997f9eefc",
+          "id": "theprayers_31_fdaaf4ba-1e1d-506d-bccc-705997f9eefc"
+        },
+        {
+          "content": "Give peace in our time, O Lord",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "001f6bdf-a55a-5436-ae94-ab0f88afdcc3",
+          "id": "theprayers_32_001f6bdf-a55a-5436-ae94-ab0f88afdcc3"
+        },
+        {
+          "content": "And defend us by your mighty power.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "76ca774e-3e13-5ee6-8dea-4a2dd1e8e6ba",
+          "id": "theprayers_33_76ca774e-3e13-5ee6-8dea-4a2dd1e8e6ba"
+        },
+        {
+          "content": "Let not the needy, O Lord, be forgotten",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "dd9563fa-73a4-5b8b-aef3-989787e3e30b",
+          "id": "theprayers_34_dd9563fa-73a4-5b8b-aef3-989787e3e30b"
+        },
+        {
+          "content": "Nor the hope of the poor be taken away.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "b25f2061-d72c-58fd-9f37-79603fe759a5",
+          "id": "theprayers_35_b25f2061-d72c-58fd-9f37-79603fe759a5"
+        },
+        {
+          "content": "Create in us clean hearts, O God",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5002ad39-a130-5fe5-b6a6-302d96c39050",
+          "id": "theprayers_36_5002ad39-a130-5fe5-b6a6-302d96c39050"
+        },
+        {
+          "content": "And take not your Holy Spirit from us.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "464c1f29-1940-5db7-918d-53e3c6f8be69",
+          "id": "theprayers_37_464c1f29-1940-5db7-918d-53e3c6f8be69"
+        }
+      ]
+    },
+    {
+      "name": "Collect(s) of the Day",
+      "lines": [
+        {
+          "content": "Collect of the Day",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "80821475-45f2-57ba-9f3b-54e50ba45c37",
+          "id": "collectsoftheday_0_80821475-45f2-57ba-9f3b-54e50ba45c37"
+        },
+        {
+          "content": "Easter Day",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "16310f56-e673-590a-9390-612a336db1a9",
+          "id": "collectsoftheday_1_16310f56-e673-590a-9390-612a336db1a9"
+        },
+        {
+          "content": "O God, who for our redemption gave your only begotten Son to die upon the Cross, and by his glorious resurrection delivered us from the devil and the power of death: Grant us grace to die daily to sin, that we may live with him in the joy of his resurrection; who lives and reigns with you and the Holy Spirit, now and for ever.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "f253689f-9801-5191-9e64-663d97948029",
+          "id": "collectsoftheday_2_f253689f-9801-5191-9e64-663d97948029"
+        },
+        {
+          "content": "Amen.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a37f1b05-3e1d-5b85-8066-e8d1f17edde6",
+          "id": "collectsoftheday_3_a37f1b05-3e1d-5b85-8066-e8d1f17edde6"
+        }
+      ]
+    },
+    {
+      "name": "Additional Collects",
+      "lines": [
+        {
+          "content": "A Collect for Resurrection Hope",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3c3bcebe-ba2a-51cd-b6e5-3f3eba131b14",
+          "id": "additionalcollects_0_3c3bcebe-ba2a-51cd-b6e5-3f3eba131b14"
+        },
+        {
+          "content": "Sunday",
+          "line_type": "subheading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "e2137336-b293-501a-97b6-e6d22f29ddb4",
+          "id": "additionalcollects_1_e2137336-b293-501a-97b6-e6d22f29ddb4"
+        },
+        {
+          "content": "Lord God, whose Son our Savior Jesus Christ triumphed over the powers of death and prepared for us our place in the new Jerusalem: Grant that we, who have this day given thanks for his resurrection, may praise you in that City of which he is the light, and where he lives and reigns for ever and ever.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "5b959f16-bd74-57fc-b741-48fde2ad7719",
+          "id": "additionalcollects_2_5b959f16-bd74-57fc-b741-48fde2ad7719"
+        },
+        {
+          "content": "Amen.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a37f1b05-3e1d-5b85-8066-e8d1f17edde6",
+          "id": "additionalcollects_3_a37f1b05-3e1d-5b85-8066-e8d1f17edde6"
+        },
+        {
+          "content": "A Prayer for Mission",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "1c41c93f-69a4-502a-901b-8d8a883b644e",
+          "id": "additionalcollects_4_1c41c93f-69a4-502a-901b-8d8a883b644e"
+        },
+        {
+          "content": "O God, you manifest in your servants the signs of your presence: Send forth upon us the Spirit of love, that in companionship with one another your abounding grace may increase among us; through Jesus Christ our Lord.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4bc54616-0162-5244-a703-7f33d09bfd84",
+          "id": "additionalcollects_5_4bc54616-0162-5244-a703-7f33d09bfd84"
+        },
+        {
+          "content": "Amen.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a37f1b05-3e1d-5b85-8066-e8d1f17edde6",
+          "id": "additionalcollects_6_a37f1b05-3e1d-5b85-8066-e8d1f17edde6"
+        }
+      ]
+    },
+    {
+      "name": "Intercessions, Thanksgivings, and Praise",
+      "lines": [
+        {
+          "content": "Intercessions, Thanksgivings, and Praise",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "3a01a16e-6363-5496-93dc-10820aea9a76",
+          "id": "intercessionsthanksgivingsandpraise_0_3a01a16e-6363-5496-93dc-10820aea9a76"
+        },
+        {
+          "content": "The Officiant may invite the People to offer intercessions and thanksgivings.",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4184156e-da12-59f2-8d2c-fd2b4f8d546a",
+          "id": "intercessionsthanksgivingsandpraise_1_4184156e-da12-59f2-8d2c-fd2b4f8d546a"
+        },
+        {
+          "content": "A hymn or anthem may be sung.",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a7740ae5-d386-5c75-af22-bba5bf7c0a93",
+          "id": "intercessionsthanksgivingsandpraise_2_a7740ae5-d386-5c75-af22-bba5bf7c0a93"
+        }
+      ]
+    },
+    {
+      "name": "Final Prayers",
+      "lines": [
+        {
+          "content": "The General Thanksgiving",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "495b0724-50f0-5ff9-8246-eee372adefbb",
+          "id": "finalprayers_0_495b0724-50f0-5ff9-8246-eee372adefbb"
+        },
+        {
+          "content": "Officiant and People",
+          "line_type": "rubric",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "aca82253-3d37-5de2-a29f-b360c6b3bd70",
+          "id": "finalprayers_1_aca82253-3d37-5de2-a29f-b360c6b3bd70"
+        },
+        {
+          "content": "Almighty God, Father of all mercies,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "160e6209-f8ab-5708-8e4a-b68baf6ddc19",
+          "id": "finalprayers_2_160e6209-f8ab-5708-8e4a-b68baf6ddc19"
+        },
+        {
+          "content": "we your unworthy servants give you humble thanks",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "68f089bf-647f-5444-9aa9-e7e8154c8627",
+          "id": "finalprayers_3_68f089bf-647f-5444-9aa9-e7e8154c8627"
+        },
+        {
+          "content": "for all your goodness and loving-kindness",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "399d56c4-f2c6-52db-8d79-321cdc010f37",
+          "id": "finalprayers_4_399d56c4-f2c6-52db-8d79-321cdc010f37"
+        },
+        {
+          "content": "to us and to all whom you have made.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6a0da9f2-45ca-5b9b-9062-b7c0bf19e06d",
+          "id": "finalprayers_5_6a0da9f2-45ca-5b9b-9062-b7c0bf19e06d"
+        },
+        {
+          "content": "We bless you for our creation, preservation,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "47aff59a-501d-5f7a-aac5-ee00107a2b2f",
+          "id": "finalprayers_6_47aff59a-501d-5f7a-aac5-ee00107a2b2f"
+        },
+        {
+          "content": "and all the blessings of this life;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "b0667199-f046-5527-947a-92fda3a62fd1",
+          "id": "finalprayers_7_b0667199-f046-5527-947a-92fda3a62fd1"
+        },
+        {
+          "content": "but above all for your immeasurable love",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4397147f-8132-584e-a2b2-4021e7d8c76c",
+          "id": "finalprayers_8_4397147f-8132-584e-a2b2-4021e7d8c76c"
+        },
+        {
+          "content": "in the redemption of the world by our Lord Jesus Christ;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "caae2337-620b-593c-beb4-bb49959fae55",
+          "id": "finalprayers_9_caae2337-620b-593c-beb4-bb49959fae55"
+        },
+        {
+          "content": "for the means of grace, and for the hope of glory.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d654063e-f062-57f5-b9b7-d86daff72e21",
+          "id": "finalprayers_10_d654063e-f062-57f5-b9b7-d86daff72e21"
+        },
+        {
+          "content": "And, we pray, give us such an awareness of your mercies,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "8b1ffe5d-b066-57c7-9dad-4bd64377636c",
+          "id": "finalprayers_11_8b1ffe5d-b066-57c7-9dad-4bd64377636c"
+        },
+        {
+          "content": "that with truly thankful hearts we may show forth your praise,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "36db4c22-2db6-50ac-a2dd-f5118a969c1f",
+          "id": "finalprayers_12_36db4c22-2db6-50ac-a2dd-f5118a969c1f"
+        },
+        {
+          "content": "not only with our lips, but in our lives,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "30c23a3b-13d2-5f6f-a5ae-fcb0c25390db",
+          "id": "finalprayers_13_30c23a3b-13d2-5f6f-a5ae-fcb0c25390db"
+        },
+        {
+          "content": "by giving up our selves to your service,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6189b8c5-b01a-5569-93e8-015e8c7df45b",
+          "id": "finalprayers_14_6189b8c5-b01a-5569-93e8-015e8c7df45b"
+        },
+        {
+          "content": "and by walking before you",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d707dc5a-a686-549a-88d1-efcef99217c1",
+          "id": "finalprayers_15_d707dc5a-a686-549a-88d1-efcef99217c1"
+        },
+        {
+          "content": "in holiness and righteousness all our days;",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a0b737ef-1b2e-55bb-9a1d-59b6439957c6",
+          "id": "finalprayers_16_a0b737ef-1b2e-55bb-9a1d-59b6439957c6"
+        },
+        {
+          "content": "Through Jesus Christ our Lord,",
+          "line_type": "congregation",
+          "indented": "hangingIndent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "6eb28a38-1d3a-5b96-8555-b41d775ddc48",
+          "id": "finalprayers_17_6eb28a38-1d3a-5b96-8555-b41d775ddc48"
+        },
+        {
+          "content": "to whom, with you and the Holy Spirit,",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "05f84e40-3918-5a23-855b-2023bb44a517",
+          "id": "finalprayers_18_05f84e40-3918-5a23-855b-2023bb44a517"
+        },
+        {
+          "content": "be honor and glory throughout all ages. Amen.",
+          "line_type": "congregation",
+          "indented": "indent",
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "2c386a00-d095-5094-aecd-eb36df93567e",
+          "id": "finalprayers_19_2c386a00-d095-5094-aecd-eb36df93567e"
+        },
+        {
+          "content": "A Prayer of St. John Chrysostom",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "0007f807-87dc-5fc5-9992-76649faa96e6",
+          "id": "finalprayers_20_0007f807-87dc-5fc5-9992-76649faa96e6"
+        },
+        {
+          "content": "Almighty God, you have given us grace at this time, with one accord to make our common supplications to you; and you have promised through your well-beloved Son that when two or three are gathered together in his Name you will grant their requests: Fulfill now, O Lord, our desires and petitions as may be best for us; granting us in this world knowledge of your truth, and in the age to come life everlasting.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "fcd5a68a-085a-55b4-9237-d6302c3db791",
+          "id": "finalprayers_21_fcd5a68a-085a-55b4-9237-d6302c3db791"
+        },
+        {
+          "content": "Amen.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a37f1b05-3e1d-5b85-8066-e8d1f17edde6",
+          "id": "finalprayers_22_a37f1b05-3e1d-5b85-8066-e8d1f17edde6"
+        }
+      ]
+    },
+    {
+      "name": "Dismissal",
+      "lines": [
+        {
+          "content": "Dismissal and Grace",
+          "line_type": "heading",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "91d941fa-b745-5f7e-be1d-d8fef7b67a0f",
+          "id": "dismissal_0_91d941fa-b745-5f7e-be1d-d8fef7b67a0f"
+        },
+        {
+          "content": "Alleluia, alleluia. Let us bless the Lord.",
+          "line_type": "leader_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4f0c4c98-7ea7-5b58-8f6d-06da3aa883a7",
+          "id": "dismissal_1_4f0c4c98-7ea7-5b58-8f6d-06da3aa883a7"
+        },
+        {
+          "content": "Alleluia, alleluia. Thanks be to God.",
+          "line_type": "congregation_dialogue",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "df167067-714f-56b0-a2ee-60e90a7e2841",
+          "id": "dismissal_2_df167067-714f-56b0-a2ee-60e90a7e2841"
+        },
+        {
+          "content": "",
+          "line_type": "spacer",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "4ebd0208-8328-5d69-8c44-ec50939c0967",
+          "id": "dismissal_3_4ebd0208-8328-5d69-8c44-ec50939c0967"
+        },
+        {
+          "content": "The grace of our Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit, be with us all evermore.",
+          "line_type": "leader",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "bf235b3a-87bd-5e01-8bd9-e98867492fff",
+          "id": "dismissal_4_bf235b3a-87bd-5e01-8bd9-e98867492fff"
+        },
+        {
+          "content": "Amen.",
+          "line_type": "congregation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "a37f1b05-3e1d-5b85-8066-e8d1f17edde6",
+          "id": "dismissal_5_a37f1b05-3e1d-5b85-8066-e8d1f17edde6"
+        },
+        {
+          "content": "2 CORINTHIANS 13:14",
+          "line_type": "citation",
+          "indented": false,
+          "preface": null,
+          "extra_space_before": false,
+          "audio_heading_content": null,
+          "audio_id": "d6fc0bdf-99db-58ce-9669-2db797066dbc",
+          "id": "dismissal_6_d6fc0bdf-99db-58ce-9669-2db797066dbc"
+        }
+      ]
+    }
+  ],
+  "calendar_day": {
+    "date": "2025-04-20",
+    "date_description": {
+      "date": "2025-4-20",
+      "weekday": "Sunday",
+      "month": "4",
+      "month_name": "April",
+      "day": "20",
+      "year": "2025"
+    },
+    "season": {
+      "name": "Eastertide",
+      "colors": [
+        "white"
+      ]
+    },
+    "fast": {
+      "fast_day": 0,
+      "fast_day_description": "",
+      "fast_day_reason": []
+    },
+    "commemorations": [
+      {
+        "uuid": "4ee5ac20-e69a-40a6-801b-3bab301391e6",
+        "name": "Easter Day",
+        "rank": {
+          "name": "PRINCIPAL_FEAST",
+          "formatted_name": "Principal Feast",
+          "precedence": 1
+        },
+        "colors": [
+          "white"
+        ],
+        "links": [],
+        "collect": "<p>Almighty God, who through your only-begotten Son Jesus Christ overcame death and opened to us the gate of everlasting life: Grant that we, who celebrate with joy the day of the Lord's resurrection, may, by your life-giving Spirit, be delivered from sin and raised from death; through Jesus Christ our Lord, who lives and reigns with you and the Holy Spirit, one God, now and for ever. <strong>Amen.</strong></p>",
+        "biography": "<p><span style=\"color:#000000\">Easter Sunday&nbsp;is the greatest of all Sundays, and Eastertide is the most important of all liturgical seasons. Easter is the celebration of the Lord&#39;s resurrection from the dead, culminating in his Ascension to the Father and sending of the Holy Spirit upon the Church. There are 50 days of Easter from the first Sunday to Pentecost. It is characterized, above all, by the joy of glorified life and the victory over death expressed most fully in the great resounding cry of the Christian: Alleluia! All faith flows from faith in the resurrection: &quot;If Christ has not been raised, then empty is our preaching; empty, too, is your faith.&quot; (1 Cor 15:14)</span></p>\n\n<p><span style=\"color:#000000\">The octave of Easter comprises the eight days which stretch from the first to the second Sunday. It is a way of prolonging the joy of the initial day. In a sense, every day of the Octave is like a little Sunday.</span></p>\n\n<p><span style=\"color:#000000\">The word &quot;Easter&quot; comes from Old English, meaning simply the &quot;East.&quot; The sun which rises in the East, bringing light, warmth, and hope, is a symbol for the Christian of the rising Christ, who is the true Light of the world. The Paschal Candle is a central symbol of this divine light, which is Christ. It is kept near the altar throughout Easter Time and lit for all liturgical celebrations.</span></p>\n\n<p><span style=\"color:#000000\">The Great Vigil of Easter is perhaps the most theologically important service of the Church Year. In it the new fire of God is struck, banishing darkness, and showing forth the victory won on Good Friday; the saving acts of God in history are recounted in the Exsultet and in scripture; new Christians are made through the Sacrament of Holy Baptism; the vows made by all Christians at their baptisms are renewed; and with the end of the Lenten observance, the first Eucharist of the joyful season of Easter is celebrated. The Vigil is not a short service. It marks time in the evening, while the people await the announcement of the Resurrection: &quot;Alleluia. Christ is risen!&quot; He is risen indeed, and the Paschal Candle burns as a sign of the presence of the resurrected Christ.</span></p>\n\n<p><em>For as by a man came death, by a man has come the resurrection of the dead. For as in Adam all die, so in Christ shall all be made alive.</em>&nbsp;(1 Corinthians 15:21-22)</p>\n\n<p><em>For if we have been united with him in a death like his, we shall certainly be united with him in a resurrection like his.&nbsp;</em>(Romans 6:5)</p>",
+        "image_link": "https://www.swordofthespirit.net/bulwark/xresurrection-orthodox-icon.jpg.pagespeed.ic.pAnACZYc2C.webp",
+        "saint_name": ",",
+        "ai_bullet_points": "",
+        "ai_bullet_points_citations": null,
+        "ai_foods": "",
+        "ai_foods_citations": null,
+        "ai_hagiography": null,
+        "ai_hagiography_citations": null,
+        "ai_legend": "",
+        "ai_legend_title": null,
+        "ai_legend_citations": null,
+        "ai_lesser_feasts_and_fasts": null,
+        "ai_martyrology": null,
+        "ai_one_sentence": "",
+        "ai_quote": null,
+        "ai_quote_by": null,
+        "ai_quote_citations": null,
+        "ai_traditions": "",
+        "ai_traditions_citations": null,
+        "ai_verse": null,
+        "ai_verse_citation": null,
+        "ai_image_1": null,
+        "ai_image_2": null,
+        "date_string": null,
+        "previous_commemoration": null,
+        "next_commemoration": null
+      }
+    ],
+    "evening_commemorations": [
+      {
+        "uuid": "4ee5ac20-e69a-40a6-801b-3bab301391e6",
+        "name": "Easter Day",
+        "rank": {
+          "name": "PRINCIPAL_FEAST",
+          "formatted_name": "Principal Feast",
+          "precedence": 1
+        },
+        "colors": [
+          "white"
+        ],
+        "links": [],
+        "collect": "<p>Almighty God, who through your only-begotten Son Jesus Christ overcame death and opened to us the gate of everlasting life: Grant that we, who celebrate with joy the day of the Lord's resurrection, may, by your life-giving Spirit, be delivered from sin and raised from death; through Jesus Christ our Lord, who lives and reigns with you and the Holy Spirit, one God, now and for ever. <strong>Amen.</strong></p>",
+        "biography": "<p><span style=\"color:#000000\">Easter Sunday&nbsp;is the greatest of all Sundays, and Eastertide is the most important of all liturgical seasons. Easter is the celebration of the Lord&#39;s resurrection from the dead, culminating in his Ascension to the Father and sending of the Holy Spirit upon the Church. There are 50 days of Easter from the first Sunday to Pentecost. It is characterized, above all, by the joy of glorified life and the victory over death expressed most fully in the great resounding cry of the Christian: Alleluia! All faith flows from faith in the resurrection: &quot;If Christ has not been raised, then empty is our preaching; empty, too, is your faith.&quot; (1 Cor 15:14)</span></p>\n\n<p><span style=\"color:#000000\">The octave of Easter comprises the eight days which stretch from the first to the second Sunday. It is a way of prolonging the joy of the initial day. In a sense, every day of the Octave is like a little Sunday.</span></p>\n\n<p><span style=\"color:#000000\">The word &quot;Easter&quot; comes from Old English, meaning simply the &quot;East.&quot; The sun which rises in the East, bringing light, warmth, and hope, is a symbol for the Christian of the rising Christ, who is the true Light of the world. The Paschal Candle is a central symbol of this divine light, which is Christ. It is kept near the altar throughout Easter Time and lit for all liturgical celebrations.</span></p>\n\n<p><span style=\"color:#000000\">The Great Vigil of Easter is perhaps the most theologically important service of the Church Year. In it the new fire of God is struck, banishing darkness, and showing forth the victory won on Good Friday; the saving acts of God in history are recounted in the Exsultet and in scripture; new Christians are made through the Sacrament of Holy Baptism; the vows made by all Christians at their baptisms are renewed; and with the end of the Lenten observance, the first Eucharist of the joyful season of Easter is celebrated. The Vigil is not a short service. It marks time in the evening, while the people await the announcement of the Resurrection: &quot;Alleluia. Christ is risen!&quot; He is risen indeed, and the Paschal Candle burns as a sign of the presence of the resurrected Christ.</span></p>\n\n<p><em>For as by a man came death, by a man has come the resurrection of the dead. For as in Adam all die, so in Christ shall all be made alive.</em>&nbsp;(1 Corinthians 15:21-22)</p>\n\n<p><em>For if we have been united with him in a death like his, we shall certainly be united with him in a resurrection like his.&nbsp;</em>(Romans 6:5)</p>",
+        "image_link": "https://www.swordofthespirit.net/bulwark/xresurrection-orthodox-icon.jpg.pagespeed.ic.pAnACZYc2C.webp",
+        "saint_name": ",",
+        "ai_bullet_points": "",
+        "ai_bullet_points_citations": null,
+        "ai_foods": "",
+        "ai_foods_citations": null,
+        "ai_hagiography": null,
+        "ai_hagiography_citations": null,
+        "ai_legend": "",
+        "ai_legend_title": null,
+        "ai_legend_citations": null,
+        "ai_lesser_feasts_and_fasts": null,
+        "ai_martyrology": null,
+        "ai_one_sentence": "",
+        "ai_quote": null,
+        "ai_quote_by": null,
+        "ai_quote_citations": null,
+        "ai_traditions": "",
+        "ai_traditions_citations": null,
+        "ai_verse": null,
+        "ai_verse_citation": null,
+        "ai_image_1": null,
+        "ai_image_2": null,
+        "date_string": null,
+        "previous_commemoration": null,
+        "next_commemoration": null
+      }
+    ],
+    "mass_readings": [
+      {
+        "citation": "Isaiah 51:9-11",
+        "text": "\n <div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n <div class=\"poetry top-1\"><p class=\"line\"><span class=\"text Isa-51-9\" id=\"en-ESV-18683\"><sup class=\"versenum\">9 </sup>Awake, awake, put on strength,</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-9\">O arm of the <span class=\"small-caps\" style=\"font-variant: small-caps\">Lord</span>;</span></span><br/><span class=\"text Isa-51-9\">awake, as in days of old,</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-9\">the generations of long ago.</span></span><br/><span class=\"text Isa-51-9\">Was it not you who cut Rahab in pieces,</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-9\">who pierced the dragon?</span></span><br/><span class=\"text Isa-51-10\" id=\"en-ESV-18684\"><sup class=\"versenum\">10 </sup>Was it not you who dried up the sea,</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-10\">the waters of the great deep,</span></span><br/><span class=\"text Isa-51-10\">who made the depths of the sea a way</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-10\">for the redeemed to pass over?</span></span><br/><span class=\"text Isa-51-11\" id=\"en-ESV-18685\"><sup class=\"versenum\">11 </sup>And the ransomed of the <span class=\"small-caps\" style=\"font-variant: small-caps\">Lord</span> shall return</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-11\">and come to Zion with singing;</span></span><br/><span class=\"text Isa-51-11\">everlasting joy shall be upon their heads;</span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-11\">they shall obtain gladness and joy,</span></span><br/><span class=\"indent-1\"><span class=\"indent-1-breaks\">    </span><span class=\"text Isa-51-11\">and sorrow and sighing shall flee away.</span></span></p></div> \n <!--end of crossrefs-->\n</div>\n</div> \n"
+      },
+      {
+        "citation": "Acts 10:34-43",
+        "text": "\n <div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n <h3><span class=\"text Acts-10-34\" id=\"en-ESV-27281\">Gentiles Hear the Good News</span></h3><p><span class=\"text Acts-10-34\"><sup class=\"versenum\">34 </sup>So Peter opened his mouth and said: “Truly I understand that God shows no partiality,</span> <span class=\"text Acts-10-35\" id=\"en-ESV-27282\"><sup class=\"versenum\">35 </sup>but in every nation anyone who fears him and does what is right is acceptable to him.</span> <span class=\"text Acts-10-36\" id=\"en-ESV-27283\"><sup class=\"versenum\">36 </sup>As for the word that he sent to Israel, preaching good news of peace through Jesus Christ (he is Lord of all),</span> <span class=\"text Acts-10-37\" id=\"en-ESV-27284\"><sup class=\"versenum\">37 </sup>you yourselves know what happened throughout all Judea, beginning from Galilee after the baptism that John proclaimed:</span> <span class=\"text Acts-10-38\" id=\"en-ESV-27285\"><sup class=\"versenum\">38 </sup>how God anointed Jesus of Nazareth with the Holy Spirit and with power. He went about doing good and healing all who were oppressed by the devil, for God was with him.</span> <span class=\"text Acts-10-39\" id=\"en-ESV-27286\"><sup class=\"versenum\">39 </sup>And we are witnesses of all that he did both in the country of the Jews and in Jerusalem. They put him to death by hanging him on a tree,</span> <span class=\"text Acts-10-40\" id=\"en-ESV-27287\"><sup class=\"versenum\">40 </sup>but God raised him on the third day and made him to appear,</span> <span class=\"text Acts-10-41\" id=\"en-ESV-27288\"><sup class=\"versenum\">41 </sup>not to all the people but to us who had been chosen by God as witnesses, who ate and drank with him after he rose from the dead.</span> <span class=\"text Acts-10-42\" id=\"en-ESV-27289\"><sup class=\"versenum\">42 </sup>And he commanded us to preach to the people and to testify that he is the one appointed by God to be judge of the living and the dead.</span> <span class=\"text Acts-10-43\" id=\"en-ESV-27290\"><sup class=\"versenum\">43 </sup>To him all the prophets bear witness that everyone who believes in him receives forgiveness of sins through his name.”</span></p> \n <!--end of crossrefs-->\n</div>\n</div> \n"
+      },
+      {
+        "citation": "Psalms 118:14-17,22-24",
+        "text": "<div class='psalm'><h3>Psalm 118:14-17</h3><h4>Confitemini Domino</h4><p class='hanging-indent'><sup class='versenum'>14</sup> The Lord is my strength and my song,<span class='asterisk'>*</span> </p><p class='indent'><strong>and has become my salvation.</strong></p><p class='hanging-indent'><sup class='versenum'>15</sup> The voice of joy and deliverance is in the dwellings of the righteous;<span class='asterisk'>*</span> </p><p class='indent'><strong>the right hand of the Lord brings mighty things to pass.</strong></p><p class='hanging-indent'><sup class='versenum'>16</sup> The right hand of the Lord is exalted;<span class='asterisk'>*</span> </p><p class='indent'><strong>the right hand of the Lord brings mighty things to pass.</strong></p><p class='hanging-indent'><sup class='versenum'>17</sup> I shall not die, but live,<span class='asterisk'>*</span> </p><p class='indent'><strong>and declare the works of the Lord.</strong></p></div><div class='psalm'><h3>Psalm 118:22-24</h3><h4>Confitemini Domino</h4><p class='hanging-indent'><sup class='versenum'>22</sup> The same stone which the builders refused<span class='asterisk'>*</span> </p><p class='indent'><strong>has become the chief cornerstone.</strong></p><p class='hanging-indent'><sup class='versenum'>23</sup> This is the Lord&#x27;s doing,<span class='asterisk'>*</span> </p><p class='indent'><strong>and it is marvelous in our eyes.</strong></p><p class='hanging-indent'><sup class='versenum'>24</sup> This is the day that the Lord has made;<span class='asterisk'>*</span> </p><p class='indent'><strong>we will rejoice and be glad in it.</strong></p></div>"
+      },
+      {
+        "citation": "Acts 10:34-43",
+        "text": "\n <div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n <h3><span class=\"text Acts-10-34\" id=\"en-ESV-27281\">Gentiles Hear the Good News</span></h3><p><span class=\"text Acts-10-34\"><sup class=\"versenum\">34 </sup>So Peter opened his mouth and said: “Truly I understand that God shows no partiality,</span> <span class=\"text Acts-10-35\" id=\"en-ESV-27282\"><sup class=\"versenum\">35 </sup>but in every nation anyone who fears him and does what is right is acceptable to him.</span> <span class=\"text Acts-10-36\" id=\"en-ESV-27283\"><sup class=\"versenum\">36 </sup>As for the word that he sent to Israel, preaching good news of peace through Jesus Christ (he is Lord of all),</span> <span class=\"text Acts-10-37\" id=\"en-ESV-27284\"><sup class=\"versenum\">37 </sup>you yourselves know what happened throughout all Judea, beginning from Galilee after the baptism that John proclaimed:</span> <span class=\"text Acts-10-38\" id=\"en-ESV-27285\"><sup class=\"versenum\">38 </sup>how God anointed Jesus of Nazareth with the Holy Spirit and with power. He went about doing good and healing all who were oppressed by the devil, for God was with him.</span> <span class=\"text Acts-10-39\" id=\"en-ESV-27286\"><sup class=\"versenum\">39 </sup>And we are witnesses of all that he did both in the country of the Jews and in Jerusalem. They put him to death by hanging him on a tree,</span> <span class=\"text Acts-10-40\" id=\"en-ESV-27287\"><sup class=\"versenum\">40 </sup>but God raised him on the third day and made him to appear,</span> <span class=\"text Acts-10-41\" id=\"en-ESV-27288\"><sup class=\"versenum\">41 </sup>not to all the people but to us who had been chosen by God as witnesses, who ate and drank with him after he rose from the dead.</span> <span class=\"text Acts-10-42\" id=\"en-ESV-27289\"><sup class=\"versenum\">42 </sup>And he commanded us to preach to the people and to testify that he is the one appointed by God to be judge of the living and the dead.</span> <span class=\"text Acts-10-43\" id=\"en-ESV-27290\"><sup class=\"versenum\">43 </sup>To him all the prophets bear witness that everyone who believes in him receives forgiveness of sins through his name.”</span></p> \n <!--end of crossrefs-->\n</div>\n</div> \n"
+      },
+      {
+        "citation": "Colossians 3:1-4",
+        "text": "\n <div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n <h3><span class=\"text Col-3-1\" id=\"en-ESV-29502\">Put On the New Self</span></h3><p class=\"chapter-1\"><span class=\"text Col-3-1\"><span class=\"chapternum\">3 </span>If then you have been raised with Christ, seek the things that are above, where Christ is, seated at the right hand of God.</span> <span class=\"text Col-3-2\" id=\"en-ESV-29503\"><sup class=\"versenum\">2 </sup>Set your minds on things that are above, not on things that are on earth.</span> <span class=\"text Col-3-3\" id=\"en-ESV-29504\"><sup class=\"versenum\">3 </sup>For you have died, and your life is hidden with Christ in God.</span> <span class=\"text Col-3-4\" id=\"en-ESV-29505\"><sup class=\"versenum\">4 </sup>When Christ who is your life appears, then you also will appear with him in glory.</span></p> \n <!--end of footnotes-->\n <!--end of crossrefs-->\n</div>\n</div> \n"
+      },
+      {
+        "citation": "Luke 24:1-12",
+        "text": "\n <div class=\"passage-content passage-class-0\"><div class=\"version-ESV result-text-style-normal text-html\">\n <h3><span class=\"text Luke-24-1\" id=\"en-ESV-25982\">The Resurrection</span></h3><p class=\"chapter-2\"><span class=\"text Luke-24-1\"><span class=\"chapternum\">24 </span>But on the first day of the week, at early dawn, they went to the tomb, taking the spices they had prepared.</span> <span class=\"text Luke-24-2\" id=\"en-ESV-25983\"><sup class=\"versenum\">2 </sup>And they found the stone rolled away from the tomb,</span> <span class=\"text Luke-24-3\" id=\"en-ESV-25984\"><sup class=\"versenum\">3 </sup>but when they went in they did not find the body of the Lord Jesus.</span> <span class=\"text Luke-24-4\" id=\"en-ESV-25985\"><sup class=\"versenum\">4 </sup>While they were perplexed about this, behold, two men stood by them in dazzling apparel.</span> <span class=\"text Luke-24-5\" id=\"en-ESV-25986\"><sup class=\"versenum\">5 </sup>And as they were frightened and bowed their faces to the ground, the men said to them, “Why do you seek the living among the dead?</span> <span class=\"text Luke-24-6\" id=\"en-ESV-25987\"><sup class=\"versenum\">6 </sup>He is not here, but has risen. Remember how he told you, while he was still in Galilee,</span> <span class=\"text Luke-24-7\" id=\"en-ESV-25988\"><sup class=\"versenum\">7 </sup>that the Son of Man must be delivered into the hands of sinful men and be crucified and on the third day rise.”</span> <span class=\"text Luke-24-8\" id=\"en-ESV-25989\"><sup class=\"versenum\">8 </sup>And they remembered his words,</span> <span class=\"text Luke-24-9\" id=\"en-ESV-25990\"><sup class=\"versenum\">9 </sup>and returning from the tomb they told all these things to the eleven and to all the rest.</span> <span class=\"text Luke-24-10\" id=\"en-ESV-25991\"><sup class=\"versenum\">10 </sup>Now it was Mary Magdalene and Joanna and Mary the mother of James and the other women with them who told these things to the apostles,</span> <span class=\"text Luke-24-11\" id=\"en-ESV-25992\"><sup class=\"versenum\">11 </sup>but these words seemed to them an idle tale, and they did not believe them.</span> <span class=\"text Luke-24-12\" id=\"en-ESV-25993\"><sup class=\"versenum\">12 </sup>But Peter rose and ran to the tomb; stooping and looking in, he saw the linen cloths by themselves; and he went home marveling at what had happened.</span></p> \n <!--end of crossrefs-->\n</div>\n</div> \n"
+      }
+    ],
+    "primary_color": "white",
+    "primary_evening_color": "white",
+    "primary_feast": "Easter Day",
+    "primary_evening_feast": "Easter Day",
+    "major_feast": "Easter Day",
+    "major_or_minor_feast": "Easter Day"
+  }
+}

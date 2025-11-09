@@ -1,0 +1,6 @@
+requests>=2.31.0
+
+# Optional dependencies for PDF generation
+# Install with: pip install markdown weasyprint
+markdown>=3.4.0
+weasyprint>=60.0

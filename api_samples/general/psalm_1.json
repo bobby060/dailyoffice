@@ -1,0 +1,75 @@
+{
+  "id": "7ef40af1-b959-498b-a7a5-150de5afe56a",
+  "number": 1,
+  "latin_title": "Beatus vir qui non abiit",
+  "topics": [
+    {
+      "id": "01acbdcf-37bc-425a-af65-c9b3114cf866",
+      "topic_name": "God the Judge",
+      "order": 3
+    },
+    {
+      "id": "2276897a-033c-4b41-873a-46dc30733a78",
+      "topic_name": "Righteousness",
+      "order": 20
+    }
+  ],
+  "verses": [
+    {
+      "id": "3b5e1305-fa7a-48bf-8750-3889186b6efe",
+      "number": 1,
+      "first_half": " Blessed is the man who has not walked in the counsel of the ungodly,",
+      "second_half": " nor stood in the way of sinners, and has not sat in the seat of the scornful;",
+      "first_half_tle": " Blessed is the man that hath not walked in the counsel of the ungodly, nor stood in the way of sinners,",
+      "second_half_tle": " and hath not sat in the seat of the scornful."
+    },
+    {
+      "id": "ff3145f8-6c51-45cc-b221-b3be9842d346",
+      "number": 2,
+      "first_half": " But his delight is in the law of the Lᴏʀᴅ,",
+      "second_half": " and on his law will he meditate day and night.",
+      "first_half_tle": " But his delight is in the law of the Lᴏʀᴅ;",
+      "second_half_tle": " and in his law will he exercise himself day and night."
+    },
+    {
+      "id": "ecc90d21-bbde-4026-b840-1a760b8b43d8",
+      "number": 3,
+      "first_half": " And he shall be like a tree planted by the waterside,",
+      "second_half": " that will bring forth his fruit in due season.",
+      "first_half_tle": " And he shall be like a tree planted by the water-side,",
+      "second_half_tle": " that will bring forth his fruit in due season."
+    },
+    {
+      "id": "a5373408-56ad-4400-b7fd-a07ba3b2cb51",
+      "number": 4,
+      "first_half": " His leaf also shall not wither;",
+      "second_half": " and look, whatever he does, it shall prosper.",
+      "first_half_tle": " His leaf also shall not wither;",
+      "second_half_tle": " and look, whatsoever he doeth, it shall prosper."
+    },
+    {
+      "id": "e5755a17-b811-4bd2-96ad-aaeb3a0a1fde",
+      "number": 5,
+      "first_half": " As for the ungodly, it is not so with them;",
+      "second_half": " but they are like the chaff, which the wind scatters away from the face of the earth.",
+      "first_half_tle": " As for the ungodly, it is not so with them;",
+      "second_half_tle": " but they are like the chaff, which the wind scattereth away from the face of the earth."
+    },
+    {
+      "id": "52f6746a-b97b-4dc8-811a-002e18147270",
+      "number": 6,
+      "first_half": " Therefore the ungodly shall not be able to stand in the judgment,",
+      "second_half": " neither the sinners in the congregation of the righteous.",
+      "first_half_tle": " Therefore the ungodly shall not be able to stand in the judgment,",
+      "second_half_tle": " neither the sinners in the congregation of the righteous."
+    },
+    {
+      "id": "9d3f08f2-ae18-4733-8b2e-8cbac52fae50",
+      "number": 7,
+      "first_half": " For the Lᴏʀᴅ knows the way of the righteous,",
+      "second_half": " but the way of the ungodly shall perish.",
+      "first_half_tle": " But the Lᴏʀᴅ knoweth the way of the righteous;",
+      "second_half_tle": " and the way of the ungodly shall perish."
+    }
+  ]
+}
