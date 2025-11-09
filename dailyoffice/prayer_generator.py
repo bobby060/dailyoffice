@@ -951,7 +951,33 @@ class MarkdownGenerator:
                 if result.returncode != 0:
                     # pdflatex failed
                     error_log = result.stdout + result.stderr
-                    raise RuntimeError(f"LaTeX compilation failed:\n{error_log}")
+
+                    # Check for common missing package errors
+                    missing_package = None
+                    if 'pdftexcmds.sty' in error_log or 'hyperref' in error_log:
+                        missing_package = 'hyperref/pdftexcmds'
+                    elif '.sty' in error_log and 'not found' in error_log.lower():
+                        # Try to extract package name
+                        import re
+                        match = re.search(r"File `([^']+\.sty)' not found", error_log)
+                        if match:
+                            missing_package = match.group(1).replace('.sty', '')
+
+                    if missing_package:
+                        raise RuntimeError(
+                            f"LaTeX compilation failed: Missing LaTeX package.\n\n"
+                            f"It looks like you're missing the '{missing_package}' package.\n"
+                            f"Please install additional LaTeX packages:\n\n"
+                            f"Ubuntu/Debian:\n"
+                            f"  sudo apt-get install texlive-latex-extra\n\n"
+                            f"macOS:\n"
+                            f"  brew install --cask mactex\n\n"
+                            f"Windows:\n"
+                            f"  Install the full MiKTeX or TeX Live distribution\n\n"
+                            f"Full error log:\n{error_log}"
+                        )
+                    else:
+                        raise RuntimeError(f"LaTeX compilation failed:\n{error_log}")
 
             # Move the generated PDF to the desired location
             generated_pdf = temp_dir / f'{tex_basename}.pdf'

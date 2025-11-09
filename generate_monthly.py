@@ -125,6 +125,14 @@ For more information, visit: https://www.dailyoffice2019.com/
         help='Format for Remarkable 2 tablet (6.18x8.24 inches) instead of letter size'
     )
 
+    parser.add_argument(
+        '--psalm-cycle',
+        type=int,
+        choices=[30, 60],
+        help='Psalm cycle to use (30 or 60 day). Defaults to 60.',
+        metavar='CYCLE'
+    )
+
     args = parser.parse_args()
 
     # Determine year and month
@@ -179,6 +187,7 @@ For more information, visit: https://www.dailyoffice2019.com/
                 output_pdf=output_file,
                 prayer_type=args.type,
                 page_size=page_size,
+                psalm_cycle=args.psalm_cycle,
                 save_tex=args.save_tex,
                 tex_filename=tex_filename
             )

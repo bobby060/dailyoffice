@@ -37,7 +37,8 @@ class MonthlyPrayerGenerator:
         year: int,
         month: int,
         prayer_type: str = 'morning',
-        page_size: str = 'letter'
+        page_size: str = 'letter',
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete monthly prayer document in LaTeX format.
@@ -47,6 +48,7 @@ class MonthlyPrayerGenerator:
             month: The month (1-12)
             prayer_type: Type of prayer ('morning', 'evening', 'midday', 'compline')
             page_size: Page size - "letter" or "remarkable"
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete LaTeX document as a string
@@ -68,7 +70,8 @@ class MonthlyPrayerGenerator:
         daily_latex_content = []
         month_name = calendar.month_name[month]
 
-        print(f"Generating {prayer_type} prayers for {month_name} {year}...")
+        psalm_info = f" ({psalm_cycle}-day psalm cycle)" if psalm_cycle else ""
+        print(f"Generating {prayer_type} prayers for {month_name} {year}{psalm_info}...")
 
         for day in range(1, num_days + 1):
             prayer_date = date(year, month, day)
@@ -78,22 +81,26 @@ class MonthlyPrayerGenerator:
             if prayer_type == 'morning':
                 latex = self.prayer_service.generate_morning_prayer_latex(
                     prayer_date=prayer_date,
-                    page_size=page_size
+                    page_size=page_size,
+                    psalm_cycle=psalm_cycle
                 )
             elif prayer_type == 'evening':
                 latex = self.prayer_service.generate_evening_prayer_latex(
                     prayer_date=prayer_date,
-                    page_size=page_size
+                    page_size=page_size,
+                    psalm_cycle=psalm_cycle
                 )
             elif prayer_type == 'midday':
                 latex = self.prayer_service.generate_midday_prayer_latex(
                     prayer_date=prayer_date,
-                    page_size=page_size
+                    page_size=page_size,
+                    psalm_cycle=psalm_cycle
                 )
             elif prayer_type == 'compline':
                 latex = self.prayer_service.generate_compline_latex(
                     prayer_date=prayer_date,
-                    page_size=page_size
+                    page_size=page_size,
+                    psalm_cycle=psalm_cycle
                 )
 
             # Extract just the body content (between \begin{document} and \end{document})
@@ -292,6 +299,7 @@ class MonthlyPrayerGenerator:
         output_pdf: str,
         prayer_type: str = 'morning',
         page_size: str = 'letter',
+        psalm_cycle: Optional[int] = None,
         save_tex: bool = False,
         tex_filename: Optional[str] = None
     ):
@@ -304,6 +312,7 @@ class MonthlyPrayerGenerator:
             output_pdf: Output PDF filename
             prayer_type: Type of prayer ('morning', 'evening', 'midday', 'compline')
             page_size: Page size - "letter" or "remarkable"
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
             save_tex: Whether to save the .tex source file
             tex_filename: Custom .tex filename (if save_tex is True)
 
@@ -317,7 +326,8 @@ class MonthlyPrayerGenerator:
             year=year,
             month=month,
             prayer_type=prayer_type,
-            page_size=page_size
+            page_size=page_size,
+            psalm_cycle=psalm_cycle
         )
 
         # Use the MarkdownGenerator's compile method

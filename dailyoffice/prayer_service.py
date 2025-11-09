@@ -26,7 +26,8 @@ class PrayerService:
 
     def generate_morning_prayer_markdown(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete morning prayer document in Markdown format.
@@ -37,6 +38,7 @@ class PrayerService:
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete morning prayer as a Markdown string
@@ -48,7 +50,7 @@ class PrayerService:
             prayer_date = date.today()
 
         # Fetch the prayer data from the API
-        prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
 
         # Generate markdown from the API response
         markdown_content = self.markdown_generator.generate_morning_prayer(prayer_data)
@@ -57,13 +59,15 @@ class PrayerService:
 
     def generate_evening_prayer_markdown(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete evening prayer document in Markdown format.
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete evening prayer as a Markdown string
@@ -74,19 +78,21 @@ class PrayerService:
         if prayer_date is None:
             prayer_date = date.today()
 
-        prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
         markdown_content = self.markdown_generator.generate_evening_prayer(prayer_data)
         return markdown_content
 
     def generate_midday_prayer_markdown(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete midday prayer document in Markdown format.
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete midday prayer as a Markdown string
@@ -97,19 +103,21 @@ class PrayerService:
         if prayer_date is None:
             prayer_date = date.today()
 
-        prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
         markdown_content = self.markdown_generator.generate_midday_prayer(prayer_data)
         return markdown_content
 
     def generate_compline_markdown(
         self,
-        prayer_date: Optional[date] = None
+        prayer_date: Optional[date] = None,
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete compline (night prayer) document in Markdown format.
 
         Args:
             prayer_date: The date for the prayer. Defaults to today.
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete compline as a Markdown string
@@ -120,14 +128,15 @@ class PrayerService:
         if prayer_date is None:
             prayer_date = date.today()
 
-        prayer_data = self.api_client.get_compline(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_compline(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
         markdown_content = self.markdown_generator.generate_compline(prayer_data)
         return markdown_content
 
     def generate_morning_prayer_latex(
         self,
         prayer_date: Optional[date] = None,
-        page_size: str = "letter"
+        page_size: str = "letter",
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete morning prayer document in LaTeX format.
@@ -135,6 +144,7 @@ class PrayerService:
         Args:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete morning prayer as a LaTeX string
@@ -146,7 +156,7 @@ class PrayerService:
             prayer_date = date.today()
 
         # Fetch the prayer data from the API
-        prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
 
         # Generate LaTeX from the API response
         latex_content = self.markdown_generator.generate_morning_prayer_latex(prayer_data, page_size)
@@ -156,7 +166,8 @@ class PrayerService:
     def generate_evening_prayer_latex(
         self,
         prayer_date: Optional[date] = None,
-        page_size: str = "letter"
+        page_size: str = "letter",
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete evening prayer document in LaTeX format.
@@ -164,6 +175,7 @@ class PrayerService:
         Args:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete evening prayer as a LaTeX string
@@ -174,14 +186,15 @@ class PrayerService:
         if prayer_date is None:
             prayer_date = date.today()
 
-        prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
         latex_content = self.markdown_generator.generate_evening_prayer_latex(prayer_data, page_size)
         return latex_content
 
     def generate_midday_prayer_latex(
         self,
         prayer_date: Optional[date] = None,
-        page_size: str = "letter"
+        page_size: str = "letter",
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete midday prayer document in LaTeX format.
@@ -189,6 +202,7 @@ class PrayerService:
         Args:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete midday prayer as a LaTeX string
@@ -199,14 +213,15 @@ class PrayerService:
         if prayer_date is None:
             prayer_date = date.today()
 
-        prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
         latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data, page_size)
         return latex_content
 
     def generate_compline_latex(
         self,
         prayer_date: Optional[date] = None,
-        page_size: str = "letter"
+        page_size: str = "letter",
+        psalm_cycle: Optional[int] = None
     ) -> str:
         """
         Generate a complete compline (night prayer) document in LaTeX format.
@@ -214,6 +229,7 @@ class PrayerService:
         Args:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
+            psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
 
         Returns:
             Complete compline as a LaTeX string
@@ -224,7 +240,7 @@ class PrayerService:
         if prayer_date is None:
             prayer_date = date.today()
 
-        prayer_data = self.api_client.get_compline(prayer_date=prayer_date)
+        prayer_data = self.api_client.get_compline(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
         latex_content = self.markdown_generator.generate_compline_latex(prayer_data, page_size)
         return latex_content
 

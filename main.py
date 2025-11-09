@@ -125,6 +125,14 @@ For more information, visit: https://www.dailyoffice2019.com/
     )
 
     parser.add_argument(
+        '--psalm-cycle',
+        type=int,
+        choices=[30, 60],
+        help='Psalm cycle to use (30 or 60 day). Defaults to 60.',
+        metavar='CYCLE'
+    )
+
+    parser.add_argument(
         '--print',
         action='store_true',
         help='Print to console instead of saving to file'
@@ -175,13 +183,13 @@ For more information, visit: https://www.dailyoffice2019.com/
 
                 # Generate LaTeX
                 if args.type == 'morning':
-                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'evening':
-                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'midday':
-                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'compline':
-                    latex_content = service.generate_compline_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_compline_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
 
                 if args.print:
                     # Print LaTeX to console
@@ -211,13 +219,13 @@ For more information, visit: https://www.dailyoffice2019.com/
             else:
                 # Generate markdown based on prayer type
                 if args.type == 'morning':
-                    markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'evening':
-                    markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'midday':
-                    markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'compline':
-                    markdown_content = service.generate_compline_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_compline_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
 
                 if args.print:
                     # Print to console
