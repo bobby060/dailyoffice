@@ -195,10 +195,14 @@ class MarkdownGenerator:
 
         elif line_type in ['leader', 'leader_dialogue']:
             # Leader/officiant lines in normal text (no label)
+            # Remove trailing asterisks (psalm pause markers)
+            content = re.sub(r'\s*\*+\s*$', '', content)
             return self._indent_text(content, indented)
 
         elif line_type in ['congregation', 'congregation_dialogue']:
             # Congregation/people lines in bold (no label)
+            # Remove trailing asterisks (psalm pause markers)
+            content = re.sub(r'\s*\*+\s*$', '', content)
             return self._indent_text(f"**{content}**", indented)
 
         elif line_type == 'reader':
@@ -260,8 +264,13 @@ class MarkdownGenerator:
             paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', html_content, re.DOTALL)
 
             for para in paragraphs:
-                # Clean up verse numbers
-                para = re.sub(r'<sup[^>]*>(\d+)</sup>', r'<sup>\1</sup>', para)
+                # Extract verse numbers and preserve them as <sup> tags
+                verse_num = ''
+                verse_match = re.search(r'<sup[^>]*>(\d+)</sup>', para)
+                if verse_match:
+                    verse_num = f'<sup>{verse_match.group(1)}</sup> '
+                    # Remove the sup tag from para so number doesn't appear twice
+                    para = re.sub(r'<sup[^>]*>\d+</sup>\s*', '', para)
 
                 # Remove asterisk spans
                 para = re.sub(r'<span class=["\']asterisk["\']>\*</span>', '', para)
@@ -269,17 +278,21 @@ class MarkdownGenerator:
                 # Check if this is a strong/bold line (people's response)
                 has_strong = '<strong>' in para
 
-                # Remove HTML tags but preserve content
+                # Remove all HTML tags but preserve content
                 text = re.sub(r'<[^>]+>', '', para)
                 text = unescape(text)
+
+                # Remove trailing asterisks (pause markers) that interfere with markdown
+                text = re.sub(r'\s*\*+\s*$', '', text)
+
                 text = text.strip()
 
                 if text:
                     # If has strong tags, make the whole line bold
                     if has_strong:
-                        lines.append(f"  **{text}**")
+                        lines.append(f"  {verse_num}**{text}**")
                     else:
-                        lines.append(text)
+                        lines.append(f"{verse_num}{text}")
 
             return '\n'.join(lines)
 
