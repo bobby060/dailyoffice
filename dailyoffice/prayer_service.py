@@ -136,7 +136,8 @@ class PrayerService:
         self,
         prayer_date: Optional[date] = None,
         page_size: str = "letter",
-        psalm_cycle: Optional[int] = None
+        psalm_cycle: Optional[int] = None,
+        label: Optional[str] = None
     ) -> str:
         """
         Generate a complete morning prayer document in LaTeX format.
@@ -145,6 +146,7 @@ class PrayerService:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
             psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             Complete morning prayer as a LaTeX string
@@ -159,7 +161,7 @@ class PrayerService:
         prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
 
         # Generate LaTeX from the API response
-        latex_content = self.markdown_generator.generate_morning_prayer_latex(prayer_data, page_size)
+        latex_content = self.markdown_generator.generate_morning_prayer_latex(prayer_data, page_size, label)
 
         return latex_content
 
@@ -167,7 +169,8 @@ class PrayerService:
         self,
         prayer_date: Optional[date] = None,
         page_size: str = "letter",
-        psalm_cycle: Optional[int] = None
+        psalm_cycle: Optional[int] = None,
+        label: Optional[str] = None
     ) -> str:
         """
         Generate a complete evening prayer document in LaTeX format.
@@ -176,6 +179,7 @@ class PrayerService:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
             psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             Complete evening prayer as a LaTeX string
@@ -187,14 +191,15 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
-        latex_content = self.markdown_generator.generate_evening_prayer_latex(prayer_data, page_size)
+        latex_content = self.markdown_generator.generate_evening_prayer_latex(prayer_data, page_size, label)
         return latex_content
 
     def generate_midday_prayer_latex(
         self,
         prayer_date: Optional[date] = None,
         page_size: str = "letter",
-        psalm_cycle: Optional[int] = None
+        psalm_cycle: Optional[int] = None,
+        label: Optional[str] = None
     ) -> str:
         """
         Generate a complete midday prayer document in LaTeX format.
@@ -203,6 +208,7 @@ class PrayerService:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
             psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             Complete midday prayer as a LaTeX string
@@ -214,14 +220,15 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
-        latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data, page_size)
+        latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data, page_size, label)
         return latex_content
 
     def generate_compline_latex(
         self,
         prayer_date: Optional[date] = None,
         page_size: str = "letter",
-        psalm_cycle: Optional[int] = None
+        psalm_cycle: Optional[int] = None,
+        label: Optional[str] = None
     ) -> str:
         """
         Generate a complete compline (night prayer) document in LaTeX format.
@@ -230,6 +237,7 @@ class PrayerService:
             prayer_date: The date for the prayer. Defaults to today.
             page_size: Page size - "letter" or "remarkable"
             psalm_cycle: The psalm cycle to use (30 or 60). Defaults to 60.
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             Complete compline as a LaTeX string
@@ -241,7 +249,7 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_compline(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
-        latex_content = self.markdown_generator.generate_compline_latex(prayer_data, page_size)
+        latex_content = self.markdown_generator.generate_compline_latex(prayer_data, page_size, label)
         return latex_content
 
     def save_prayer(
