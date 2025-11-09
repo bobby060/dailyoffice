@@ -161,6 +161,45 @@ class DailyOfficeAPIClient:
                 f"Failed to parse API response for {date_str}: {e}"
             ) from e
 
+    def get_compline(
+        self,
+        prayer_date: Optional[date] = None
+    ) -> Dict[str, Any]:
+        """
+        Fetch compline (night prayer) liturgy for a specific date.
+
+        Args:
+            prayer_date: The date for which to fetch compline.
+                        Defaults to today if not specified.
+
+        Returns:
+            Dictionary containing the complete compline liturgy
+
+        Raises:
+            requests.RequestException: If the API request fails
+            ValueError: If the response cannot be parsed
+        """
+        if prayer_date is None:
+            prayer_date = date.today()
+
+        date_str = prayer_date.strftime("%Y-%m-%d")
+        endpoint = f"office/compline/{date_str}"
+        url = urljoin(self.base_url, endpoint)
+
+        try:
+            response = self.session.get(url, timeout=30)
+            response.raise_for_status()
+            return response.json()
+
+        except requests.RequestException as e:
+            raise requests.RequestException(
+                f"Failed to fetch compline for {date_str}: {e}"
+            ) from e
+        except ValueError as e:
+            raise ValueError(
+                f"Failed to parse API response for {date_str}: {e}"
+            ) from e
+
     def close(self):
         """Close the HTTP session."""
         self.session.close()
