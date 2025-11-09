@@ -2,6 +2,8 @@
 
 Generate beautifully formatted prayer documents from *The Book of Common Prayer* (2019) using the Daily Office 2019 API.
 
+One of my daily struggles is the tension between the desire to disconnect from my phone and the convenience of not having to flip back and forward between the BCP and the readings. This project is an attempt to solve that problem by generating a single, well-formatted document for each prayer that I can send to my e-reader or print out.
+
 ## Overview
 
 This Python application fetches daily office liturgy from the [Daily Office 2019 API](https://api.dailyoffice2019.com) and generates well-formatted Markdown and PDF documents. The application supports:
@@ -17,7 +19,8 @@ Examples of generated documents are included in the repository for reference.
 ## Features
 
 - ✅ **Three prayer types**: Morning, Evening, and Midday Prayer
-- ✅ **Multiple output formats**: Markdown and PDF
+- ✅ **Multiple output formats**: Markdown, PDF (via WeasyPrint), and PDF (via LaTeX)
+- ✅ **LaTeX generation**: Generate beautiful PDFs with LaTeX for professional typesetting
 - ✅ **Clean formatting**: People's responses in bold, no labels needed
 - ✅ **Psalm formatting**: Responsive reading format (officiant normal, people bold)
 - ✅ **Fetch prayers for any date**
@@ -36,7 +39,10 @@ Examples of generated documents are included in the repository for reference.
 
 1. Clone or download this repository
 
-
+```bash
+git clone https://github.com/bobby060/dailyoffice.git
+cd dailyoffice
+```
 
 2. Install dependencies:
 
@@ -47,16 +53,32 @@ Recommend doing this inside a virtual environment
 pip install -r requirements.txt
 ```
 
-This will install:
-- `requests` - for API communication
-- `markdown` - for PDF generation
-- `weasyprint` - for PDF generation
-
 If you only want Markdown output (not PDF), you can install just the required dependency:
 
 ```bash
 pip install requests
 ```
+
+### Optional: LaTeX for PDF Generation
+
+For high-quality PDF generation using LaTeX (optional, alternative to WeasyPrint):
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-get install texlive-latex-base
+```
+
+**macOS:**
+```bash
+brew install --cask basictex
+# or for full installation:
+brew install --cask mactex-no-gui
+```
+
+**Windows:**
+- Install [MiKTeX](https://miktex.org/) or [TeX Live](https://www.tug.org/texlive/)
+
+LaTeX provides professional typesetting and is recommended for the best-looking PDFs. If you don't install LaTeX, you can still use the `--pdf` option which uses WeasyPrint.
 
 ## Usage
 
@@ -91,7 +113,7 @@ python main.py [OPTIONS]
   python main.py --help
   ```
 
-- `-t, --type {morning|evening|midday}` - Type of prayer to generate (default: morning)
+- `-t, --type {morning|evening|midday}` - Type of prayer to generate, required
   ```bash
   python main.py --type evening
   ```
@@ -106,9 +128,19 @@ python main.py [OPTIONS]
   python main.py --output my_prayer.md
   ```
 
-- `--pdf` - Generate PDF output instead of Markdown
+- `--pdf` - Generate PDF output using WeasyPrint (requires markdown and weasyprint packages)
   ```bash
   python main.py --pdf
+  ```
+
+- `--latex` - Generate PDF using LaTeX (requires pdflatex). Default: output PDF only.
+  ```bash
+  python main.py --latex
+  ```
+
+- `--save-tex` - When using --latex, also save the .tex file (in addition to PDF)
+  ```bash
+  python main.py --latex --save-tex
   ```
 
 - `--print` - Print to console instead of saving to file
@@ -123,22 +155,32 @@ python main.py [OPTIONS]
    python main.py --date 2025-12-25 --output christmas_morning.md
    ```
 
-2. **Generate evening prayer as PDF:**
+2. **Generate evening prayer as PDF (using WeasyPrint):**
    ```bash
    python main.py --type evening --pdf --output evening_prayer.pdf
    ```
 
-3. **Generate midday prayer for a specific date:**
+3. **Generate morning prayer as PDF using LaTeX:**
+   ```bash
+   python main.py --type morning --latex
+   ```
+
+4. **Generate PDF with LaTeX and save the .tex source file:**
+   ```bash
+   python main.py --type morning --latex --save-tex
+   ```
+
+5. **Generate midday prayer for a specific date:**
    ```bash
    python main.py --type midday --date 2025-11-08
    ```
 
-4. **Preview without saving:**
+6. **Preview without saving:**
    ```bash
    python main.py --print
    ```
 
-5. **Generate all three prayers for Sunday:**
+7. **Generate all three prayers for Sunday:**
    ```bash
    python main.py --type morning --date 2025-11-23 --output sunday_morning.md
    python main.py --type midday --date 2025-11-23 --output sunday_midday.md
@@ -225,7 +267,6 @@ The codebase follows Python PEP 8 style guidelines with comprehensive docstrings
 
 ## Future Enhancements
 
-- [ ] LaTeX output generation for even more precise formatting
 - [ ] Compline support
 - [ ] Custom canticle selection
 - [ ] Configuration file support
