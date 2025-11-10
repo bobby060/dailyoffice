@@ -45,34 +45,34 @@ def main():
         epilog="""
 Examples:
   # Generate morning prayer for today (as Markdown)
-  python main.py --type morning
+  python generate_daily.py --type morning
 
   # Generate evening prayer for today
-  python main.py --type evening
+  python generate_daily.py --type evening
 
   # Generate midday prayer for a specific date
-  python main.py --type midday --date 2025-12-25
+  python generate_daily.py --type midday --date 2025-12-25
 
   # Generate as PDF using WeasyPrint
-  python main.py --type morning --pdf
+  python generate_daily.py --type morning --pdf
 
   # Generate as PDF using LaTeX (requires pdflatex)
-  python main.py --type morning --latex
+  python generate_daily.py --type morning --latex
 
   # Generate PDF with LaTeX and also save the .tex file
-  python main.py --type morning --latex --save-tex
+  python generate_daily.py --type morning --latex --save-tex
 
   # Generate PDF for Remarkable 2 tablet (6.18x8.24 inches)
-  python main.py --type morning --latex --remarkable
+  python generate_daily.py --type morning --latex --remarkable
 
   # Save to a specific file
-  python main.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
+  python generate_daily.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
 
   # Display to console instead of saving
-  python main.py --type morning --print
+  python generate_daily.py --type morning --print
 
   # Get help
-  python main.py --help
+  python generate_daily.py --help
 
 For more information, visit: https://www.dailyoffice2019.com/
         """
@@ -96,7 +96,7 @@ For more information, visit: https://www.dailyoffice2019.com/
     parser.add_argument(
         '--output', '-o',
         type=str,
-        help='Output filename (default: <type>_prayer_YYYY-MM-DD.md or .pdf)',
+        help='Output filename (default: <Type>-Prayer-Mon-DD-YYYY.md or .pdf)',
         metavar='FILE'
     )
 
@@ -122,6 +122,14 @@ For more information, visit: https://www.dailyoffice2019.com/
         '--remarkable',
         action='store_true',
         help='When using --latex, format for Remarkable 2 tablet (6.18x8.24 inches) instead of letter size'
+    )
+
+    parser.add_argument(
+        '--psalm-cycle',
+        type=int,
+        choices=[30, 60],
+        help='Psalm cycle to use (30 or 60 day). Defaults to 60.',
+        metavar='CYCLE'
     )
 
     parser.add_argument(
@@ -159,9 +167,11 @@ For more information, visit: https://www.dailyoffice2019.com/
     if args.output:
         output_file = args.output
     else:
-        date_str = prayer_date.strftime("%Y-%m-%d")
+        # Format: Morning-Prayer-Nov-23-2025.pdf
+        prayer_type_title = args.type.capitalize()
+        date_str = prayer_date.strftime("%b-%d-%Y")
         ext = 'pdf' if (args.pdf or args.latex) else 'md'
-        output_file = f"{args.type}_prayer_{date_str}.{ext}"
+        output_file = f"{prayer_type_title}-Prayer-{date_str}.{ext}"
 
     # Generate the prayer
     try:
@@ -175,13 +185,13 @@ For more information, visit: https://www.dailyoffice2019.com/
 
                 # Generate LaTeX
                 if args.type == 'morning':
-                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_morning_prayer_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'evening':
-                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_evening_prayer_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'midday':
-                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_midday_prayer_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'compline':
-                    latex_content = service.generate_compline_latex(prayer_date=prayer_date, page_size=page_size)
+                    latex_content = service.generate_compline_latex(prayer_date=prayer_date, page_size=page_size, psalm_cycle=args.psalm_cycle)
 
                 if args.print:
                     # Print LaTeX to console
@@ -192,12 +202,8 @@ For more information, visit: https://www.dailyoffice2019.com/
                     # Compile to PDF (and optionally save .tex)
                     tex_filename = None
                     if args.save_tex:
-                        # Determine .tex filename
-                        if args.output:
-                            tex_filename = str(Path(output_file).with_suffix('.tex'))
-                        else:
-                            date_str = prayer_date.strftime("%Y-%m-%d")
-                            tex_filename = f"{args.type}_prayer_{date_str}.tex"
+                        # Determine .tex filename - use same naming convention as PDF
+                        tex_filename = str(Path(output_file).with_suffix('.tex'))
 
                     service.markdown_generator.compile_latex_to_pdf(
                         latex_content,
@@ -211,13 +217,13 @@ For more information, visit: https://www.dailyoffice2019.com/
             else:
                 # Generate markdown based on prayer type
                 if args.type == 'morning':
-                    markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_morning_prayer_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'evening':
-                    markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_evening_prayer_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'midday':
-                    markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_midday_prayer_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
                 elif args.type == 'compline':
-                    markdown_content = service.generate_compline_markdown(prayer_date=prayer_date)
+                    markdown_content = service.generate_compline_markdown(prayer_date=prayer_date, psalm_cycle=args.psalm_cycle)
 
                 if args.print:
                     # Print to console

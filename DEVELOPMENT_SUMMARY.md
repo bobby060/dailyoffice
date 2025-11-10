@@ -32,8 +32,8 @@ A complete Python application for generating formatted morning prayer documents 
 - File saving functionality
 - Resource lifecycle management
 
-**CLI Interface (`main.py`)**
-- Command-line tool for daily use
+**CLI Interface (`generate_daily.py`)**
+- Command-line tool for daily prayer generation
 - Date selection
 - Output to file or console
 - Comprehensive help and examples
@@ -128,7 +128,8 @@ dailyoffice/
 │   ├── family/               # Family prayers
 │   ├── calendar/             # Calendar data
 │   └── general/              # General endpoints
-├── main.py                   # CLI entry point
+├── generate_daily.py         # CLI entry point for daily prayers
+├── generate_monthly.py       # CLI entry point for monthly prayers
 ├── collect_api_samples.py    # Sample data collector
 ├── test_with_sample_data.py  # Quick demo
 ├── run_tests.sh              # Test runner
@@ -172,16 +173,16 @@ python3 -m unittest discover -s tests -p "test_*.py"
 ### Basic Usage
 ```bash
 # Generate for today
-python main.py
+python generate_daily.py --type morning
 
 # Specific date
-python main.py --date 2025-12-25
+python generate_daily.py --type morning --date 2025-12-25
 
 # Print to console
-python main.py --print
+python generate_daily.py --type morning --print
 
 # Custom output file
-python main.py --output christmas.md --date 2025-12-25
+python generate_daily.py --type morning --output christmas.md --date 2025-12-25
 ```
 
 ### Programmatic Usage

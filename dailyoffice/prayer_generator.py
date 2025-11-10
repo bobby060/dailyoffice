@@ -480,7 +480,7 @@ class MarkdownGenerator:
 
         return result
 
-    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office", page_size: str = "letter") -> str:
+    def generate_latex(self, api_response: Dict[str, Any], title: str = "Daily Office", page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete prayer LaTeX document.
 
@@ -488,6 +488,7 @@ class MarkdownGenerator:
             api_response: The raw API response dictionary containing modules and calendar data
             title: The title for the prayer document
             page_size: Page size - "letter" (8.5x11) or "remarkable" (6.18x8.24)
+            label: Optional LaTeX label to add after the title for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete prayer liturgy
@@ -503,10 +504,10 @@ class MarkdownGenerator:
         # Set page size based on option
         if page_size == "remarkable":
             # Remarkable 2 tablet size: 6.18 x 8.24 inches (157mm x 209mm)
-            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, margin=0.5in}')
+            sections.append(r'\geometry{paperwidth=6.18in, paperheight=8.24in, left=0.5in, right=0.5in, top=1in, bottom=0.5in, headheight=14pt}')
         else:
             # Standard US Letter size
-            sections.append(r'\geometry{letterpaper, margin=1in}')
+            sections.append(r'\geometry{letterpaper, margin=1in, headheight=14pt}')
 
         sections.append(r'')
         sections.append(r'% Paragraph formatting')
@@ -536,8 +537,12 @@ class MarkdownGenerator:
         calendar_day = api_response.get('calendar_day', {})
         date_desc = calendar_day.get('date_description', {})
 
+        sections.append(r'\phantomsection\label{' + label + r'}')  # Ensure section numbering starts at 1
         sections.append(r'\begin{center}')
         sections.append(r'{\LARGE \textbf{' + self._escape_latex(title) + r'}}\\[0.5em]')
+        # Add label if provided (for monthly prayer navigation)
+        # if label:
+            # sections.append(r'\label{' + label + r'}')
         sections.append(r'{\large ' + self._escape_latex(self._format_date(date_desc)) + r'}')
         sections.append(r'\end{center}')
         sections.append(r'')
@@ -563,57 +568,61 @@ class MarkdownGenerator:
 
         return "\n".join(sections)
 
-    def generate_morning_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_morning_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete morning prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete morning prayer liturgy
         """
-        return self.generate_latex(api_response, "Daily Morning Prayer", page_size)
+        return self.generate_latex(api_response, "Daily Morning Prayer", page_size, label)
 
-    def generate_evening_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_evening_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete evening prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete evening prayer liturgy
         """
-        return self.generate_latex(api_response, "Daily Evening Prayer", page_size)
+        return self.generate_latex(api_response, "Daily Evening Prayer", page_size, label)
 
-    def generate_midday_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_midday_prayer_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete midday prayer LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete midday prayer liturgy
         """
-        return self.generate_latex(api_response, "Midday Prayer", page_size)
+        return self.generate_latex(api_response, "Midday Prayer", page_size, label)
 
-    def generate_compline_latex(self, api_response: Dict[str, Any], page_size: str = "letter") -> str:
+    def generate_compline_latex(self, api_response: Dict[str, Any], page_size: str = "letter", label: Optional[str] = None) -> str:
         """
         Generate a complete compline (night prayer) LaTeX document.
 
         Args:
             api_response: The raw API response dictionary
             page_size: Page size - "letter" or "remarkable"
+            label: Optional LaTeX label for hyperlink targets
 
         Returns:
             A formatted LaTeX string containing the complete compline liturgy
         """
-        return self.generate_latex(api_response, "Compline", page_size)
+        return self.generate_latex(api_response, "Compline", page_size, label)
 
     def _format_liturgical_info_latex(self, calendar_day: Dict[str, Any]) -> str:
         """Format liturgical season and feast information for LaTeX."""
@@ -741,7 +750,7 @@ class MarkdownGenerator:
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
             # Use makebox to create fixed-width label so content aligns with People lines
-            return r'\makebox[4em][l]{\textit{Officiant}}' + escaped_content + r'\\[0.5em]'
+            return r'\makebox[5em][l]{\textit{Officiant}}' + escaped_content + r'\\[0.5em]'
 
         elif line_type == 'leader':
             # Leader/officiant lines in normal text (non-dialogue)
@@ -758,7 +767,7 @@ class MarkdownGenerator:
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
             # Use makebox to create fixed-width label so content aligns with Officiant lines
-            return r'\makebox[4em][l]{\textit{People}}\textbf{' + escaped_content + r'}\\[0.5em]'
+            return r'\makebox[5em][l]{\textit{People}}\textbf{' + escaped_content + r'}\\[0.5em]'
 
         elif line_type == 'congregation':
             # Congregation/people lines in bold (non-dialogue)
@@ -938,8 +947,11 @@ class MarkdownGenerator:
             self.save_to_latex(latex_content, str(tex_file))
 
         try:
-            # Run pdflatex twice for proper formatting (TOC, references, etc.)
-            for run in range(2):
+            # Run pdflatex three times for proper formatting (TOC, references, hyperlinks)
+            # First run: processes content and creates .aux file
+            # Second run: resolves references and creates hyperlinks
+            # Third run: finalizes all cross-references and page numbers
+            for run in range(3):
                 result = subprocess.run(
                     ['pdflatex', '-interaction=nonstopmode', f'{tex_basename}.tex'],
                     cwd=str(temp_dir),
@@ -951,16 +963,43 @@ class MarkdownGenerator:
                 if result.returncode != 0:
                     # pdflatex failed
                     error_log = result.stdout + result.stderr
-                    raise RuntimeError(f"LaTeX compilation failed:\n{error_log}")
+
+                    # Check for common missing package errors
+                    missing_package = None
+                    if 'pdftexcmds.sty' in error_log or 'hyperref' in error_log:
+                        missing_package = 'hyperref/pdftexcmds'
+                    elif '.sty' in error_log and 'not found' in error_log.lower():
+                        # Try to extract package name
+                        import re
+                        match = re.search(r"File `([^']+\.sty)' not found", error_log)
+                        if match:
+                            missing_package = match.group(1).replace('.sty', '')
+
+                    if missing_package:
+                        raise RuntimeError(
+                            f"LaTeX compilation failed: Missing LaTeX package.\n\n"
+                            f"It looks like you're missing the '{missing_package}' package.\n"
+                            f"Please install additional LaTeX packages:\n\n"
+                            f"Ubuntu/Debian:\n"
+                            f"  sudo apt-get install texlive-latex-extra\n\n"
+                            f"macOS:\n"
+                            f"  brew install --cask mactex\n\n"
+                            f"Windows:\n"
+                            f"  Install the full MiKTeX or TeX Live distribution\n\n"
+                            f"Full error log:\n{error_log}"
+                        )
+                    else:
+                        raise RuntimeError(f"LaTeX compilation failed:\n{error_log}")
 
             # Move the generated PDF to the desired location
             generated_pdf = temp_dir / f'{tex_basename}.pdf'
             if not generated_pdf.exists():
                 raise RuntimeError("PDF was not generated by pdflatex")
 
-            # Copy to output location
+            # Move to output location (using shutil.move for cross-filesystem support)
             output_path = Path(output_pdf).resolve()
-            generated_pdf.replace(output_path)
+            import shutil
+            shutil.move(str(generated_pdf), str(output_path))
 
         finally:
             # Clean up temporary files if not saving .tex
