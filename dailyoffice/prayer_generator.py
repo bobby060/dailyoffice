@@ -537,11 +537,12 @@ class MarkdownGenerator:
         calendar_day = api_response.get('calendar_day', {})
         date_desc = calendar_day.get('date_description', {})
 
+        sections.append(r'\phantomsection\label{' + label + r'}')  # Ensure section numbering starts at 1
         sections.append(r'\begin{center}')
         sections.append(r'{\LARGE \textbf{' + self._escape_latex(title) + r'}}\\[0.5em]')
         # Add label if provided (for monthly prayer navigation)
-        if label:
-            sections.append(r'\label{' + label + r'}')
+        # if label:
+            # sections.append(r'\label{' + label + r'}')
         sections.append(r'{\large ' + self._escape_latex(self._format_date(date_desc)) + r'}')
         sections.append(r'\end{center}')
         sections.append(r'')
