@@ -5,14 +5,14 @@ Generate a complete month of Daily Office prayers in a single PDF with navigatio
 ## Features
 
 - **Complete Monthly Coverage**: Generates prayers for every day of a specified month
-- **Professional Layout**: Includes title page and hyperlinked index
+- **Professional Layout**: Includes title page and traditional table of contents-style index with page numbers
 - **Smart Navigation**:
-  - Clickable index linking to each day
-  - Header links to jump back to index
-  - Navigation bar at top of each day
+  - Clickable index linking to each day with dotted leaders and page numbers
+  - Header links on every page to jump back to index
   - Current date shown in header
 - **Multiple Page Sizes**: Support for standard letter and Remarkable 2 tablet
 - **All Prayer Types**: Morning, Evening, Midday, and Compline prayers
+- **Psalm Cycle Options**: Support for 30-day or 60-day psalm cycles
 
 ## Quick Start
 
@@ -53,7 +53,8 @@ with MonthlyPrayerGenerator() as generator:
 - `--type, -t`: Prayer type (morning, evening, midday, compline) - **Required**
 - `--year, -y`: Year (default: current year)
 - `--month, -m`: Month as number (1-12) or name (default: current month)
-- `--output, -o`: Output PDF filename
+- `--output, -o`: Output PDF filename (default: `<Type>-Prayer-Mon-YYYY.pdf`)
+- `--psalm-cycle`: Psalm cycle to use (30 or 60 day, default: 60)
 - `--save-tex`: Save the LaTeX source file
 - `--remarkable`: Format for Remarkable 2 tablet (6.18x8.24 inches)
 
@@ -99,19 +100,15 @@ python generate_monthly.py --type morning --remarkable
 Each generated PDF includes:
 
 1. **Title Page**: Shows the prayer type and month/year
-2. **Index Page**: Lists all days with clickable links
+2. **Index Page**: Lists all days with clickable links and page numbers
 3. **Daily Prayers**: Each day's complete prayer with:
-   - Navigation bar at the top (back to index, jump to top of day)
    - Current date shown in page header
    - Link to index in every page header
 
 ### Navigation Links
 
-- **Index Links**: Click any date in the index to jump to that day's prayer
-- **Header Links**: "Index" link in top-left of every page
-- **Navigation Bar**: At the top of each day:
-  - "← Back to Index": Return to the index page
-  - "↑ Top of [Date]": Jump to the first page of that day's prayer
+- **Index Links**: Click any date in the index to jump to that day's prayer. Index shows page numbers with dotted leaders for easy reference.
+- **Header Links**: "Index" link in top-left of every page returns to the index
 - **Current Day**: Center of header shows current day
 
 ## API Reference

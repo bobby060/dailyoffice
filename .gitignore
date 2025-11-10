@@ -39,12 +39,16 @@ Thumbs.db
 
 # Output files
 *_prayer_*.md
+*-Prayer-*.md
 test_prayer.md
 *.pdf
 *_prayer_*.pdf
 *_prayers_*.pdf
 *_prayer_*.tex
 *_prayers_*.tex
+*-Prayer-*.pdf
+*_prayer_*.tex
+*-Prayer-*.tex
 *_prayer_*.log
 *_prayers_*.log
 *_prayer_*.aux

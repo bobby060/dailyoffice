@@ -90,10 +90,10 @@ LaTeX provides professional typesetting and is recommended for the best-looking 
 Generate morning prayer for today:
 
 ```bash
-python main.py --type morning
+python generate_daily.py --type morning
 ```
 
-This creates a file named `morning_prayer_YYYY-MM-DD.md` with today's morning prayer.
+This creates a file named `Morning-Prayer-Mon-DD-YYYY.md` with today's morning prayer.
 
 **Monthly Prayer:**
 Generate all prayers for a month:
@@ -107,95 +107,95 @@ This creates a PDF with all morning prayers for the current month, including a t
 To see all available options:
 
 ```bash
-python main.py --help
+python generate_daily.py --help
 python generate_monthly.py --help
 ```
 
 ### Command-Line Options
 
 ```bash
-python main.py [OPTIONS]
+python generate_daily.py [OPTIONS]
 ```
 
 **Options:**
 
 - `-h, --help` - Show help message and exit
   ```bash
-  python main.py --help
+  python generate_daily.py --help
   ```
 
 - `-t, --type {morning|evening|midday}` - Type of prayer to generate, required
   ```bash
-  python main.py --type evening
+  python generate_daily.py --type evening
   ```
 
 - `-d, --date YYYY-MM-DD` - Specify a date for the prayer (default: today)
   ```bash
-  python main.py --date 2025-12-25
+  python generate_daily.py --date 2025-12-25
   ```
 
-- `-o, --output FILE` - Specify output filename (default: <type>_prayer_YYYY-MM-DD.md)
+- `-o, --output FILE` - Specify output filename (default: <Type>-Prayer-Mon-DD-YYYY.md)
   ```bash
-  python main.py --output my_prayer.md
+  python generate_daily.py --output my_prayer.md
   ```
 
 - `--pdf` - Generate PDF output using WeasyPrint (requires markdown and weasyprint packages)
   ```bash
-  python main.py --pdf
+  python generate_daily.py --pdf
   ```
 
 - `--latex` - Generate PDF using LaTeX (requires pdflatex). Default: output PDF only.
   ```bash
-  python main.py --latex
+  python generate_daily.py --latex
   ```
 
 - `--save-tex` - When using --latex, also save the .tex file (in addition to PDF)
   ```bash
-  python main.py --latex --save-tex
+  python generate_daily.py --latex --save-tex
   ```
 
 - `--print` - Print to console instead of saving to file
   ```bash
-  python main.py --print
+  python generate_daily.py --print
   ```
 
 ### Examples
 
 1. **Generate morning prayer for Christmas Day:**
    ```bash
-   python main.py --date 2025-12-25 --output christmas_morning.md
+   python generate_daily.py --type morning --date 2025-12-25 --output christmas_morning.md
    ```
 
 2. **Generate evening prayer as PDF (using WeasyPrint):**
    ```bash
-   python main.py --type evening --pdf --output evening_prayer.pdf
+   python generate_daily.py --type evening --pdf --output evening_prayer.pdf
    ```
 
 3. **Generate morning prayer as PDF using LaTeX:**
    ```bash
-   python main.py --type morning --latex
+   python generate_daily.py --type morning --latex
    ```
 
 4. **Generate PDF with LaTeX and save the .tex source file:**
    ```bash
-   python main.py --type morning --latex --save-tex
+   python generate_daily.py --type morning --latex --save-tex
    ```
 
 5. **Generate midday prayer for a specific date:**
    ```bash
-   python main.py --type midday --date 2025-11-08
+   python generate_daily.py --type midday --date 2025-11-08
    ```
 
 6. **Preview without saving:**
    ```bash
-   python main.py --print
+   python generate_daily.py --type morning --print
    ```
 
 7. **Generate all three prayers for Sunday:**
    ```bash
-   python main.py --type morning --date 2025-11-23 --output sunday_morning.md
-   python main.py --type midday --date 2025-11-23 --output sunday_midday.md
-   python main.py --type evening --date 2025-11-23 --output sunday_evening.md
+   python generate_daily.py --type morning --date 2025-11-23 --output sunday_morning.md
+   python generate_daily.py --type midday --date 2025-11-23 --output sunday_midday.md
+   python generate_daily.py --type evening --date 2025-11-23 --output sunday_evening.md
    ```
 
 ### Monthly Prayer Generation
@@ -232,7 +232,7 @@ dailyoffice/
 │   ├── prayer_generator.py          # Markdown/LaTeX generation class
 │   ├── prayer_service.py            # Service layer coordinating components
 │   └── monthly_prayer_generator.py  # Monthly prayer generation class
-├── main.py                           # CLI entry point for single prayers
+├── generate_daily.py                 # CLI entry point for single prayers
 ├── generate_monthly.py               # CLI entry point for monthly prayers
 ├── collect_api_samples.py            # API sample data collection script
 ├── test_with_sample_data.py          # Test with sample data
