@@ -109,7 +109,7 @@ For more information, visit: https://www.dailyoffice2019.com/
     parser.add_argument(
         '--output', '-o',
         type=str,
-        help='Output PDF filename (default: <type>_prayers_YYYY-MM.pdf)',
+        help='Output PDF filename (default: <Type>-Prayer-Mon-YYYY.pdf)',
         metavar='FILE'
     )
 
@@ -157,8 +157,10 @@ For more information, visit: https://www.dailyoffice2019.com/
     if args.output:
         output_file = args.output
     else:
-        month_str = f"{year}-{month:02d}"
-        output_file = f"{args.type}_prayers_{month_str}.pdf"
+        # Format: Morning-Prayer-Nov-2025.pdf
+        prayer_type_title = args.type.capitalize()
+        month_abbr = calendar.month_abbr[month]
+        output_file = f"{prayer_type_title}-Prayer-{month_abbr}-{year}.pdf"
 
     # Determine page size
     page_size = "remarkable" if args.remarkable else "letter"
@@ -171,14 +173,10 @@ For more information, visit: https://www.dailyoffice2019.com/
         print()
 
         with MonthlyPrayerGenerator() as generator:
-            # Determine .tex filename if saving
+            # Determine .tex filename if saving - use same naming convention as PDF
             tex_filename = None
             if args.save_tex:
-                if args.output:
-                    tex_filename = str(Path(output_file).with_suffix('.tex'))
-                else:
-                    month_str = f"{year}-{month:02d}"
-                    tex_filename = f"{args.type}_prayers_{month_str}.tex"
+                tex_filename = str(Path(output_file).with_suffix('.tex'))
 
             # Generate and compile
             generator.compile_to_pdf(

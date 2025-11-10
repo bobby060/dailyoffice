@@ -45,34 +45,34 @@ def main():
         epilog="""
 Examples:
   # Generate morning prayer for today (as Markdown)
-  python main.py --type morning
+  python generate_daily.py --type morning
 
   # Generate evening prayer for today
-  python main.py --type evening
+  python generate_daily.py --type evening
 
   # Generate midday prayer for a specific date
-  python main.py --type midday --date 2025-12-25
+  python generate_daily.py --type midday --date 2025-12-25
 
   # Generate as PDF using WeasyPrint
-  python main.py --type morning --pdf
+  python generate_daily.py --type morning --pdf
 
   # Generate as PDF using LaTeX (requires pdflatex)
-  python main.py --type morning --latex
+  python generate_daily.py --type morning --latex
 
   # Generate PDF with LaTeX and also save the .tex file
-  python main.py --type morning --latex --save-tex
+  python generate_daily.py --type morning --latex --save-tex
 
   # Generate PDF for Remarkable 2 tablet (6.18x8.24 inches)
-  python main.py --type morning --latex --remarkable
+  python generate_daily.py --type morning --latex --remarkable
 
   # Save to a specific file
-  python main.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
+  python generate_daily.py --type morning --output christmas_morning_prayer.md --date 2025-12-25
 
   # Display to console instead of saving
-  python main.py --type morning --print
+  python generate_daily.py --type morning --print
 
   # Get help
-  python main.py --help
+  python generate_daily.py --help
 
 For more information, visit: https://www.dailyoffice2019.com/
         """
@@ -96,7 +96,7 @@ For more information, visit: https://www.dailyoffice2019.com/
     parser.add_argument(
         '--output', '-o',
         type=str,
-        help='Output filename (default: <type>_prayer_YYYY-MM-DD.md or .pdf)',
+        help='Output filename (default: <Type>-Prayer-Mon-DD-YYYY.md or .pdf)',
         metavar='FILE'
     )
 
@@ -167,9 +167,11 @@ For more information, visit: https://www.dailyoffice2019.com/
     if args.output:
         output_file = args.output
     else:
-        date_str = prayer_date.strftime("%Y-%m-%d")
+        # Format: Morning-Prayer-Nov-23-2025.pdf
+        prayer_type_title = args.type.capitalize()
+        date_str = prayer_date.strftime("%b-%d-%Y")
         ext = 'pdf' if (args.pdf or args.latex) else 'md'
-        output_file = f"{args.type}_prayer_{date_str}.{ext}"
+        output_file = f"{prayer_type_title}-Prayer-{date_str}.{ext}"
 
     # Generate the prayer
     try:
@@ -200,12 +202,8 @@ For more information, visit: https://www.dailyoffice2019.com/
                     # Compile to PDF (and optionally save .tex)
                     tex_filename = None
                     if args.save_tex:
-                        # Determine .tex filename
-                        if args.output:
-                            tex_filename = str(Path(output_file).with_suffix('.tex'))
-                        else:
-                            date_str = prayer_date.strftime("%Y-%m-%d")
-                            tex_filename = f"{args.type}_prayer_{date_str}.tex"
+                        # Determine .tex filename - use same naming convention as PDF
+                        tex_filename = str(Path(output_file).with_suffix('.tex'))
 
                     service.markdown_generator.compile_latex_to_pdf(
                         latex_content,
