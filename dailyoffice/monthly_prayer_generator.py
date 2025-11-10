@@ -176,6 +176,7 @@ class MonthlyPrayerGenerator:
         sections.append(r'\usepackage{geometry}')
         sections.append(r'\usepackage{hyperref}')
         sections.append(r'\usepackage{fancyhdr}')
+        sections.append(r'\usepackage{enumitem}')
         sections.append(r'')
 
         # Configure hyperref for better link appearance
@@ -245,19 +246,19 @@ class MonthlyPrayerGenerator:
         sections.append(r'\newpage')
         sections.append(r'')
 
-        # Index page
+        # Index page with traditional TOC formatting
         sections.append(r'\section*{Index}\label{index}')
         sections.append(r'\addcontentsline{toc}{section}{Index}')
-        sections.append(r'')
-        sections.append(r'\begin{itemize}')
-        sections.append(r'\setlength{\itemsep}{0.5em}')
+        sections.append(r'\begin{itemize}[leftmargin=*,label={}]')
+        sections.append(r'\setlength{\itemsep}{0.3em}')
 
         for item in daily_content:
             day_num = item['day']
             prayer_date = item['date']
-            date_str = prayer_date.strftime('%A, %B %d, %Y')
-            # Create hyperlink to each day
-            sections.append(r'\item \hyperref[day' + str(day_num) + r']{' + date_str + r'}')
+            # Format: "Sat, Nov 01, 2025"
+            date_str = prayer_date.strftime('%a, %b %d, %Y')
+            # Create hyperlink with dotted line and page number
+            sections.append(r'\item \hyperref[day' + str(day_num) + r']{' + date_str + r'} \dotfill \pageref{day' + str(day_num) + r'}')
 
         sections.append(r'\end{itemize}')
         sections.append(r'')
