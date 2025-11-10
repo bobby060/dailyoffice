@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.9)  9 NOV 2025 21:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.9)  9 NOV 2025 22:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -202,34 +202,43 @@ rs
 \f@nch@O@olf=\skip57
 \f@nch@O@orf=\skip58
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 14.
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip59
+\enit@outerparindent=\dimen151
+\enit@toks=\toks20
+\enit@inbox=\box50
+\enit@count@id=\count272
+\enitdp@description=\count273
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 15.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count272
-\l__pdf_internal_box=\box50
+\l__color_backend_stack_int=\count274
+\l__pdf_internal_box=\box51
 )
 (./morning_prayers_2025-11.aux)
 \openout1 = `morning_prayers_2025-11.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -278,19 +287,19 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count273
-\scratchdimen=\dimen151
-\scratchbox=\box51
-\nofMPsegments=\count274
-\nofMParguments=\count275
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count276
-\MPscratchDim=\dimen152
-\MPnumerator=\count277
-\makeMPintoPDFobject=\count278
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count275
+\scratchdimen=\dimen152
+\scratchbox=\box52
+\nofMPsegments=\count276
+\nofMParguments=\count277
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count278
+\MPscratchDim=\dimen153
+\MPnumerator=\count279
+\makeMPintoPDFobject=\count280
+\everyMPtoPDFconversion=\toks22
 )))
-Package hyperref Info: Link coloring ON on input line 46.
+Package hyperref Info: Link coloring ON on input line 47.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -300,11 +309,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count279
+\c@section@level=\count281
 )
-LaTeX Info: Redefining \ref on input line 46.
-LaTeX Info: Redefining \pageref on input line 46.
-LaTeX Info: Redefining \nameref on input line 46.
+LaTeX Info: Redefining \ref on input line 47.
+LaTeX Info: Redefining \pageref on input line 47.
+LaTeX Info: Redefining \nameref on input line 47.
 
 (./morning_prayers_2025-11.out) (./morning_prayers_2025-11.out)
 \@outlinefile=\write3
@@ -317,8 +326,9 @@ ination with the same identifier (name{page.1}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.84 \item \hyperref
-                    [day21]{Friday, November 21, 2025} [1] [2]
+l.86 \item \hyperref
+                    [day23]{Sun, Nov 23, 2025} \dotfill \pageref{day23}
+[1] [2]
 Underfull \hbox (badness 10000) in paragraph at lines 119--121
 
  []
@@ -3978,13 +3988,13 @@ Package rerunfilecheck Info: File `morning_prayers_2025-11.out' has not changed
 (rerunfilecheck)             Checksum: E5746339BBB3A04444A3379A506EFA76;69.
  ) 
 Here is how much of TeX's memory you used:
- 10340 strings out of 480247
- 152730 string characters out of 5896151
- 441078 words of memory out of 5000000
- 26633 multiletter control sequences out of 15000+600000
- 483049 words of font info for 52 fonts, out of 8000000 for 9000
+ 10670 strings out of 480247
+ 158523 string characters out of 5896151
+ 448598 words of memory out of 5000000
+ 26960 multiletter control sequences out of 15000+600000
+ 482712 words of font info for 51 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,12n,63p,8175b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,63p,8175b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/bobby060/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.
 600pk> </home/bobby060/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0
 800.600pk> </home/bobby060/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/e
@@ -3993,16 +4003,15 @@ ec/ecti1200.600pk> </home/bobby060/.texlive2021/texmf-var/fonts/pk/ljfour/jknap
 pen/ec/ecbx1200.600pk> </home/bobby060/.texlive2021/texmf-var/fonts/pk/ljfour/j
 knappen/ec/ecbx2074.600pk> </home/bobby060/.texlive2021/texmf-var/fonts/pk/ljfo
 ur/jknappen/ec/ecrm1200.600pk> </home/bobby060/.texlive2021/texmf-var/fonts/pk/
-ljfour/jknappen/ec/tcrm1200.600pk> </home/bobby060/.texlive2021/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/bobby060/.texlive2021/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/bobby060/.texlive2021/texmf-v
-ar/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/bobby060/.texlive2021/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/bobby060/.texlive2021
-/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk>
-Output written on morning_prayers_2025-11.pdf (537 pages, 952361 bytes).
+ljfour/jknappen/ec/ecbx1728.600pk> </home/bobby060/.texlive2021/texmf-var/fonts
+/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/bobby060/.texlive2021/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/bobby060/.texlive2021/texmf-v
+ar/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/bobby060/.texlive2021/tex
+mf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk>
+Output written on morning_prayers_2025-11.pdf (537 pages, 953427 bytes).
 PDF statistics:
- 4642 PDF objects out of 5155 (max. 8388607)
- 3689 compressed objects within 37 object streams
+ 4668 PDF objects out of 5155 (max. 8388607)
+ 3715 compressed objects within 38 object streams
  1565 named destinations out of 1728 (max. 500000)
  9 words of extra memory for PDF output out of 10000 (max. 10000000)
 

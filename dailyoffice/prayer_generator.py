@@ -750,7 +750,7 @@ class MarkdownGenerator:
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
             # Use makebox to create fixed-width label so content aligns with People lines
-            return r'\makebox[4em][l]{\textit{Officiant}}' + escaped_content + r'\\[0.5em]'
+            return r'\makebox[5em][l]{\textit{Officiant}}' + escaped_content + r'\\[0.5em]'
 
         elif line_type == 'leader':
             # Leader/officiant lines in normal text (non-dialogue)
@@ -767,7 +767,7 @@ class MarkdownGenerator:
             content_clean = content.rstrip()
             escaped_content = self._escape_latex(content_clean)
             # Use makebox to create fixed-width label so content aligns with Officiant lines
-            return r'\makebox[4em][l]{\textit{People}}\textbf{' + escaped_content + r'}\\[0.5em]'
+            return r'\makebox[5em][l]{\textit{People}}\textbf{' + escaped_content + r'}\\[0.5em]'
 
         elif line_type == 'congregation':
             # Congregation/people lines in bold (non-dialogue)
