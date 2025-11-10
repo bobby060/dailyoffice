@@ -7,7 +7,7 @@ RUN yum update -y && \
     yum install -y \
     texlive \
     texlive-latex \
-    texlive-collection-latexrecommended \
+    # texlive-collection-latexrecommended \
     texlive-collection-latexextra \
     && yum clean all && \
     rm -rf /var/cache/yum
