@@ -68,6 +68,7 @@ For high-quality PDF generation using LaTeX (optional, alternative to WeasyPrint
 **Ubuntu/Debian:**
 ```bash
 sudo apt-get install texlive-latex-base
+sudo apt-get install texlive-latex-extra
 ```
 
 **macOS:**
