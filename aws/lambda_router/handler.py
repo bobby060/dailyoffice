@@ -6,6 +6,8 @@ This handler implements a caching layer using S3:
 2. If found, returns the cached PDF
 3. If not found, invokes the generator Lambda to create a new PDF
 4. Stores the new PDF in S3 cache and returns it
+
+Supports both daily and monthly prayer generation.
 """
 
 import json
@@ -13,6 +15,7 @@ import base64
 import os
 import hashlib
 import boto3
+import calendar
 from datetime import datetime
 
 # Initialize AWS clients
@@ -25,25 +28,43 @@ GENERATOR_FUNCTION_NAME = os.environ.get('GENERATOR_FUNCTION_NAME')
 CACHE_TTL_DAYS = int(os.environ.get('CACHE_TTL_DAYS', '30'))
 
 
-def generate_cache_key(prayer_type, date_string, remarkable):
+def generate_cache_key(prayer_type, date_string, remarkable, is_monthly=False, year=None, month=None, psalm_cycle=None):
     """
     Generate a unique cache key for the prayer parameters.
 
     Args:
-        prayer_type: Type of prayer (morning, evening, midday)
-        date_string: Date in YYYY-MM-DD format
+        prayer_type: Type of prayer (morning, evening, midday, compline)
+        date_string: Date in YYYY-MM-DD format (for daily prayers)
         remarkable: Boolean flag for page size
+        is_monthly: Boolean flag for monthly generation
+        year: Year (for monthly prayers)
+        month: Month (for monthly prayers)
+        psalm_cycle: Psalm cycle (30 or 60) for monthly prayers
 
     Returns:
         S3 object key for caching
     """
-    # Use date string or today's date
-    if not date_string:
-        date_string = datetime.now().strftime('%Y-%m-%d')
-
-    # Create a unique key based on parameters
     page_size = 'remarkable' if remarkable else 'letter'
-    cache_key = f"prayers/{prayer_type}/{date_string}/{page_size}.pdf"
+
+    if is_monthly:
+        # Monthly cache key
+        if not year:
+            year = datetime.now().year
+        if not month:
+            month = datetime.now().month
+
+        # Include psalm cycle in cache key if specified
+        if psalm_cycle:
+            cache_key = f"prayers/monthly/{prayer_type}/{year}/{month:02d}/{page_size}/cycle{psalm_cycle}.pdf"
+        else:
+            cache_key = f"prayers/monthly/{prayer_type}/{year}/{month:02d}/{page_size}/default.pdf"
+    else:
+        # Daily cache key
+        # Use date string or today's date
+        if not date_string:
+            date_string = datetime.now().strftime('%Y-%m-%d')
+
+        cache_key = f"prayers/daily/{prayer_type}/{date_string}/{page_size}.pdf"
 
     return cache_key
 
@@ -127,9 +148,13 @@ def lambda_handler(event, context):
     Router Lambda handler for caching Daily Office prayer PDFs.
 
     Expected query parameters (from API Gateway):
-    - type: Prayer type (morning, evening, or midday) [REQUIRED]
-    - date: Date in YYYY-MM-DD format (default: today)
+    - type: Prayer type (morning, evening, midday, or compline) [REQUIRED]
+    - date: Date in YYYY-MM-DD format (default: today) [for daily prayers]
+    - year: Year (YYYY format) [for monthly prayers]
+    - month: Month (1-12) [for monthly prayers]
+    - monthly: Boolean flag for monthly generation (default: false)
     - remarkable: Boolean flag for Remarkable 2 tablet format (default: false)
+    - psalm_cycle: Psalm cycle (30 or 60) for monthly prayers (default: 60)
     - nocache: Boolean flag to bypass cache (default: false)
 
     Returns:
@@ -143,9 +168,10 @@ def lambda_handler(event, context):
         date_string = params.get('date')
         remarkable = params.get('remarkable', 'false').lower() in ['true', '1', 'yes']
         bypass_cache = params.get('nocache', 'false').lower() in ['true', '1', 'yes']
+        is_monthly = params.get('monthly', 'false').lower() in ['true', '1', 'yes']
 
         # Validate prayer type
-        if prayer_type not in ['morning', 'evening', 'midday']:
+        if prayer_type not in ['morning', 'evening', 'midday', 'compline']:
             return {
                 'statusCode': 400,
                 'headers': {
@@ -153,12 +179,78 @@ def lambda_handler(event, context):
                     'Access-Control-Allow-Origin': '*'
                 },
                 'body': json.dumps({
-                    'error': 'Invalid or missing prayer type. Must be one of: morning, evening, midday'
+                    'error': 'Invalid or missing prayer type. Must be one of: morning, evening, midday, compline'
                 })
             }
 
+        # Extract monthly parameters if applicable
+        year = None
+        month = None
+        psalm_cycle = None
+
+        if is_monthly:
+            year_str = params.get('year')
+            month_str = params.get('month')
+            psalm_cycle_str = params.get('psalm_cycle')
+
+            # Default to current year/month if not provided
+            if not year_str:
+                year = datetime.now().year
+            else:
+                try:
+                    year = int(year_str)
+                except ValueError:
+                    return {
+                        'statusCode': 400,
+                        'headers': {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        'body': json.dumps({'error': 'Invalid year format. Expected YYYY'})
+                    }
+
+            if not month_str:
+                month = datetime.now().month
+            else:
+                try:
+                    month = int(month_str)
+                    if not 1 <= month <= 12:
+                        raise ValueError()
+                except ValueError:
+                    return {
+                        'statusCode': 400,
+                        'headers': {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        'body': json.dumps({'error': 'Invalid month. Must be 1-12'})
+                    }
+
+            if psalm_cycle_str:
+                try:
+                    psalm_cycle = int(psalm_cycle_str)
+                    if psalm_cycle not in [30, 60]:
+                        raise ValueError()
+                except ValueError:
+                    return {
+                        'statusCode': 400,
+                        'headers': {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        'body': json.dumps({'error': 'Invalid psalm_cycle. Must be 30 or 60'})
+                    }
+
         # Generate cache key
-        cache_key = generate_cache_key(prayer_type, date_string, remarkable)
+        cache_key = generate_cache_key(
+            prayer_type,
+            date_string,
+            remarkable,
+            is_monthly=is_monthly,
+            year=year,
+            month=month,
+            psalm_cycle=psalm_cycle
+        )
 
         # Check cache unless bypass requested
         pdf_data = None
@@ -188,8 +280,12 @@ def lambda_handler(event, context):
         pdf_base64 = base64.b64encode(pdf_data).decode('utf-8')
 
         # Generate filename for Content-Disposition header
-        date_str = date_string if date_string else datetime.now().strftime('%Y-%m-%d')
-        filename = f"{prayer_type}_prayer_{date_str}.pdf"
+        if is_monthly:
+            month_abbr = calendar.month_abbr[month]
+            filename = f"{prayer_type}_prayer_monthly_{month_abbr}_{year}.pdf"
+        else:
+            date_str = date_string if date_string else datetime.now().strftime('%Y-%m-%d')
+            filename = f"{prayer_type}_prayer_{date_str}.pdf"
 
         return {
             'statusCode': 200,
