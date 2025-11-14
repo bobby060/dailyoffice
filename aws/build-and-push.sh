@@ -66,7 +66,9 @@ rm -rf dailyoffice
 cp -r ../../dailyoffice .
 
 # Build the image
-docker build \
+# Note: Use DOCKER_BUILDKIT=0 to ensure Docker manifest v2 schema 2 format
+# which is required by AWS Lambda. Lambda does not support OCI manifests.
+DOCKER_BUILDKIT=0 docker build \
     --platform linux/amd64 \
     -t "$ECR_REPOSITORY_NAME:$IMAGE_TAG" \
     -f Dockerfile \
@@ -91,7 +93,41 @@ docker tag "$ECR_REPOSITORY_NAME:$IMAGE_TAG" "$ECR_IMAGE_URI"
 # Step 5: Push to ECR
 echo ""
 echo "[5/5] Pushing image to ECR..."
+# Push with --disable-content-trust to ensure compatibility
 docker push "$ECR_IMAGE_URI"
+
+# Verify the manifest type
+echo ""
+echo "Verifying image manifest type..."
+MANIFEST=$(aws ecr batch-get-image \
+    --repository-name "$ECR_REPOSITORY_NAME" \
+    --image-ids imageTag="$IMAGE_TAG" \
+    --region "$AWS_REGION" \
+    --query 'images[0].imageManifest' \
+    --output text 2>/dev/null || echo "")
+
+if [ -n "$MANIFEST" ]; then
+    SCHEMA_VERSION=$(echo "$MANIFEST" | grep -o '"schemaVersion":[0-9]*' | cut -d':' -f2)
+    MEDIA_TYPE=$(echo "$MANIFEST" | grep -o '"mediaType":"[^"]*"' | head -1 | cut -d'"' -f4)
+    echo "Schema Version: $SCHEMA_VERSION"
+    echo "Media Type: $MEDIA_TYPE"
+
+    # Check if it's the correct format for Lambda
+    if [ "$SCHEMA_VERSION" = "2" ]; then
+        echo "✓ Manifest schema version is correct for Lambda"
+    else
+        echo "⚠ WARNING: Unexpected manifest schema version: $SCHEMA_VERSION"
+        echo "  Lambda requires Docker manifest v2 schema 2"
+    fi
+
+    # Check media type
+    if [[ "$MEDIA_TYPE" == *"docker"* ]] || [[ "$MEDIA_TYPE" == *"vnd.docker"* ]]; then
+        echo "✓ Manifest media type appears compatible with Lambda"
+    elif [[ "$MEDIA_TYPE" == *"oci"* ]]; then
+        echo "⚠ WARNING: OCI manifest detected - Lambda may not support this"
+        echo "  Try rebuilding with DOCKER_BUILDKIT=0"
+    fi
+fi
 
 echo ""
 echo "=========================================="
