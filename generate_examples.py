@@ -57,7 +57,7 @@ def main():
                     )
 
                 # Compile to PDF
-                service.markdown_generator.compile_latex_to_pdf(
+                service.latex_generator.compile_latex_to_pdf(
                     latex_content,
                     filename,
                     save_tex=False
