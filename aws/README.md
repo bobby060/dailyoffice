@@ -152,6 +152,12 @@ Replace `<image-uri>` with the URI from Step 1.
 ./deploy-stack.sh 123456789012.dkr.ecr.us-east-1.amazonaws.com/dailyoffice-pdf-generator:latest
 ```
 
+Or save stack parameters in `.env` and run:
+```bash
+source .env
+./deploy-stack.sh $IMAGE_URI
+```
+
 This script will:
 1. Package the router Lambda function
 2. Upload it to an S3 deployment bucket
