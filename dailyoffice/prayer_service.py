@@ -1,14 +1,15 @@
 """
 Prayer Service - Main service layer
 
-This module coordinates between the API client and the markdown generator
+This module coordinates between the API client and the prayer generators
 to provide a high-level interface for generating prayer documents.
 """
 
 from datetime import date
 from typing import Optional
 from .api_client import DailyOfficeAPIClient
-from .prayer_generator import MarkdownGenerator
+from .markdown_prayer_generator import MarkdownGenerator
+from .latex_prayer_generator import LatexGenerator
 
 
 class PrayerService:
@@ -23,6 +24,7 @@ class PrayerService:
         """Initialize the prayer service."""
         self.api_client = DailyOfficeAPIClient()
         self.markdown_generator = MarkdownGenerator()
+        self.latex_generator = LatexGenerator()
 
     def generate_morning_prayer_markdown(
         self,
@@ -161,7 +163,7 @@ class PrayerService:
         prayer_data = self.api_client.get_morning_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
 
         # Generate LaTeX from the API response
-        latex_content = self.markdown_generator.generate_morning_prayer_latex(prayer_data, page_size, label)
+        latex_content = self.latex_generator.generate_morning_prayer(prayer_data, page_size, label)
 
         return latex_content
 
@@ -191,7 +193,7 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_evening_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
-        latex_content = self.markdown_generator.generate_evening_prayer_latex(prayer_data, page_size, label)
+        latex_content = self.latex_generator.generate_evening_prayer(prayer_data, page_size, label)
         return latex_content
 
     def generate_midday_prayer_latex(
@@ -220,7 +222,7 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_midday_prayer(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
-        latex_content = self.markdown_generator.generate_midday_prayer_latex(prayer_data, page_size, label)
+        latex_content = self.latex_generator.generate_midday_prayer(prayer_data, page_size, label)
         return latex_content
 
     def generate_compline_latex(
@@ -249,7 +251,7 @@ class PrayerService:
             prayer_date = date.today()
 
         prayer_data = self.api_client.get_compline(prayer_date=prayer_date, psalm_cycle=psalm_cycle)
-        latex_content = self.markdown_generator.generate_compline_latex(prayer_data, page_size, label)
+        latex_content = self.latex_generator.generate_compline(prayer_data, page_size, label)
         return latex_content
 
     def save_prayer(

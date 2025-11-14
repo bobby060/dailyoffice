@@ -230,7 +230,8 @@ dailyoffice/
 ├── dailyoffice/                      # Main package
 │   ├── __init__.py                  # Package initialization
 │   ├── api_client.py                # API communication class
-│   ├── prayer_generator.py          # Markdown/LaTeX generation class
+│   ├── markdown_prayer_generator.py # Markdown generation class
+│   ├── latex_prayer_generator.py    # LaTeX/PDF generation class
 │   ├── prayer_service.py            # Service layer coordinating components
 │   └── monthly_prayer_generator.py  # Monthly prayer generation class
 ├── generate_daily.py                 # CLI entry point for single prayers
