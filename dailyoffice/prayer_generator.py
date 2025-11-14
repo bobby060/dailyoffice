@@ -191,6 +191,7 @@ class MarkdownGenerator:
         line_type = line.get('line_type', '')
         indented = line.get('indented', False)
         preface = line.get('preface')
+        extra_space_before = line.get('extra_space_before', False)
 
         # Skip empty spacer lines (we'll handle spacing differently)
         if line_type == 'spacer' or not content:
@@ -527,7 +528,7 @@ class MarkdownGenerator:
         sections.append(r'\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%')
         sections.append(r'  {-3.25ex\@plus -1ex \@minus -.2ex}%')
         sections.append(r'  {1.5ex \@plus .2ex}%')
-        sections.append(r'  {\normalfont\normalsize\bfseries}}')
+        sections.append(r'  {\centering\normalfont\normalsize\bfseries}}')
         sections.append(r'\makeatother')
         sections.append(r'')
         sections.append(r'\begin{document}')
@@ -537,7 +538,9 @@ class MarkdownGenerator:
         calendar_day = api_response.get('calendar_day', {})
         date_desc = calendar_day.get('date_description', {})
 
-        sections.append(r'\phantomsection\label{' + label + r'}')  # Ensure section numbering starts at 1
+        # Add label for monthly prayer navigation
+        if label:
+            sections.append(r'\phantomsection\label{' + label + r'}')  # Ensure section numbering starts at 1
         sections.append(r'\begin{center}')
         sections.append(r'{\LARGE \textbf{' + self._escape_latex(title) + r'}}\\[0.5em]')
         # Add label if provided (for monthly prayer navigation)
@@ -718,6 +721,7 @@ class MarkdownGenerator:
         line_type = line.get('line_type', '')
         indented = line.get('indented', False)
         preface = line.get('preface')
+        extra_space_before = line.get('extra_space_before', False)
 
         # Apply forced indentation from rubric context
         if force_indent and not indented:
@@ -736,14 +740,15 @@ class MarkdownGenerator:
 
         elif line_type == 'subheading':
             # Centered subheading in italics
-            return r'\centerline{\textit{' + escaped_content + r'}}'
+            # Centered subheading in italics with word wrapping
+            return r'\begin{center}\textit{' + escaped_content + r'}\end{center}'
 
         elif line_type == 'rubric':
             # Rubric with spacing before and after
             return r'\vspace{0.3em}\noindent\textit{' + escaped_content + r'}\\[0.3em]'
 
         elif line_type == 'citation':
-            return r'\hfill --- ' + escaped_content
+            return r'\begin{flushright}--- ' + escaped_content + r'\end{flushright}'
 
         elif line_type == 'leader_dialogue':
             # Leader dialogue: Officiant label aligned with People label using fixed-width box
@@ -786,7 +791,7 @@ class MarkdownGenerator:
         elif line_type == 'html':
             # Process HTML content (psalms, scripture) - these handle their own formatting
             return self._format_html_content_latex(content)
-
+        
         else:
             # Default formatting for unknown types
             return self._indent_text_latex(escaped_content, indented) + r'\\'
@@ -806,9 +811,14 @@ class MarkdownGenerator:
         if not indented or indented == False:
             return text
 
-        if indented in ['indent', 'hangingIndent', 'hangingIdent', True]:
-            # Use hanging indent: first line indents 2em, subsequent lines also indent 2em
-            return r'{\setlength{\leftskip}{2em}\setlength{\parindent}{0em}' + text + r'}'
+        if indented in ['indent',  True]:
+            # Use regular indent: both first line and wrapped lines indent 1em
+            return r'\hspace*{1em}\begin{minipage}[t]{\dimexpr\linewidth-1em\relax}' + text + r'\end{minipage}'
+        
+        if indented in ['hangingIndent', 'hangingIdent']:
+            # Use hanging indent: first line flush left, subsequent lines indent 1em
+            # Use a minipage with negative left margin to create hanging indent effect
+            return r'\begin{minipage}[t]{\linewidth}\hangindent=1em\hangafter=1 ' + text + r'\end{minipage}'
 
         return text
 

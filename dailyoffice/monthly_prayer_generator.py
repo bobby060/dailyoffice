@@ -214,7 +214,7 @@ class MonthlyPrayerGenerator:
         sections.append(r'\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%')
         sections.append(r'  {-3.25ex\@plus -1ex \@minus -.2ex}%')
         sections.append(r'  {1.5ex \@plus .2ex}%')
-        sections.append(r'  {\normalfont\normalsize\bfseries}}')
+        sections.append(r'  {\centering\normalfont\normalsize\bfseries}}')
         sections.append(r'\makeatother')
         sections.append(r'')
 
