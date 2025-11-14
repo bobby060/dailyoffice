@@ -362,6 +362,55 @@ export AWS_REGION=us-west-2
 docker run --rm public.ecr.aws/lambda/python:3.11 bash -c "yum install -y texlive && pdflatex --version"
 ```
 
+### Lambda Image Manifest Error
+
+**Problem**: Lambda deployment fails with error:
+```
+The image manifest, config or layer media type for the source image is not supported
+```
+
+**Cause**: Docker/BuildKit created an incompatible manifest format (OCI or multi-architecture) instead of the Docker v2 schema 2 format that Lambda requires.
+
+**Solution**:
+
+1. **Check the manifest format**:
+```bash
+cd aws
+./fix-image-manifest.sh
+```
+
+2. **Rebuild the image** with the correct format:
+```bash
+# Delete the problematic image from ECR
+aws ecr batch-delete-image \
+    --repository-name dailyoffice-pdf-generator \
+    --image-ids imageTag=latest
+
+# Rebuild with DOCKER_BUILDKIT=0 (now the default in build-and-push.sh)
+./build-and-push.sh
+
+# The script now uses DOCKER_BUILDKIT=0 to ensure compatibility
+```
+
+3. **Verify the fix**:
+```bash
+./fix-image-manifest.sh
+# Should show: ✓ Manifest format appears compatible with Lambda
+```
+
+4. **Redeploy the stack**:
+```bash
+IMAGE_URI=$(aws ecr describe-images \
+    --repository-name dailyoffice-pdf-generator \
+    --image-ids imageTag=latest \
+    --query 'imageDetails[0].repositoryName' \
+    --output text)
+
+./deploy-stack.sh ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/dailyoffice-pdf-generator:latest
+```
+
+**Note**: The updated `build-and-push.sh` script now automatically uses `DOCKER_BUILDKIT=0` to prevent this issue.
+
 ### Deployment Issues
 
 **Problem**: CloudFormation stack creation fails
