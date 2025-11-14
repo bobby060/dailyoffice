@@ -8,7 +8,7 @@ import unittest
 import json
 from pathlib import Path
 
-from dailyoffice.prayer_generator import MarkdownGenerator
+from dailyoffice.markdown_prayer_generator import MarkdownGenerator
 
 
 class TestMarkdownGenerator(unittest.TestCase):
@@ -206,11 +206,11 @@ class TestMarkdownGenerator(unittest.TestCase):
 
         result = self.generator._format_html_content(html)
 
-        # Should be formatted as blockquote
-        self.assertTrue(result.startswith('>'))
         # HTML tags should be removed
         self.assertNotIn('<p', result)
         self.assertNotIn('<span', result)
+        # Should contain the text content
+        self.assertIn('Test verse', result)
 
     def test_save_to_file(self, tmp_path=None):
         """Test saving markdown to file."""

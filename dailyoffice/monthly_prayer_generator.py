@@ -326,9 +326,9 @@ class MonthlyPrayerGenerator:
             psalm_cycle=psalm_cycle
         )
 
-        # Use the MarkdownGenerator's compile method
+        # Use the LatexGenerator's compile method
         print(f"Compiling to PDF...")
-        self.prayer_service.markdown_generator.compile_latex_to_pdf(
+        self.prayer_service.latex_generator.compile_latex_to_pdf(
             latex_content=latex_content,
             output_pdf=output_pdf,
             save_tex=save_tex,
