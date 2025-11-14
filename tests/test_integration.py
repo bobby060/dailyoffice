@@ -11,7 +11,7 @@ from datetime import date
 from unittest.mock import Mock, patch
 import tempfile
 
-from dailyoffice import PrayerService, DailyOfficeAPIClient, MarkdownGenerator
+from dailyoffice import PrayerService, DailyOfficeAPIClient, MarkdownGenerator, LatexGenerator
 
 
 class TestPrayerServiceIntegration(unittest.TestCase):
@@ -33,6 +33,7 @@ class TestPrayerServiceIntegration(unittest.TestCase):
         service = PrayerService()
         self.assertIsInstance(service.api_client, DailyOfficeAPIClient)
         self.assertIsInstance(service.markdown_generator, MarkdownGenerator)
+        self.assertIsInstance(service.latex_generator, LatexGenerator)
         service.close()
 
     @patch.object(DailyOfficeAPIClient, 'get_morning_prayer')
@@ -48,7 +49,7 @@ class TestPrayerServiceIntegration(unittest.TestCase):
         markdown = service.generate_morning_prayer_markdown(test_date)
 
         # Verify API was called correctly
-        mock_api.assert_called_once_with(prayer_date=test_date)
+        mock_api.assert_called_once_with(prayer_date=test_date, psalm_cycle=None)
 
         # Verify markdown output
         self.assertIsInstance(markdown, str)

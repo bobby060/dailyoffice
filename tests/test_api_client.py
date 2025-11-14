@@ -46,6 +46,9 @@ class TestDailyOfficeAPIClient(unittest.TestCase):
     @patch('dailyoffice.api_client.requests.Session.get')
     def test_get_morning_prayer_success(self, mock_get):
         """Test successful morning prayer fetch."""
+        # Use a client with cache disabled to ensure we hit the API
+        client = DailyOfficeAPIClient(enable_cache=False)
+
         # Load real sample data
         sample_file = self.office_dir / 'morning_prayer_2025-11-08.json'
         with open(sample_file, 'r') as f:
@@ -59,7 +62,7 @@ class TestDailyOfficeAPIClient(unittest.TestCase):
 
         # Test the method
         test_date = date(2025, 11, 8)
-        result = self.client.get_morning_prayer(test_date)
+        result = client.get_morning_prayer(test_date)
 
         # Verify
         self.assertIsInstance(result, dict)
@@ -72,21 +75,28 @@ class TestDailyOfficeAPIClient(unittest.TestCase):
         call_args = mock_get.call_args
         self.assertIn('morning_prayer/2025-11-08', call_args[0][0])
 
+        client.close()
+
     @patch('dailyoffice.api_client.requests.Session.get')
     def test_get_morning_prayer_default_date(self, mock_get):
         """Test morning prayer fetch with default (today) date."""
+        # Use a client with cache disabled to ensure we hit the API
+        client = DailyOfficeAPIClient(enable_cache=False)
+
         mock_response = Mock()
         mock_response.status_code = 200
         mock_response.json.return_value = {'modules': [], 'calendar_day': {}}
         mock_get.return_value = mock_response
 
-        result = self.client.get_morning_prayer()
+        result = client.get_morning_prayer()
 
         # Should call with today's date
         today = date.today()
         expected_date_str = today.strftime("%Y-%m-%d")
         call_args = mock_get.call_args
         self.assertIn(expected_date_str, call_args[0][0])
+
+        client.close()
 
     @patch('dailyoffice.api_client.requests.Session.get')
     def test_get_evening_prayer_success(self, mock_get):
@@ -109,6 +119,9 @@ class TestDailyOfficeAPIClient(unittest.TestCase):
     @patch('dailyoffice.api_client.requests.Session.get')
     def test_api_error_handling(self, mock_get):
         """Test handling of API errors."""
+        # Use a client with cache disabled to ensure we hit the API
+        client = DailyOfficeAPIClient(enable_cache=False)
+
         mock_response = Mock()
         mock_response.status_code = 404
         mock_response.raise_for_status.side_effect = Exception("Not Found")
@@ -117,11 +130,16 @@ class TestDailyOfficeAPIClient(unittest.TestCase):
         test_date = date(2025, 11, 8)
 
         with self.assertRaises(Exception):
-            self.client.get_morning_prayer(test_date)
+            client.get_morning_prayer(test_date)
+
+        client.close()
 
     @patch('dailyoffice.api_client.requests.Session.get')
     def test_invalid_json_handling(self, mock_get):
         """Test handling of invalid JSON response."""
+        # Use a client with cache disabled to ensure we hit the API
+        client = DailyOfficeAPIClient(enable_cache=False)
+
         mock_response = Mock()
         mock_response.status_code = 200
         mock_response.json.side_effect = ValueError("Invalid JSON")
@@ -130,7 +148,9 @@ class TestDailyOfficeAPIClient(unittest.TestCase):
         test_date = date(2025, 11, 8)
 
         with self.assertRaises(ValueError):
-            self.client.get_morning_prayer(test_date)
+            client.get_morning_prayer(test_date)
+
+        client.close()
 
     def test_context_manager(self):
         """Test client can be used as context manager."""
