@@ -92,7 +92,7 @@ def lambda_handler(event, context):
                 output_pdf = Path(temp_dir) / "prayer.pdf"
 
                 # Use the existing compile_latex_to_pdf method
-                service.markdown_generator.compile_latex_to_pdf(
+                service.latex_generator.compile_latex_to_pdf(
                     latex_content,
                     str(output_pdf),
                     save_tex=False
