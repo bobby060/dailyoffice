@@ -168,17 +168,34 @@ API Endpoint: https://abc123xyz.execute-api.us-east-1.amazonaws.com/prod/prayer
 
 ### Query Parameters
 
+#### Common Parameters
+
 | Parameter | Required | Type | Description | Example |
 |-----------|----------|------|-------------|---------|
-| `type` | **Yes** | string | Prayer type: `morning`, `evening`, or `midday` | `type=morning` |
-| `date` | No | string | Date in YYYY-MM-DD format (default: today) | `date=2025-12-25` |
+| `type` | **Yes** | string | Prayer type: `morning`, `evening`, `midday`, or `compline` | `type=morning` |
 | `remarkable` | No | boolean | Format for Remarkable 2 tablet (default: false) | `remarkable=true` |
 | `nocache` | No | boolean | Bypass cache and force regeneration (default: false) | `nocache=true` |
+
+#### Daily Prayer Parameters
+
+| Parameter | Required | Type | Description | Example |
+|-----------|----------|------|-------------|---------|
+| `date` | No | string | Date in YYYY-MM-DD format (default: today) | `date=2025-12-25` |
+
+#### Monthly Prayer Parameters
+
+| Parameter | Required | Type | Description | Example |
+|-----------|----------|------|-------------|---------|
+| `monthly` | **Yes** | boolean | Enable monthly generation mode | `monthly=true` |
+| `year` | No | number | Year (default: current year) | `year=2025` |
+| `month` | No | number | Month 1-12 (default: current month) | `month=12` |
+| `psalm_cycle` | No | number | Psalm cycle: 30 or 60 (default: 60) | `psalm_cycle=30` |
 
 ### Example API Calls
 
 #### Using curl
 
+**Daily Prayers:**
 ```bash
 # Morning prayer for today
 curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning' -o morning_prayer.pdf
@@ -186,12 +203,27 @@ curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morn
 # Evening prayer for Christmas Day
 curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=evening&date=2025-12-25' -o christmas_evening.pdf
 
+# Compline for today
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=compline' -o compline.pdf
+
 # Morning prayer formatted for Remarkable tablet
 curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&remarkable=true' -o morning_remarkable.pdf
+```
 
-# Midday prayer for specific date
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=midday&date=2025-01-01' -o new_year_midday.pdf
+**Monthly Prayers:**
+```bash
+# Monthly morning prayers for current month
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true' -o morning_monthly.pdf
 
+# Monthly evening prayers for December 2025
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=evening&monthly=true&year=2025&month=12' -o evening_dec_2025.pdf
+
+# Monthly morning prayers with 30-day psalm cycle
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true&psalm_cycle=30' -o morning_monthly_30day.pdf
+```
+
+**Advanced:**
+```bash
 # Bypass cache (force regeneration)
 curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&nocache=true' -o morning_fresh.pdf
 ```
@@ -252,16 +284,27 @@ The API returns helpful headers:
 
 ### Cache Key Generation
 
-PDFs are cached based on:
-- Prayer type (morning, evening, midday)
+**Daily prayers** are cached based on:
+- Prayer type (morning, evening, midday, compline)
 - Date (YYYY-MM-DD)
 - Page size (letter or remarkable)
 
+**Monthly prayers** are cached based on:
+- Prayer type
+- Year and month
+- Page size
+- Psalm cycle (if specified)
+
 **Example S3 cache keys:**
 ```
-prayers/morning/2025-12-25/letter.pdf
-prayers/evening/2025-12-25/letter.pdf
-prayers/morning/2025-12-25/remarkable.pdf
+# Daily prayers
+prayers/daily/morning/2025-12-25/letter.pdf
+prayers/daily/evening/2025-12-25/letter.pdf
+prayers/daily/compline/2025-12-25/remarkable.pdf
+
+# Monthly prayers
+prayers/monthly/morning/2025/12/letter/default.pdf
+prayers/monthly/evening/2025/12/remarkable/cycle30.pdf
 ```
 
 ### Cache Lifecycle
@@ -320,6 +363,27 @@ Based on moderate usage (1000 requests/day, 50% cache hit rate):
 - Cache hit rate significantly affects costs (higher cache hit rate = lower costs)
 
 ## Customization
+
+### Enable API Gateway Logging
+
+By default, API Gateway logging is **disabled** to avoid requiring account-level IAM role configuration. To enable detailed logging:
+
+```bash
+aws cloudformation deploy \
+    --stack-name DailyOfficePrayerGenerator \
+    --parameter-overrides \
+        EnableAPILogging=true
+```
+
+This will:
+1. Create an IAM role for API Gateway to write to CloudWatch Logs
+2. Configure the account-level CloudWatch Logs role
+3. Enable INFO-level logging for all API requests
+4. Enable data trace logging (full request/response bodies)
+
+**Logs Location**: CloudWatch Logs > Log Groups > `API-Gateway-Execution-Logs_*`
+
+**Note**: Once enabled, API Gateway logs can be verbose and incur CloudWatch Logs storage costs.
 
 ### Adjust Lambda Memory/Timeout
 
