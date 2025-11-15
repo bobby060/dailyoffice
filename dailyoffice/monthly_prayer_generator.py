@@ -28,9 +28,15 @@ class MonthlyPrayerGenerator:
     - Navigation links on each page to the first page of that day's prayer
     """
 
-    def __init__(self):
-        """Initialize the monthly prayer generator."""
-        self.prayer_service = PrayerService()
+    def __init__(self, enable_cache: bool = True):
+        """
+        Initialize the monthly prayer generator.
+
+        Args:
+            enable_cache: Whether to enable local file caching of API responses.
+                         Defaults to True. Set to False in Lambda/serverless environments.
+        """
+        self.prayer_service = PrayerService(enable_cache=enable_cache)
 
     def generate_monthly_latex(
         self,

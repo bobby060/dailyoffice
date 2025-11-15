@@ -155,7 +155,7 @@ def lambda_handler(event, context):
     - monthly: Boolean flag for monthly generation (default: false)
     - remarkable: Boolean flag for Remarkable 2 tablet format (default: false)
     - psalm_cycle: Psalm cycle (30 or 60) for monthly prayers (default: 60)
-    - nocache: Boolean flag to bypass cache (default: false)
+    - nocache: Boolean flag to bypass S3 cache (default: false) [optional, for debugging]
 
     Returns:
         API Gateway compatible response with PDF as base64-encoded binary

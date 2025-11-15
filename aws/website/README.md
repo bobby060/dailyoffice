@@ -17,6 +17,17 @@ A simple, dependency-free static website for generating Daily Office prayer PDFs
 - ✅ Clear loading states and error handling
 - ✅ Automatic PDF download
 
+## Configuration
+
+Before deploying, you must configure the API endpoint:
+
+1. **Edit `index.html`**
+2. **Find the configuration section** (around line 363):
+   ```javascript
+   const API_ENDPOINT = 'https://YOUR_API_ID.execute-api.YOUR_REGION.amazonaws.com/prod/prayer';
+   ```
+3. **Replace with your actual API Gateway URL** from the CloudFormation stack outputs
+
 ## Files
 
 - `index.html` - The complete website (HTML, CSS, and JavaScript in one file)
@@ -129,21 +140,13 @@ Or use the Vercel web interface to deploy.
 ## Usage
 
 1. **Open the website** in your browser
-2. **Enter your API endpoint URL** (from CloudFormation outputs):
-   ```
-   https://YOUR_API_ID.execute-api.REGION.amazonaws.com/prod/prayer
-   ```
-3. **Select options**:
+2. **Select options**:
    - Choose Daily or Monthly mode
    - Select prayer type
    - Choose date/month
-   - Configure advanced options if needed
-4. **Click "Generate Prayer PDF"**
-5. **Wait for download** (a few seconds for daily, 1-2 minutes for monthly)
-
-## Configuration
-
-The website automatically saves your API endpoint URL to browser local storage, so you only need to enter it once.
+   - Configure page size if needed
+3. **Click "Generate Prayer PDF"**
+4. **Wait for download** (a few seconds for daily, 1-2 minutes for monthly)
 
 ## CORS Configuration
 

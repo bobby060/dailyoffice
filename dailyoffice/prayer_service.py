@@ -20,9 +20,16 @@ class PrayerService:
     formatted output documents.
     """
 
-    def __init__(self):
-        """Initialize the prayer service."""
-        self.api_client = DailyOfficeAPIClient()
+    def __init__(self, enable_cache: bool = True):
+        """
+        Initialize the prayer service.
+
+        Args:
+            enable_cache: Whether to enable local file caching of API responses.
+                         Defaults to True. Set to False in Lambda/serverless environments
+                         where filesystem caching is not desired.
+        """
+        self.api_client = DailyOfficeAPIClient(enable_cache=enable_cache)
         self.markdown_generator = MarkdownGenerator()
         self.latex_generator = LatexGenerator()
 
