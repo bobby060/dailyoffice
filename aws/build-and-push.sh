@@ -68,8 +68,12 @@ cp -r ../../dailyoffice .
 # Build the image
 # Note: Use DOCKER_BUILDKIT=0 to ensure Docker manifest v2 schema 2 format
 # which is required by AWS Lambda. Lambda does not support OCI manifests.
+# Also disable provenance and SBOM attestations which create image indexes
+# that Lambda doesn't support (added in Docker BuildKit 0.10+).
 DOCKER_BUILDKIT=0 docker build \
     --platform linux/amd64 \
+    --provenance=false \
+    --sbom=false \
     -t "$ECR_REPOSITORY_NAME:$IMAGE_TAG" \
     -f Dockerfile \
     .
