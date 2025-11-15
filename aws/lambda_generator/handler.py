@@ -143,7 +143,8 @@ def lambda_handler(event, context):
             with tempfile.TemporaryDirectory() as temp_dir:
                 output_pdf = Path(temp_dir) / "prayer.pdf"
 
-                with MonthlyPrayerGenerator() as generator:
+                # Disable local file caching in Lambda environment
+                with MonthlyPrayerGenerator(enable_cache=False) as generator:
                     generator.compile_to_pdf(
                         year=year,
                         month=month,
@@ -171,7 +172,8 @@ def lambda_handler(event, context):
             print(f"Generating {prayer_type} prayer for {prayer_date} (page_size={page_size})")
 
             # Generate LaTeX content using existing service
-            with PrayerService() as service:
+            # Disable local file caching in Lambda environment
+            with PrayerService(enable_cache=False) as service:
                 if prayer_type == 'morning':
                     latex_content = service.generate_morning_prayer_latex(prayer_date, page_size)
                 elif prayer_type == 'evening':
