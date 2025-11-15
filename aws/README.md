@@ -369,7 +369,10 @@ docker run --rm public.ecr.aws/lambda/python:3.11 bash -c "yum install -y texliv
 The image manifest, config or layer media type for the source image is not supported
 ```
 
-**Cause**: Docker/BuildKit created an incompatible manifest format (OCI or multi-architecture) instead of the Docker v2 schema 2 format that Lambda requires.
+**Root Cause**: Docker BuildKit 0.10+ creates provenance attestations and SBOM (Software Bill of Materials) by default. These attestations cause Docker to push an "image index" (multi-architecture manifest) to ECR instead of a simple single-image manifest. AWS Lambda **only supports Docker v2 schema 2 single-image manifests** and does NOT support:
+- OCI image manifests
+- Multi-architecture manifests (image indexes)
+- Image manifests with provenance/SBOM attestations
 
 **Solution**:
 
@@ -386,11 +389,14 @@ aws ecr batch-delete-image \
     --repository-name dailyoffice-pdf-generator \
     --image-ids imageTag=latest
 
-# Rebuild with DOCKER_BUILDKIT=0 (now the default in build-and-push.sh)
+# Rebuild with provenance disabled (now the default in build-and-push.sh)
 ./build-and-push.sh
-
-# The script now uses DOCKER_BUILDKIT=0 to ensure compatibility
 ```
+
+The updated build script now uses:
+- `DOCKER_BUILDKIT=0` - Ensures Docker v2 manifest format
+- `--provenance=false` - Disables provenance attestations
+- `--sbom=false` - Disables SBOM attestations
 
 3. **Verify the fix**:
 ```bash
@@ -400,16 +406,12 @@ aws ecr batch-delete-image \
 
 4. **Redeploy the stack**:
 ```bash
-IMAGE_URI=$(aws ecr describe-images \
-    --repository-name dailyoffice-pdf-generator \
-    --image-ids imageTag=latest \
-    --query 'imageDetails[0].repositoryName' \
-    --output text)
-
-./deploy-stack.sh ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/dailyoffice-pdf-generator:latest
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+IMAGE_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION:-us-east-1}.amazonaws.com/dailyoffice-pdf-generator:latest"
+./deploy-stack.sh $IMAGE_URI
 ```
 
-**Note**: The updated `build-and-push.sh` script now automatically uses `DOCKER_BUILDKIT=0` to prevent this issue.
+**Prevention**: The updated `build-and-push.sh` script now automatically disables attestations to ensure Lambda compatibility.
 
 ### Deployment Issues
 
