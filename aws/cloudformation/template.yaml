@@ -181,11 +181,6 @@ Resources:
     Properties:
       LogGroupName: !Sub '/aws/lambda/${GeneratorLambda}'
       RetentionInDays: 14
-    Tags:
-      - Key: Application
-        Value: DailyOfficePrayerGenerator
-      - Key: Component
-        Value: Generator
 
   # ============================================
   # Lambda Function - Router (with Caching)
@@ -229,11 +224,7 @@ Resources:
     Properties:
       LogGroupName: !Sub '/aws/lambda/${RouterLambda}'
       RetentionInDays: 14
-    Tags:
-      - Key: Application
-        Value: DailyOfficePrayerGenerator
-      - Key: Component
-        Value: Router
+
 
   # ============================================
   # API Gateway REST API
