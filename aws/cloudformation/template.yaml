@@ -41,6 +41,17 @@ Parameters:
     Type: String
     Description: ECR image URI for the generator Lambda (must be built and pushed before deployment)
 
+  EnableAPILogging:
+    Type: String
+    Default: 'false'
+    AllowedValues:
+      - 'true'
+      - 'false'
+    Description: Enable CloudWatch Logs for API Gateway (requires account-level configuration)
+
+Conditions:
+  EnableLogging: !Equals [!Ref EnableAPILogging, 'true']
+
 Resources:
   # ============================================
   # S3 Bucket for PDF Cache
@@ -149,6 +160,34 @@ Resources:
       Tags:
         - Key: Application
           Value: DailyOfficePrayerGenerator
+
+  # ============================================
+  # API Gateway CloudWatch Logs Role (Optional)
+  # ============================================
+  ApiGatewayCloudWatchLogsRole:
+    Type: AWS::IAM::Role
+    Condition: EnableLogging
+    Properties:
+      RoleName: !Sub 'DailyOfficeAPIGatewayCloudWatchLogsRole-${AWS::Region}'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
+      Tags:
+        - Key: Application
+          Value: DailyOfficePrayerGenerator
+
+  # API Gateway Account (sets CloudWatch Logs role)
+  ApiGatewayAccount:
+    Type: AWS::ApiGateway::Account
+    Condition: EnableLogging
+    Properties:
+      CloudWatchRoleArn: !GetAtt ApiGatewayCloudWatchLogsRole.Arn
 
   # ============================================
   # Lambda Function - PDF Generator
@@ -340,8 +379,8 @@ Resources:
       MethodSettings:
         - ResourcePath: '/*'
           HttpMethod: '*'
-          LoggingLevel: INFO
-          DataTraceEnabled: true
+          LoggingLevel: !If [EnableLogging, INFO, 'OFF']
+          DataTraceEnabled: !If [EnableLogging, true, false]
           MetricsEnabled: true
       Tags:
         - Key: Application
