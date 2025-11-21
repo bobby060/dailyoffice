@@ -277,7 +277,7 @@ Resources:
         Types:
           - REGIONAL
       BinaryMediaTypes:
-        - application/pdf
+        - '*/*'
       Tags:
         - Key: Application
           Value: DailyOfficePrayerGenerator
