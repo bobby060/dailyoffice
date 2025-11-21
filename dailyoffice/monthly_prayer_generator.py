@@ -6,6 +6,7 @@ with a title page, index, and hyperlinked navigation.
 """
 
 import calendar
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, timedelta
 from typing import Optional, List, Dict, Any
 from pathlib import Path
@@ -73,11 +74,9 @@ class MonthlyPrayerGenerator:
         psalm_info = f" ({psalm_cycle}-day psalm cycle)" if psalm_cycle else ""
         print(f"Generating {prayer_type} prayers for {month_name} {year}{psalm_info}...")
 
-        for day in range(1, num_days + 1):
+        def fetch_day(day: int) -> Dict[str, Any]:
+            """Fetch and process a single day's prayer content."""
             prayer_date = date(year, month, day)
-            print(f"  Fetching day {day}/{num_days}: {prayer_date.strftime('%B %d, %Y')}...")
-
-            # Create label for this day
             day_label = f'day{day}'
 
             # Get the LaTeX content for this day
@@ -115,13 +114,27 @@ class MonthlyPrayerGenerator:
             body_end = latex.find(r'\end{document}')
 
             if body_start != -1 and body_end != -1:
-                # Extract content after \begin{document}
                 body_content = latex[body_start + len(r'\begin{document}'):body_end].strip()
-                daily_latex_content.append({
+                return {
                     'day': day,
                     'date': prayer_date,
                     'content': body_content
-                })
+                }
+            return None
+
+        # Fetch all days in parallel
+        print(f"  Fetching {num_days} days in parallel...")
+        with ThreadPoolExecutor(max_workers=min(num_days, 10)) as executor:
+            futures = {executor.submit(fetch_day, day): day for day in range(1, num_days + 1)}
+            for future in as_completed(futures):
+                day = futures[future]
+                result = future.result()
+                if result:
+                    daily_latex_content.append(result)
+                    print(f"  Completed day {day}/{num_days}")
+
+        # Sort by day to ensure correct order
+        daily_latex_content.sort(key=lambda x: x['day'])
 
         print(f"Combining {len(daily_latex_content)} days into monthly document...")
 
