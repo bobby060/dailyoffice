@@ -54,7 +54,9 @@ def test_daily_prayer(base_url, prayer_type, test_date=None, remarkable=False):
     print(f"   Params: {params}")
 
     try:
-        response = requests.get(base_url, params=params, timeout=60)
+        # Must include Accept header for API Gateway to return binary
+        headers = {'Accept': 'application/pdf'}
+        response = requests.get(base_url, params=params, headers=headers, timeout=60)
 
         if response.status_code != 200:
             print(f"   ❌ FAILED: HTTP {response.status_code}")
@@ -139,7 +141,9 @@ def test_monthly_prayer(base_url, prayer_type, year=None, month=None, remarkable
         print(f"   ⏳ Generating monthly PDF (this may take 30-120 seconds)...")
         start_time = time.time()
 
-        response = requests.get(base_url, params=params, timeout=300)
+        # Must include Accept header for API Gateway to return binary
+        headers = {'Accept': 'application/pdf'}
+        response = requests.get(base_url, params=params, headers=headers, timeout=300)
         elapsed_time = time.time() - start_time
 
         if response.status_code != 200:
@@ -199,8 +203,11 @@ def test_cache_functionality(base_url, prayer_type='morning'):
     print(f"   First request (should be MISS)...")
 
     try:
+        # Must include Accept header for API Gateway to return binary
+        headers = {'Accept': 'application/pdf'}
+
         # First request - should be a cache miss
-        response1 = requests.get(base_url, params=params, timeout=60)
+        response1 = requests.get(base_url, params=params, headers=headers, timeout=60)
         if response1.status_code != 200:
             print(f"   ❌ FAILED: First request returned HTTP {response1.status_code}")
             return False
@@ -211,7 +218,7 @@ def test_cache_functionality(base_url, prayer_type='morning'):
         # Second request - should be a cache hit
         print(f"   Second request (should be HIT)...")
         time.sleep(1)  # Brief pause
-        response2 = requests.get(base_url, params=params, timeout=60)
+        response2 = requests.get(base_url, params=params, headers=headers, timeout=60)
 
         if response2.status_code != 200:
             print(f"   ❌ FAILED: Second request returned HTTP {response2.status_code}")
