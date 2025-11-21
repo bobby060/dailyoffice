@@ -1,0 +1,24 @@
+# Build artifacts
+*.zip
+lambda_router.zip
+
+# Docker build context
+lambda_generator/dailyoffice/
+
+# Temporary files
+/tmp/
+*.tmp
+
+# Environment files
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
