@@ -18,7 +18,7 @@ Parameters:
 
   GeneratorTimeout:
     Type: Number
-    Default: 300
+    Default: 120
     Description: Timeout for PDF generator Lambda (seconds)
     MinValue: 30
     MaxValue: 900
@@ -32,7 +32,7 @@ Parameters:
 
   RouterTimeout:
     Type: Number
-    Default: 60
+    Default: 110
     Description: Timeout for router Lambda (seconds)
     MinValue: 10
     MaxValue: 900

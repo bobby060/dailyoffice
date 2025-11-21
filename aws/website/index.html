@@ -278,6 +278,15 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                    <label for="psalmCycle">Psalm Cycle</label>
+                    <select id="psalmCycle">
+                        <option value="">Default (60-day)</option>
+                        <option value="30">30-day cycle</option>
+                        <option value="60">60-day cycle</option>
+                    </select>
+            </div>
+
             <!-- Daily Options -->
             <div id="dailyOptions">
                 <div class="form-group">
@@ -315,14 +324,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="psalmCycle">Psalm Cycle</label>
-                    <select id="psalmCycle">
-                        <option value="">Default (60-day)</option>
-                        <option value="30">30-day cycle</option>
-                        <option value="60">60-day cycle</option>
-                    </select>
-                </div>
+       
             </div>
 
             <!-- Advanced Options -->
@@ -430,11 +432,12 @@
                     params.append('month', month);
                 }
 
-                const psalmCycle = document.getElementById('psalmCycle').value;
+            }
+
+            const psalmCycle = document.getElementById('psalmCycle').value;
                 if (psalmCycle) {
                     params.append('psalm_cycle', psalmCycle);
                 }
-            }
 
             if (pageSize === 'remarkable') {
                 params.append('remarkable', 'true');

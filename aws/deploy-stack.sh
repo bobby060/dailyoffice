@@ -5,7 +5,7 @@ set -e
 
 # Configuration
 AWS_REGION="${AWS_REGION:-us-east-1}"
-STACK_NAME="${STACK_NAME:-DailyOfficePrayerGenerator}"
+STACK_NAME="${STACK_NAME:-dailyofficeprayergenerator}"
 IMAGE_URI="$1"
 
 if [ -z "$IMAGE_URI" ]; then

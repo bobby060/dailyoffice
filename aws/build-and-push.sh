@@ -9,7 +9,7 @@ fi
 set -e
 
 # Configuration
-AWS_REGION="${AWS_REGION:-us-east-1}"
+AWS_REGION="us-east-1"
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 ECR_REPOSITORY_NAME="dailyoffice-pdf-generator"
 IMAGE_TAG="${IMAGE_TAG:-latest}"
@@ -70,35 +70,18 @@ cp -r ../../dailyoffice .
 # which is required by AWS Lambda. Lambda does not support OCI manifests.
 # Also disable provenance and SBOM attestations which create image indexes
 # that Lambda doesn't support (added in Docker BuildKit 0.10+).
-DOCKER_BUILDKIT=0 docker build \
-    --platform linux/amd64 \
+
+ECR_IMAGE_URI="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:$IMAGE_TAG"
+
+    docker buildx build --platform linux/amd64 \
     --provenance=false \
-    --sbom=false \
-    -t "$ECR_REPOSITORY_NAME:$IMAGE_TAG" \
+    -t "$ECR_IMAGE_URI" \
     -f Dockerfile \
+    --push \
     .
 
 # Clean up copied package
 rm -rf dailyoffice
-
-if [ "$BUILD_ONLY" = true ]; then
-    echo ""
-    echo "Build complete. Skipping push to ECR."
-    echo "You can find the image locally as: $ECR_REPOSITORY_NAME:$IMAGE_TAG"
-    exit 0
-fi
-
-# Step 4: Tag the image for ECR
-echo ""
-echo "[4/5] Tagging image for ECR..."
-ECR_IMAGE_URI="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:$IMAGE_TAG"
-docker tag "$ECR_REPOSITORY_NAME:$IMAGE_TAG" "$ECR_IMAGE_URI"
-
-# Step 5: Push to ECR
-echo ""
-echo "[5/5] Pushing image to ECR..."
-# Push with --disable-content-trust to ensure compatibility
-docker push "$ECR_IMAGE_URI"
 
 # Verify the manifest type
 echo ""

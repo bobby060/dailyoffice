@@ -221,11 +221,12 @@ class DailyOfficeAPIClient:
                 raise ValueError(f"Psalm cycle must be 30 or 60, got {psalm_cycle}")
             params['psalms'] = psalm_cycle
 
-        # Check cache first
-        cache_key = self._get_cache_key(endpoint, params)
-        cached_data = self._get_from_cache(cache_key)
-        if cached_data is not None:
-            return cached_data
+        if self.enable_cache:
+            # Check if the response is already cached
+            cache_key = self._get_cache_key(endpoint, params)
+            cached_data = self._get_from_cache(cache_key)
+            if cached_data is not None:
+                return cached_data
 
         # Fetch from API
         url = urljoin(self.base_url, endpoint)
@@ -236,7 +237,8 @@ class DailyOfficeAPIClient:
             data = response.json()
 
             # Save to cache
-            self._save_to_cache(cache_key, data)
+            if self.enable_cache:
+                self._save_to_cache(cache_key, data)
 
             return data
 
@@ -282,12 +284,12 @@ class DailyOfficeAPIClient:
                 raise ValueError(f"Psalm cycle must be 30 or 60, got {psalm_cycle}")
             params['psalms'] = psalm_cycle
 
-        # Check cache first
-        cache_key = self._get_cache_key(endpoint, params)
-        cached_data = self._get_from_cache(cache_key)
-        if cached_data is not None:
-            return cached_data
-
+        if self.enable_cache:
+            # Check if the response is already cached
+            cache_key = self._get_cache_key(endpoint, params)
+            cached_data = self._get_from_cache(cache_key)
+            if cached_data is not None:
+                return cached_data
         # Fetch from API
         url = urljoin(self.base_url, endpoint)
 
@@ -297,7 +299,8 @@ class DailyOfficeAPIClient:
             data = response.json()
 
             # Save to cache
-            self._save_to_cache(cache_key, data)
+            if self.enable_cache:
+                self._save_to_cache(cache_key, data)
 
             return data
 
@@ -343,12 +346,12 @@ class DailyOfficeAPIClient:
                 raise ValueError(f"Psalm cycle must be 30 or 60, got {psalm_cycle}")
             params['psalms'] = psalm_cycle
 
-        # Check cache first
-        cache_key = self._get_cache_key(endpoint, params)
-        cached_data = self._get_from_cache(cache_key)
-        if cached_data is not None:
-            return cached_data
-
+        if self.enable_cache:
+            # Check if the response is already cached
+            cache_key = self._get_cache_key(endpoint, params)
+            cached_data = self._get_from_cache(cache_key)
+            if cached_data is not None:
+                return cached_data
         # Fetch from API
         url = urljoin(self.base_url, endpoint)
 
@@ -358,7 +361,8 @@ class DailyOfficeAPIClient:
             data = response.json()
 
             # Save to cache
-            self._save_to_cache(cache_key, data)
+            if self.enable_cache:
+                self._save_to_cache(cache_key, data)
 
             return data
 
