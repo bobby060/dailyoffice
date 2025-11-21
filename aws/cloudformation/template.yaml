@@ -59,7 +59,6 @@ Resources:
   CacheBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub 'dailyoffice-pdf-cache-${AWS::AccountId}'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
