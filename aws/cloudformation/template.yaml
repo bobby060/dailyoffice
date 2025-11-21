@@ -59,6 +59,7 @@ Resources:
   CacheBucket:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: !Sub 'dailyoffice-pdf-cache-${AWS::AccountId}'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -87,6 +88,7 @@ Resources:
   GeneratorLambdaRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: !Sub 'DailyOfficeGeneratorLambdaRole-${AWS::Region}'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -117,6 +119,7 @@ Resources:
   RouterLambdaRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: !Sub 'DailyOfficeRouterLambdaRole-${AWS::Region}'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -165,6 +168,7 @@ Resources:
     Type: AWS::IAM::Role
     Condition: EnableLogging
     Properties:
+      RoleName: !Sub 'DailyOfficeAPIGatewayCloudWatchLogsRole-${AWS::Region}'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -191,6 +195,7 @@ Resources:
   GeneratorLambda:
     Type: AWS::Lambda::Function
     Properties:
+      FunctionName: DailyOfficePDFGenerator
       Description: Generates Daily Office prayer PDFs using LaTeX
       Role: !GetAtt GeneratorLambdaRole.Arn
       PackageType: Image
@@ -222,6 +227,7 @@ Resources:
   RouterLambda:
     Type: AWS::Lambda::Function
     Properties:
+      FunctionName: DailyOfficePDFRouter
       Description: Routes requests and caches PDFs in S3
       Role: !GetAtt RouterLambdaRole.Arn
       Runtime: python3.11
