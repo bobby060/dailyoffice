@@ -14,6 +14,14 @@ STACK_NAME=${1:-dailyofficeprayergenerator}
 echo "🧹 Starting cleanup of Daily Office Prayer Generator AWS resources..."
 echo "📋 Stack name: $STACK_NAME"
 
+
+# Delete S3 cache bucket (if needed)
+echo "🗄️  Deleting S3 cache bucket..."
+CACHE_BUCKET="dailyoffice-pdf-cache-$(aws sts get-caller-identity --query Account --output text --region us-east-1)"
+aws s3 rb "s3://$CACHE_BUCKET" --force \
+    --region us-east-1 \
+    2>/dev/null || echo "⚠️  Cache bucket already deleted or doesn't exist"
+
 # Delete CloudFormation stack
 echo "📋 Deleting CloudFormation stack..."
 aws cloudformation delete-stack --stack-name "$STACK_NAME" --region us-east-1
@@ -44,11 +52,6 @@ aws ecr delete-repository \
     --region us-east-1 \
     2>/dev/null || echo "⚠️  Repository already deleted or doesn't exist"
 
-# Delete S3 cache bucket (if needed)
-echo "🗄️  Deleting S3 cache bucket..."
-CACHE_BUCKET="dailyoffice-pdf-cache-$(aws sts get-caller-identity --query Account --output text --region us-east-1)"
-aws s3 rb "s3://$CACHE_BUCKET" --force \
-    --region us-east-1 \
-    2>/dev/null || echo "⚠️  Cache bucket already deleted or doesn't exist"
+
 
 echo "🎉 Cleanup complete! All Daily Office Prayer Generator AWS resources have been removed."

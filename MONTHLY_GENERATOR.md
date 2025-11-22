@@ -245,4 +245,3 @@ If API calls fail:
 For issues or questions:
 - Check the main README.md for general setup
 - Report bugs via GitHub issues
-- Visit https://www.dailyoffice2019.com/ for information about the Daily Office
