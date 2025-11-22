@@ -227,21 +227,28 @@ See [MONTHLY_GENERATOR.md](MONTHLY_GENERATOR.md) for complete documentation on m
 
 ```
 dailyoffice/
-├── dailyoffice/                      # Main package
+├── dailyoffice/                      # Main Python package
 │   ├── __init__.py                  # Package initialization
 │   ├── api_client.py                # API communication class
 │   ├── markdown_prayer_generator.py # Markdown generation class
 │   ├── latex_prayer_generator.py    # LaTeX/PDF generation class
 │   ├── prayer_service.py            # Service layer coordinating components
 │   └── monthly_prayer_generator.py  # Monthly prayer generation class
+├── aws/                              # AWS Lambda deployment
+│   ├── cloudformation/              # CloudFormation templates
+│   ├── lambda_generator/            # PDF generator Lambda (container)
+│   ├── lambda_router/               # Router Lambda with S3 caching
+│   ├── website/                     # Static web frontend
+│   ├── build-and-push.sh            # Build and push Docker image
+│   ├── deploy-stack.sh              # Deploy CloudFormation stack
+│   └── README.md                    # Detailed AWS deployment docs
+├── tests/                            # Test suite
+│   └── README.md                    # Testing documentation
 ├── generate_daily.py                 # CLI entry point for single prayers
 ├── generate_monthly.py               # CLI entry point for monthly prayers
-├── collect_api_samples.py            # API sample data collection script
-├── test_with_sample_data.py          # Test with sample data
 ├── requirements.txt                  # Python dependencies
 ├── README.md                         # This file
-├── MONTHLY_GENERATOR.md              # Monthly generator documentation
-└── TESTING_INSTRUCTIONS.md           # Instructions for collecting API samples
+└── MONTHLY_GENERATOR.md              # Monthly generator documentation
 ```
 
 ## API Information
@@ -305,11 +312,94 @@ See [tests/README.md](tests/README.md) for detailed testing documentation.
 
 The codebase follows Python PEP 8 style guidelines with comprehensive docstrings for all classes and methods.
 
+## AWS Cloud Deployment
+
+This application can be deployed as a serverless API on AWS Lambda with automatic PDF caching via S3. This allows you to generate prayer PDFs on-demand via HTTP requests without running the application locally.
+
+### Architecture Overview
+
+```
+Client → API Gateway → Router Lambda → [S3 Cache or Generator Lambda]
+```
+
+- **API Gateway**: REST API endpoint at `/prayer`
+- **Router Lambda**: Handles caching logic and request routing
+- **Generator Lambda**: Container image with LaTeX for PDF generation
+- **S3 Bucket**: Caches generated PDFs with configurable TTL (default: 30 days)
+
+### Prerequisites for AWS Deployment
+
+- AWS CLI configured with appropriate credentials
+- Docker installed and running
+- Bash shell (Linux, macOS, or WSL)
+
+### Quick Deploy
+
+```bash
+cd aws
+
+# Step 1: Build and push Docker image to ECR
+./build-and-push.sh
+
+# Step 2: Deploy CloudFormation stack
+./deploy-stack.sh <image-uri-from-step-1>
+```
+
+### CloudFormation Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `ImageUri` | *Required* | ECR image URI for the generator Lambda |
+| `CacheTTLDays` | 30 | Days to cache generated PDFs |
+| `GeneratorMemorySize` | 2048 | Memory (MB) for PDF generator Lambda |
+| `GeneratorTimeout` | 120 | Timeout (seconds) for generator Lambda |
+| `RouterMemorySize` | 512 | Memory (MB) for router Lambda |
+| `RouterTimeout` | 110 | Timeout (seconds) for router Lambda |
+| `EnableAPILogging` | false | Enable CloudWatch Logs for API Gateway |
+
+### Lambda Environment Variables
+
+The Router Lambda uses these environment variables (automatically configured by CloudFormation):
+
+| Variable | Description |
+|----------|-------------|
+| `CACHE_BUCKET` | S3 bucket name for PDF cache |
+| `GENERATOR_FUNCTION_NAME` | Name of the generator Lambda function |
+| `CACHE_TTL_DAYS` | Cache TTL in days |
+| `LOG_LEVEL` | Logging level (INFO) |
+
+### API Usage
+
+```bash
+# Daily morning prayer for today
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning' -o prayer.pdf
+
+# Evening prayer for Christmas
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=evening&date=2025-12-25' -o christmas.pdf
+
+# Monthly prayers for December
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true&year=2025&month=12' -o dec.pdf
+
+# Formatted for Remarkable 2 tablet
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&remarkable=true' -o remarkable.pdf
+```
+
+### Estimated Monthly Costs
+
+For moderate usage (1000 requests/day, 50% cache hit rate): ~$19/month
+
+### Static Web Frontend
+
+A simple static website for the AWS API is included at `aws/website/`. It provides a browser-based interface to generate prayers without using the command line. See [aws/website/README.md](aws/website/README.md) for deployment options (S3, GitHub Pages, Netlify, Vercel).
+
+For detailed deployment instructions, troubleshooting, and customization options, see [aws/README.md](aws/README.md).
+
 ## Future Enhancements
 
 - [x] Compline support
 - [x] Monthly prayer generation with navigation
 - [x] Multiple page sizes (letter, remarkable)
+- [x] AWS Lambda deployment with S3 caching
 - [ ] Custom canticle selection
 - [ ] Configuration file support
 - [ ] Multiple output formats (HTML, DOCX)
