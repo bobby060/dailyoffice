@@ -4,6 +4,10 @@ Generate beautifully formatted prayer documents from *The Book of Common Prayer*
 
 One of my daily struggles is the tension between the desire to disconnect from my phone and the convenience of not having to flip back and forward between the BCP and the readings. This project is an attempt to solve that problem by generating a single, well-formatted document for each prayer that I can send to my e-reader or print out.
 
+>[!NOTE]
+> This was almost entirely generated using Claude Code Web, mostly as an experiment to see how far I could take it. In places, I edited and directed it signifantly, but this repo is certainly not up to the standards I would have written it to. It does, however, work quite well, and I hope it can be useful to others.
+
+
 ## Overview
 
 This Python application fetches daily office liturgy from the [Daily Office 2019 API](https://api.dailyoffice2019.com) and generates well-formatted Markdown and PDF documents. The application supports:
