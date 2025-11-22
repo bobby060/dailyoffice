@@ -18,17 +18,15 @@ Examples of generated documents are included in the repository for reference.
 
 ## Features
 
-- ✅ **Four prayer types**: Morning, Evening, Midday Prayer, and Compline
-- ✅ **Monthly generation**: Create a complete month of prayers in one PDF with hyperlinked navigation
-- ✅ **Multiple output formats**: Markdown, PDF (via WeasyPrint), and PDF (via LaTeX)
-- ✅ **LaTeX generation**: Generate beautiful PDFs with LaTeX for professional typesetting
-- ✅ **Multiple page sizes**: Letter and Remarkable 2 tablet sizes
-- ✅ **Clean formatting**: People's responses in bold, no labels needed
-- ✅ **Psalm formatting**: Responsive reading format (officiant normal, people bold)
-- ✅ **Fetch prayers for any date**
-- ✅ **Includes all daily readings and prayers**
-- ✅ **Command-line interface** for easy use
-- ✅ **Comprehensive test suite** (49 tests)
+-  **All four daily prayers**: Morning, Evening, Midday Prayer, and Compline
+-  **Monthly generation**: Create a complete month of prayers in one PDF with hyperlinked navigation
+-  **Multiple output formats**: Markdown, PDF (via WeasyPrint), and PDF (via LaTeX)
+-  **LaTeX generation**: Generate beautiful PDFs with LaTeX for professional typesetting
+-  **Multiple page sizes**: Letter and Remarkable 2 tablet sizes
+-  **Clean formatting**: Generally matches the style of the printed BCP/ 2019 website
+-  **Fetch prayers for any date**
+-  **Includes all daily readings and prayers**
+-  **Command-line interface** for easy use
 
 ## Installation
 
@@ -36,6 +34,7 @@ Examples of generated documents are included in the repository for reference.
 
 - Python 3.8 or higher
 - pip (Python package installer)
+- texlive (for LaTeX PDF generation, optional)
 
 ### Setup
 
@@ -72,6 +71,7 @@ sudo apt-get install texlive-latex-extra
 ```
 
 **macOS:**
+*not tested*
 ```bash
 brew install --cask basictex
 # or for full installation:
@@ -79,6 +79,7 @@ brew install --cask mactex-no-gui
 ```
 
 **Windows:**
+*not tested*
 - Install [MiKTeX](https://miktex.org/) or [TeX Live](https://www.tug.org/texlive/)
 
 LaTeX provides professional typesetting and is recommended for the best-looking PDFs. If you don't install LaTeX, you can still use the `--pdf` option which uses WeasyPrint.
@@ -121,45 +122,14 @@ python generate_daily.py [OPTIONS]
 **Options:**
 
 - `-h, --help` - Show help message and exit
-  ```bash
-  python generate_daily.py --help
-  ```
-
 - `-t, --type {morning|evening|midday}` - Type of prayer to generate, required
-  ```bash
-  python generate_daily.py --type evening
-  ```
-
 - `-d, --date YYYY-MM-DD` - Specify a date for the prayer (default: today)
-  ```bash
-  python generate_daily.py --date 2025-12-25
-  ```
-
 - `-o, --output FILE` - Specify output filename (default: <Type>-Prayer-Mon-DD-YYYY.md)
-  ```bash
-  python generate_daily.py --output my_prayer.md
-  ```
-
+- `--remarkable` - Format output for Remarkable 2 tablet (PDF only)
 - `--pdf` - Generate PDF output using WeasyPrint (requires markdown and weasyprint packages)
-  ```bash
-  python generate_daily.py --pdf
-  ```
-
 - `--latex` - Generate PDF using LaTeX (requires pdflatex). Default: output PDF only.
-  ```bash
-  python generate_daily.py --latex
-  ```
-
 - `--save-tex` - When using --latex, also save the .tex file (in addition to PDF)
-  ```bash
-  python generate_daily.py --latex --save-tex
-  ```
-
 - `--print` - Print to console instead of saving to file
-  ```bash
-  python generate_daily.py --print
-  ```
-
 ### Examples
 
 1. **Generate morning prayer for Christmas Day:**
@@ -203,6 +173,8 @@ python generate_daily.py [OPTIONS]
 
 For a complete month of prayers in one PDF document, use `generate_monthly.py`:
 
+Options are similar to above except you can specify the month and year instead of date.
+
 ```bash
 # Generate morning prayers for current month
 python generate_monthly.py --type morning
@@ -219,192 +191,15 @@ python generate_monthly.py --type morning --remarkable
 - Hyperlinked index of all days
 - Navigation bar on each day (back to index, jump to top of day)
 - Current day shown in page header
-- Supports all page sizes (letter and remarkable)
 
 See [MONTHLY_GENERATOR.md](MONTHLY_GENERATOR.md) for complete documentation on monthly generation.
 
-## Project Structure
-
-```
-dailyoffice/
-├── dailyoffice/                      # Main Python package
-│   ├── __init__.py                  # Package initialization
-│   ├── api_client.py                # API communication class
-│   ├── markdown_prayer_generator.py # Markdown generation class
-│   ├── latex_prayer_generator.py    # LaTeX/PDF generation class
-│   ├── prayer_service.py            # Service layer coordinating components
-│   └── monthly_prayer_generator.py  # Monthly prayer generation class
-├── aws/                              # AWS Lambda deployment
-│   ├── cloudformation/              # CloudFormation templates
-│   ├── lambda_generator/            # PDF generator Lambda (container)
-│   ├── lambda_router/               # Router Lambda with S3 caching
-│   ├── website/                     # Static web frontend
-│   ├── build-and-push.sh            # Build and push Docker image
-│   ├── deploy-stack.sh              # Deploy CloudFormation stack
-│   └── README.md                    # Detailed AWS deployment docs
-├── tests/                            # Test suite
-│   └── README.md                    # Testing documentation
-├── generate_daily.py                 # CLI entry point for single prayers
-├── generate_monthly.py               # CLI entry point for monthly prayers
-├── requirements.txt                  # Python dependencies
-├── README.md                         # This file
-└── MONTHLY_GENERATOR.md              # Monthly generator documentation
-```
-
-## API Information
-
-This application uses the [Daily Office 2019 API](https://api.dailyoffice2019.com), which provides:
-
-- Daily morning, midday, evening, and compline prayers
-- Readings from the Revised Common Lectionary
-- Proper collects and prayers for each day
-- Church calendar information (seasons, feasts, commemorations)
-
-**API Endpoint Formats:**
-```
-https://api.dailyoffice2019.com/api/v1/office/morning_prayer/YYYY-MM-DD
-https://api.dailyoffice2019.com/api/v1/office/evening_prayer/YYYY-MM-DD
-https://api.dailyoffice2019.com/api/v1/office/midday_prayer/YYYY-MM-DD
-```
-
-## Development
-
-### Collecting API Sample Data
-
-For development and testing purposes, you can collect sample API responses:
-
-```bash
-python collect_api_samples.py
-```
-
-This script will:
-- Fetch data from various API endpoints
-- Save responses to the `api_samples/` directory
-- Create organized JSON files for testing
-- Generate a summary report
-
-See [TESTING_INSTRUCTIONS.md](TESTING_INSTRUCTIONS.md) for detailed instructions.
-
-### Running Tests
-
-The project includes comprehensive unit and integration tests (49 tests total):
-
-```bash
-# Run all tests
-./run_tests.sh
-
-# Or use unittest directly
-python3 -m unittest discover -s tests -p "test_*.py"
-
-# Run specific test file
-python3 -m unittest tests.test_api_client -v
-```
-
-Test the markdown generator with sample data:
-
-```bash
-python test_with_sample_data.py
-```
-
-See [tests/README.md](tests/README.md) for detailed testing documentation.
-
-### Code Style
-
-The codebase follows Python PEP 8 style guidelines with comprehensive docstrings for all classes and methods.
 
 ## AWS Cloud Deployment
 
 This application can be deployed as a serverless API on AWS Lambda with automatic PDF caching via S3. This allows you to generate prayer PDFs on-demand via HTTP requests without running the application locally.
 
-### Architecture Overview
-
-```
-Client → API Gateway → Router Lambda → [S3 Cache or Generator Lambda]
-```
-
-- **API Gateway**: REST API endpoint at `/prayer`
-- **Router Lambda**: Handles caching logic and request routing
-- **Generator Lambda**: Container image with LaTeX for PDF generation
-- **S3 Bucket**: Caches generated PDFs with configurable TTL (default: 30 days)
-
-### Prerequisites for AWS Deployment
-
-- AWS CLI configured with appropriate credentials
-- Docker installed and running
-- Bash shell (Linux, macOS, or WSL)
-
-### Quick Deploy
-
-```bash
-cd aws
-
-# Step 1: Build and push Docker image to ECR
-./build-and-push.sh
-
-# Step 2: Deploy CloudFormation stack
-./deploy-stack.sh <image-uri-from-step-1>
-```
-
-### CloudFormation Parameters
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `ImageUri` | *Required* | ECR image URI for the generator Lambda |
-| `CacheTTLDays` | 30 | Days to cache generated PDFs |
-| `GeneratorMemorySize` | 2048 | Memory (MB) for PDF generator Lambda |
-| `GeneratorTimeout` | 120 | Timeout (seconds) for generator Lambda |
-| `RouterMemorySize` | 512 | Memory (MB) for router Lambda |
-| `RouterTimeout` | 110 | Timeout (seconds) for router Lambda |
-| `EnableAPILogging` | false | Enable CloudWatch Logs for API Gateway |
-
-### Lambda Environment Variables
-
-The Router Lambda uses these environment variables (automatically configured by CloudFormation):
-
-| Variable | Description |
-|----------|-------------|
-| `CACHE_BUCKET` | S3 bucket name for PDF cache |
-| `GENERATOR_FUNCTION_NAME` | Name of the generator Lambda function |
-| `CACHE_TTL_DAYS` | Cache TTL in days |
-| `LOG_LEVEL` | Logging level (INFO) |
-
-### API Usage
-
-```bash
-# Daily morning prayer for today
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning' -o prayer.pdf
-
-# Evening prayer for Christmas
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=evening&date=2025-12-25' -o christmas.pdf
-
-# Monthly prayers for December
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true&year=2025&month=12' -o dec.pdf
-
-# Formatted for Remarkable 2 tablet
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&remarkable=true' -o remarkable.pdf
-```
-
-### Estimated Monthly Costs
-
-For moderate usage (1000 requests/day, 50% cache hit rate): ~$19/month
-
-### Static Web Frontend
-
-A simple static website for the AWS API is included at `aws/website/`. It provides a browser-based interface to generate prayers without using the command line. See [aws/website/README.md](aws/website/README.md) for deployment options (S3, GitHub Pages, Netlify, Vercel).
-
 For detailed deployment instructions, troubleshooting, and customization options, see [aws/README.md](aws/README.md).
-
-## Future Enhancements
-
-- [x] Compline support
-- [x] Monthly prayer generation with navigation
-- [x] Multiple page sizes (letter, remarkable)
-- [x] AWS Lambda deployment with S3 caching
-- [ ] Custom canticle selection
-- [ ] Configuration file support
-- [ ] Multiple output formats (HTML, DOCX)
-- [ ] Week-at-a-time generation
-- [ ] Custom CSS styling for PDF output
 
 ## License
 
@@ -419,13 +214,8 @@ The liturgical content is from *The Book of Common Prayer* (2019) of the Anglica
 
 ## Support
 
-For issues with the API or liturgical content, visit [https://www.dailyoffice2019.com](https://www.dailyoffice2019.com).
-
 For issues with this generator, please check the error messages and ensure:
 1. You have an internet connection
 2. The date format is correct (YYYY-MM-DD)
 3. Dependencies are installed (`pip install -r requirements.txt`)
-
----
-
-*May the grace of our Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit, be with us all evermore. Amen.*
+4. Submit an issue on GitHub if you encounter bugs or have questions

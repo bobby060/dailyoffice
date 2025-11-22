@@ -2,6 +2,8 @@
 
 This directory contains all the necessary files to deploy the Daily Office Prayer Generator as an AWS Lambda-based serverless application with S3 caching.
 
+For quick deployment instructions, see [QUICKSTART.md](QUICKSTART.md).
+
 ## Architecture Overview
 
 ```
@@ -45,6 +47,8 @@ This directory contains all the necessary files to deploy the Daily Office Praye
       │                 │
       └─────────────────┘
 ```
+
+For more architectural details, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Workflow
 
@@ -168,6 +172,15 @@ This script will:
 **Expected Output:**
 ```
 API Endpoint: https://abc123xyz.execute-api.us-east-1.amazonaws.com/prod/prayer
+```
+### Step 3: Test the API
+You have a few options
+
+1. Use the curl examples below
+
+2. Use the provided python script
+```bash
+python test_api.py <API_ENDPOINT>
 ```
 
 ## API Usage
@@ -432,55 +445,6 @@ export AWS_REGION=us-west-2
 docker run --rm public.ecr.aws/lambda/python:3.11 bash -c "yum install -y texlive && pdflatex --version"
 ```
 
-### Lambda Image Manifest Error
-
-**Problem**: Lambda deployment fails with error:
-```
-The image manifest, config or layer media type for the source image is not supported
-```
-
-**Root Cause**: Docker BuildKit 0.10+ creates provenance attestations and SBOM (Software Bill of Materials) by default. These attestations cause Docker to push an "image index" (multi-architecture manifest) to ECR instead of a simple single-image manifest. AWS Lambda **only supports Docker v2 schema 2 single-image manifests** and does NOT support:
-- OCI image manifests
-- Multi-architecture manifests (image indexes)
-- Image manifests with provenance/SBOM attestations
-
-**Solution**:
-
-1. **Check the manifest format**:
-```bash
-cd aws
-./fix-image-manifest.sh
-```
-
-2. **Rebuild the image** with the correct format:
-```bash
-# Delete the problematic image from ECR
-aws ecr batch-delete-image \
-    --repository-name dailyoffice-pdf-generator \
-    --image-ids imageTag=latest
-
-# Rebuild with provenance disabled (now the default in build-and-push.sh)
-./build-and-push.sh
-```
-
-The updated build script now uses:
-- `DOCKER_BUILDKIT=0` - Ensures Docker v2 manifest format
-- `--provenance=false` - Disables provenance attestations
-- `--sbom=false` - Disables SBOM attestations
-
-3. **Verify the fix**:
-```bash
-./fix-image-manifest.sh
-# Should show: ✓ Manifest format appears compatible with Lambda
-```
-
-4. **Redeploy the stack**:
-```bash
-AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-IMAGE_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION:-us-east-1}.amazonaws.com/dailyoffice-pdf-generator:latest"
-./deploy-stack.sh $IMAGE_URI
-```
-
 **Prevention**: The updated `build-and-push.sh` script now automatically disables attestations to ensure Lambda compatibility.
 
 ### Deployment Issues
@@ -516,6 +480,8 @@ aws cloudformation delete-stack --stack-name DailyOfficePrayerGenerator
 To remove all AWS resources:
 
 ```bash
+# Clean up entire stack
+./destroy-stack.sh
 # Delete CloudFormation stack
 aws cloudformation delete-stack --stack-name DailyOfficePrayerGenerator
 
