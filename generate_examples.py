@@ -14,7 +14,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from dailyoffice import PrayerService
+from dailyoffice import PrayerService, MonthlyPrayerGenerator
 
 
 def main():
@@ -64,6 +64,29 @@ def main():
                 )
 
                 print(f"✓ Saved to {filename}")
+
+        # Generate monthly example
+        print()
+        print("Generating Monthly Morning Prayer...", end=' ')
+
+        with MonthlyPrayerGenerator() as monthly_gen:
+            year = prayer_date.year
+            month = prayer_date.month
+
+            latex_content = monthly_gen.generate_monthly_latex(
+                year=year,
+                month=month,
+                prayer_type='morning',
+                page_size='letter'
+            )
+
+            monthly_gen.latex_generator.compile_latex_to_pdf(
+                latex_content,
+                'monthly_morning_prayer_example.pdf',
+                save_tex=False
+            )
+
+        print(f"✓ Saved to monthly_morning_prayer_example.pdf")
 
         print()
         print("="*80)
