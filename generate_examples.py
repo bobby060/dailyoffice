@@ -73,19 +73,17 @@ def main():
             year = prayer_date.year
             month = prayer_date.month
 
-            latex_content = monthly_gen.generate_monthly_latex(
-                year=year,
+            latex_content = monthly_gen.compile_to_pdf(
+                       year=year,
                 month=month,
+                output_pdf='monthly_morning_prayer_example.pdf',
                 prayer_type='morning',
-                page_size='letter'
+                page_size='letter',
+                psalm_cycle=60,
+                save_tex=False,
+                tex_filename=None
             )
-
-            monthly_gen.latex_generator.compile_latex_to_pdf(
-                latex_content,
-                'monthly_morning_prayer_example.pdf',
-                save_tex=False
-            )
-
+            
         print(f"✓ Saved to monthly_morning_prayer_example.pdf")
 
         print()
