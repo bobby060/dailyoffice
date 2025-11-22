@@ -18,7 +18,7 @@ Parameters:
 
   GeneratorTimeout:
     Type: Number
-    Default: 120
+    Default: 280
     Description: Timeout for PDF generator Lambda (seconds)
     MinValue: 30
     MaxValue: 900
@@ -32,7 +32,7 @@ Parameters:
 
   RouterTimeout:
     Type: Number
-    Default: 110
+    Default: 300
     Description: Timeout for router Lambda (seconds)
     MinValue: 10
     MaxValue: 900
@@ -75,7 +75,7 @@ Resources:
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
       VersioningConfiguration:
-        Status: Enabled
+        Status: Suspended # We don't need versioning for cache
       Tags:
         - Key: Application
           Value: DailyOfficePrayerGenerator
