@@ -290,6 +290,22 @@ Resources:
       ParentId: !GetAtt DailyOfficeAPI.RootResourceId
       PathPart: prayer
 
+  # API Gateway Resource for job status (async pattern)
+  JobResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ParentId: !GetAtt DailyOfficeAPI.RootResourceId
+      PathPart: job
+
+  # API Gateway Resource for job ID
+  JobIdResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ParentId: !Ref JobResource
+      PathPart: '{jobId}'
+
   # API Gateway Method (GET /prayer)
   PrayerGetMethod:
     Type: AWS::ApiGateway::Method
@@ -340,6 +356,54 @@ Resources:
             method.response.header.Access-Control-Allow-Methods: true
             method.response.header.Access-Control-Allow-Origin: true
 
+  # API Gateway Method (GET /job/{jobId}) - Check job status
+  JobGetMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ResourceId: !Ref JobIdResource
+      HttpMethod: GET
+      AuthorizationType: NONE
+      RequestParameters:
+        method.request.path.jobId: true
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${RouterLambda.Arn}/invocations'
+        IntegrationResponses:
+          - StatusCode: 200
+            ContentHandling: CONVERT_TO_BINARY
+      MethodResponses:
+        - StatusCode: 200
+          ResponseModels:
+            application/json: Empty
+            application/pdf: Empty
+
+  # OPTIONS method for CORS on job endpoint
+  JobOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref DailyOfficeAPI
+      ResourceId: !Ref JobIdResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
   # Lambda Permission for API Gateway to invoke Router
   RouterLambdaApiPermission:
     Type: AWS::Lambda::Permission
@@ -355,6 +419,8 @@ Resources:
     DependsOn:
       - PrayerGetMethod
       - PrayerOptionsMethod
+      - JobGetMethod
+      - JobOptionsMethod
     Properties:
       RestApiId: !Ref DailyOfficeAPI
       Description: Production deployment
@@ -422,6 +488,12 @@ Outputs:
     Value: !Sub 'https://${DailyOfficeAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/prayer'
     Export:
       Name: DailyOfficeAPIEndpoint
+
+  JobStatusEndpoint:
+    Description: Job status endpoint URL (append jobId)
+    Value: !Sub 'https://${DailyOfficeAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/job'
+    Export:
+      Name: DailyOfficeJobStatusEndpoint
 
   CacheBucketName:
     Description: S3 bucket name for PDF cache

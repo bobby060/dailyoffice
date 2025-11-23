@@ -52,19 +52,35 @@ For more architectural details, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Workflow
 
+### Daily Prayers (Synchronous)
 1. **Request arrives** at API Gateway with query parameters (type, date, remarkable)
 2. **Router Lambda** receives the request and:
    - Generates a cache key based on parameters
    - Checks if a PDF exists in S3 cache
    - If **cache HIT**: Returns the cached PDF directly
-   - If **cache MISS**: Invokes the Generator Lambda
-3. **Generator Lambda** (if invoked):
-   - Fetches prayer data from Daily Office API
-   - Generates LaTeX document
-   - Compiles to PDF using pdflatex
-   - Returns PDF to Router Lambda
-4. **Router Lambda** stores the new PDF in S3 cache and returns it to the client
+   - If **cache MISS**: Invokes the Generator Lambda synchronously
+3. **Generator Lambda** generates the PDF and returns it
+4. **Router Lambda** stores the PDF in S3 cache and returns it to the client
 5. **Client** receives the PDF file
+
+### Monthly Prayers (Asynchronous)
+Monthly prayers take 30-120 seconds to generate, which exceeds API Gateway's 29-second timeout. To handle this, monthly requests use an asynchronous pattern:
+
+1. **Request arrives** at API Gateway with `monthly=true`
+2. **Router Lambda** checks the S3 cache:
+   - If **cache HIT**: Returns the cached PDF directly
+   - If **cache MISS**:
+     - Creates a job ID and stores job status in S3
+     - Invokes Generator Lambda **asynchronously**
+     - Returns HTTP 202 with `job_id` immediately
+3. **Generator Lambda** (runs in background):
+   - Generates the monthly PDF
+   - Stores result in S3 at `jobs/{job_id}/result.pdf`
+   - Updates job status to `completed` or `failed`
+4. **Client polls** `GET /job/{job_id}`:
+   - Returns HTTP 202 if still processing
+   - Returns the PDF (HTTP 200) when complete
+   - Returns HTTP 500 if generation failed
 
 ## Components
 
@@ -210,6 +226,17 @@ python test_api.py <API_ENDPOINT>
 | `month` | No | number | Month 1-12 (default: current month) | `month=12` |
 | `psalm_cycle` | No | number | Psalm cycle: 30 or 60 (default: 60) | `psalm_cycle=30` |
 
+#### Job Status Endpoint (GET /job/{jobId})
+
+For monthly prayers that aren't cached, the API returns a `job_id` that you poll for completion:
+
+| Response Code | Meaning |
+|---------------|---------|
+| 200 | Job completed - returns PDF |
+| 202 | Job still processing - keep polling |
+| 404 | Job not found |
+| 500 | Job failed - returns error message |
+
 ### Example API Calls
 
 #### Using curl
@@ -229,16 +256,33 @@ curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=comp
 curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&remarkable=true' -o morning_remarkable.pdf
 ```
 
-**Monthly Prayers:**
+**Monthly Prayers (Async Pattern):**
 ```bash
-# Monthly morning prayers for current month
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true' -o morning_monthly.pdf
+# Step 1: Start monthly generation (returns job_id if not cached)
+JOB_RESPONSE=$(curl -s 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true')
+echo $JOB_RESPONSE
+# {"status": "pending", "job_id": "abc-123-def", "message": "..."}
 
-# Monthly evening prayers for December 2025
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=evening&monthly=true&year=2025&month=12' -o evening_dec_2025.pdf
+# Step 2: Poll for completion (repeat until status 200)
+JOB_ID="abc-123-def"  # Use job_id from response
+curl -s "https://your-api.execute-api.us-east-1.amazonaws.com/prod/job/$JOB_ID" -o monthly.pdf
 
-# Monthly morning prayers with 30-day psalm cycle
-curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true&psalm_cycle=30' -o morning_monthly_30day.pdf
+# If still processing, you'll get:
+# {"status": "pending", "job_id": "abc-123-def", "message": "Job is still processing"}
+
+# When complete, you'll get the PDF directly
+```
+
+**Simplified Monthly (Python script recommended):**
+```bash
+# For monthly prayers, use the test script which handles polling automatically
+python test_api_endpoint.py https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer
+```
+
+**Monthly with 30-day psalm cycle:**
+```bash
+curl 'https://your-api.execute-api.us-east-1.amazonaws.com/prod/prayer?type=morning&monthly=true&psalm_cycle=30'
+# Returns job_id, then poll /job/{job_id} for result
 ```
 
 **Advanced:**

@@ -368,7 +368,12 @@
         // CONFIGURATION - Update this with your API Gateway endpoint
         // =============================================================
         const API_ENDPOINT = 'https://2e59x55ie9.execute-api.us-east-1.amazonaws.com/prod/prayer';
+        const JOB_ENDPOINT = 'https://2e59x55ie9.execute-api.us-east-1.amazonaws.com/prod/job';
         // =============================================================
+
+        // Polling configuration
+        const POLL_INTERVAL = 3000; // 3 seconds
+        const MAX_POLL_TIME = 180000; // 3 minutes max
 
         // Initialize
         const form = document.getElementById('prayerForm');
@@ -465,11 +470,41 @@
             try {
                 const response = await fetch(url, {
                     headers: {
-                        'Accept': 'application/pdf'
+                        'Accept': 'application/pdf, application/json'
                     }
                 });
 
-                if (!response.ok) {
+                // Generate filename first (needed for polling)
+                let filename;
+                if (mode === 'monthly') {
+                    const year = document.getElementById('prayerYear').value || currentYear;
+                    const month = document.getElementById('prayerMonth').value || (new Date().getMonth() + 1);
+                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    filename = `${prayerType}_prayer_monthly_${monthNames[month - 1]}_${year}.pdf`;
+                } else {
+                    const date = document.getElementById('prayerDate').value || today;
+                    filename = `${prayerType}_prayer_${date}.pdf`;
+                }
+
+                // Check if this is an async job (202 response)
+                if (response.status === 202) {
+                    const data = await response.json();
+                    const jobId = data.job_id;
+
+                    if (!jobId) {
+                        throw new Error('No job ID returned');
+                    }
+
+                    // Poll for job completion
+                    loadingText.textContent = 'Monthly PDF generation started. Waiting for completion...';
+                    const result = await pollJobStatus(jobId, filename);
+
+                    if (result.success) {
+                        showSuccess(`PDF downloaded successfully: ${filename}`);
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } else if (!response.ok) {
                     let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
 
                     // Try to parse error message from response
@@ -483,40 +518,28 @@
                     }
 
                     throw new Error(errorMessage);
-                }
-
-                // Get the PDF blob
-                const blob = await response.blob();
-
-                // Check if it's actually a PDF
-                if (!blob.type.includes('pdf')) {
-                    throw new Error('Response was not a PDF file');
-                }
-
-                // Generate filename
-                let filename;
-                if (mode === 'monthly') {
-                    const year = document.getElementById('prayerYear').value || currentYear;
-                    const month = document.getElementById('prayerMonth').value || (new Date().getMonth() + 1);
-                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    filename = `${prayerType}_prayer_monthly_${monthNames[month - 1]}_${year}.pdf`;
                 } else {
-                    const date = document.getElementById('prayerDate').value || today;
-                    filename = `${prayerType}_prayer_${date}.pdf`;
+                    // Direct PDF response (daily prayers or cached monthly)
+                    const blob = await response.blob();
+
+                    // Check if it's actually a PDF
+                    if (!blob.type.includes('pdf')) {
+                        throw new Error('Response was not a PDF file');
+                    }
+
+                    // Create download link
+                    const downloadUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(downloadUrl);
+
+                    // Show success message
+                    showSuccess(`PDF downloaded successfully: ${filename}`);
                 }
-
-                // Create download link
-                const downloadUrl = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = downloadUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(downloadUrl);
-
-                // Show success message
-                showSuccess(`PDF downloaded successfully: ${filename}`);
 
             } catch (error) {
                 showError(`Failed to generate PDF: ${error.message}`);
@@ -537,6 +560,55 @@
             successDiv.textContent = message;
             successDiv.classList.add('show');
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        async function pollJobStatus(jobId, filename) {
+            const startTime = Date.now();
+
+            while (Date.now() - startTime < MAX_POLL_TIME) {
+                try {
+                    const response = await fetch(`${JOB_ENDPOINT}/${jobId}`, {
+                        headers: {
+                            'Accept': 'application/pdf, application/json'
+                        }
+                    });
+
+                    if (response.status === 200) {
+                        // Job completed - check content type
+                        const contentType = response.headers.get('Content-Type');
+                        if (contentType && contentType.includes('pdf')) {
+                            // PDF is ready - download it
+                            const blob = await response.blob();
+                            const downloadUrl = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            window.URL.revokeObjectURL(downloadUrl);
+                            return { success: true };
+                        }
+                    } else if (response.status === 202) {
+                        // Still pending - update message and continue polling
+                        const elapsed = Math.round((Date.now() - startTime) / 1000);
+                        loadingText.textContent = `Generating monthly PDF... (${elapsed}s elapsed)`;
+                    } else if (response.status === 500) {
+                        // Job failed
+                        const data = await response.json();
+                        return { success: false, error: data.error || 'Job failed' };
+                    } else {
+                        return { success: false, error: `Unexpected status: ${response.status}` };
+                    }
+                } catch (error) {
+                    console.error('Polling error:', error);
+                }
+
+                // Wait before next poll
+                await new Promise(resolve => setTimeout(resolve, POLL_INTERVAL));
+            }
+
+            return { success: false, error: 'Job timed out after 3 minutes' };
         }
     </script>
 </body>

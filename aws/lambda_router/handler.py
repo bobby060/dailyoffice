@@ -8,6 +8,7 @@ This handler implements a caching layer using S3:
 4. Stores the new PDF in S3 cache and returns it
 
 Supports both daily and monthly prayer generation.
+Monthly requests use an async pattern to avoid API Gateway timeout.
 """
 
 import json
@@ -16,6 +17,7 @@ import os
 import hashlib
 import boto3
 import calendar
+import uuid
 from datetime import datetime
 
 # Initialize AWS clients
@@ -143,6 +145,231 @@ def invoke_generator(event):
         raise
 
 
+def invoke_generator_async(event, job_id):
+    """
+    Invoke the generator Lambda function asynchronously for monthly PDFs.
+
+    Args:
+        event: Original API Gateway event with query parameters
+        job_id: Unique job identifier for tracking
+
+    Returns:
+        None (async invocation)
+    """
+    try:
+        print(f"Invoking generator Lambda async: {GENERATOR_FUNCTION_NAME}, job_id: {job_id}")
+
+        # Add job_id to the event for the generator to use
+        event_with_job = event.copy()
+        event_with_job['job_id'] = job_id
+        event_with_job['cache_bucket'] = CACHE_BUCKET
+
+        lambda_client.invoke(
+            FunctionName=GENERATOR_FUNCTION_NAME,
+            InvocationType='Event',  # Async invocation
+            Payload=json.dumps(event_with_job)
+        )
+
+    except Exception as e:
+        print(f"Error invoking generator Lambda async: {str(e)}")
+        raise
+
+
+def create_job(job_id, params):
+    """
+    Create a new job status entry in S3.
+
+    Args:
+        job_id: Unique job identifier
+        params: Request parameters for the job
+    """
+    try:
+        status_data = {
+            'status': 'pending',
+            'created_at': datetime.now().isoformat(),
+            'params': params
+        }
+
+        s3_client.put_object(
+            Bucket=CACHE_BUCKET,
+            Key=f"jobs/{job_id}/status.json",
+            Body=json.dumps(status_data),
+            ContentType='application/json'
+        )
+        print(f"Created job: {job_id}")
+    except Exception as e:
+        print(f"Error creating job: {str(e)}")
+        raise
+
+
+def get_job_status(job_id):
+    """
+    Get the status of a job from S3.
+
+    Args:
+        job_id: Unique job identifier
+
+    Returns:
+        dict with status information, or None if job not found
+    """
+    try:
+        # First check if the job exists
+        response = s3_client.get_object(
+            Bucket=CACHE_BUCKET,
+            Key=f"jobs/{job_id}/status.json"
+        )
+        status_data = json.loads(response['Body'].read())
+        return status_data
+    except s3_client.exceptions.NoSuchKey:
+        return None
+    except Exception as e:
+        print(f"Error getting job status: {str(e)}")
+        return None
+
+
+def get_job_result(job_id):
+    """
+    Get the PDF result of a completed job from S3.
+
+    Args:
+        job_id: Unique job identifier
+
+    Returns:
+        PDF data (bytes) if found, None otherwise
+    """
+    try:
+        response = s3_client.get_object(
+            Bucket=CACHE_BUCKET,
+            Key=f"jobs/{job_id}/result.pdf"
+        )
+        return response['Body'].read()
+    except s3_client.exceptions.NoSuchKey:
+        return None
+    except Exception as e:
+        print(f"Error getting job result: {str(e)}")
+        return None
+
+
+def handle_job_status_request(event):
+    """
+    Handle GET /job/{jobId} requests to check job status.
+
+    Args:
+        event: API Gateway event
+
+    Returns:
+        API Gateway compatible response
+    """
+    try:
+        # Extract job ID from path parameters
+        path_params = event.get('pathParameters', {}) or {}
+        job_id = path_params.get('jobId')
+
+        if not job_id:
+            return {
+                'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Missing job ID'})
+            }
+
+        # Get job status
+        status_data = get_job_status(job_id)
+
+        if not status_data:
+            return {
+                'statusCode': 404,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'error': 'Job not found'})
+            }
+
+        # If job is completed, return the PDF
+        if status_data.get('status') == 'completed':
+            pdf_data = get_job_result(job_id)
+
+            if pdf_data:
+                pdf_base64 = base64.b64encode(pdf_data).decode('utf-8')
+
+                # Generate filename from params
+                params = status_data.get('params', {})
+                prayer_type = params.get('type', 'prayer')
+                year = params.get('year', datetime.now().year)
+                month = params.get('month', datetime.now().month)
+                month_abbr = calendar.month_abbr[int(month)]
+                filename = f"{prayer_type}_prayer_monthly_{month_abbr}_{year}.pdf"
+
+                return {
+                    'statusCode': 200,
+                    'headers': {
+                        'Content-Type': 'application/pdf',
+                        'Content-Disposition': f'inline; filename="{filename}"',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': pdf_base64,
+                    'isBase64Encoded': True
+                }
+            else:
+                # Status says completed but no PDF found
+                return {
+                    'statusCode': 500,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': json.dumps({'error': 'Job completed but result not found'})
+                }
+
+        # If job failed, return error
+        if status_data.get('status') == 'failed':
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({
+                    'status': 'failed',
+                    'error': status_data.get('error', 'Unknown error')
+                })
+            }
+
+        # Job is still pending
+        return {
+            'statusCode': 202,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'status': 'pending',
+                'job_id': job_id,
+                'message': 'Job is still processing'
+            })
+        }
+
+    except Exception as e:
+        print(f"Error handling job status request: {str(e)}")
+        import traceback
+        traceback.print_exc()
+
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'error': 'Internal server error',
+                'message': str(e)
+            })
+        }
+
+
 def lambda_handler(event, context):
     """
     Router Lambda handler for caching Daily Office prayer PDFs.
@@ -161,6 +388,11 @@ def lambda_handler(event, context):
         API Gateway compatible response with PDF as base64-encoded binary
     """
     try:
+        # Check if this is a job status request (GET /job/{jobId})
+        resource = event.get('resource', '')
+        if resource == '/job/{jobId}':
+            return handle_job_status_request(event)
+
         # Extract query parameters
         params = event.get('queryStringParameters', {}) or {}
 
@@ -263,6 +495,40 @@ def lambda_handler(event, context):
 
         # If not in cache, generate new PDF
         if pdf_data is None:
+            # For monthly requests, use async pattern to avoid API Gateway timeout
+            if is_monthly:
+                # Generate a unique job ID
+                job_id = str(uuid.uuid4())
+
+                # Store job parameters for status tracking
+                job_params = {
+                    'type': prayer_type,
+                    'year': year,
+                    'month': month,
+                    'remarkable': remarkable,
+                    'psalm_cycle': psalm_cycle,
+                    'cache_key': cache_key
+                }
+                create_job(job_id, job_params)
+
+                # Invoke generator asynchronously
+                invoke_generator_async(event, job_id)
+
+                # Return job ID immediately
+                return {
+                    'statusCode': 202,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': json.dumps({
+                        'status': 'pending',
+                        'job_id': job_id,
+                        'message': 'Monthly PDF generation started. Poll /job/{job_id} for status.'
+                    })
+                }
+
+            # For daily requests, use synchronous invocation
             generator_response = invoke_generator(event)
 
             # Check if generator returned an error

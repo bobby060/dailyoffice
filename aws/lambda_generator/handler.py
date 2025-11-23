@@ -14,11 +14,88 @@ from datetime import datetime, date
 from pathlib import Path
 import sys
 import calendar
+import boto3
 
 # Add the parent directory to the path to import dailyoffice package
 sys.path.insert(0, '/var/task')
 
 from dailyoffice import PrayerService, MonthlyPrayerGenerator
+
+# Initialize S3 client for async job results
+s3_client = boto3.client('s3')
+
+
+def update_job_status(cache_bucket, job_id, status, error=None):
+    """
+    Update job status in S3.
+
+    Args:
+        cache_bucket: S3 bucket name
+        job_id: Unique job identifier
+        status: Job status (pending, completed, failed)
+        error: Error message if failed
+    """
+    try:
+        # Get existing status to preserve params
+        try:
+            response = s3_client.get_object(
+                Bucket=cache_bucket,
+                Key=f"jobs/{job_id}/status.json"
+            )
+            status_data = json.loads(response['Body'].read())
+        except Exception:
+            status_data = {}
+
+        status_data['status'] = status
+        status_data['updated_at'] = datetime.now().isoformat()
+        if error:
+            status_data['error'] = error
+
+        s3_client.put_object(
+            Bucket=cache_bucket,
+            Key=f"jobs/{job_id}/status.json",
+            Body=json.dumps(status_data),
+            ContentType='application/json'
+        )
+        print(f"Updated job {job_id} status to: {status}")
+    except Exception as e:
+        print(f"Error updating job status: {str(e)}")
+
+
+def store_job_result(cache_bucket, job_id, pdf_data, cache_key=None):
+    """
+    Store job result PDF in S3.
+
+    Args:
+        cache_bucket: S3 bucket name
+        job_id: Unique job identifier
+        pdf_data: PDF binary data
+        cache_key: Optional cache key to also store the PDF in cache
+    """
+    try:
+        # Store in job results
+        s3_client.put_object(
+            Bucket=cache_bucket,
+            Key=f"jobs/{job_id}/result.pdf",
+            Body=pdf_data,
+            ContentType='application/pdf'
+        )
+        print(f"Stored job result: {job_id}")
+
+        # Also store in cache for future requests
+        if cache_key:
+            s3_client.put_object(
+                Bucket=cache_bucket,
+                Key=cache_key,
+                Body=pdf_data,
+                ContentType='application/pdf',
+                Metadata={
+                    'generated-at': datetime.now().isoformat()
+                }
+            )
+            print(f"Stored in cache: {cache_key}")
+    except Exception as e:
+        print(f"Error storing job result: {str(e)}")
 
 
 def parse_date(date_string):
@@ -56,6 +133,11 @@ def lambda_handler(event, context):
     Returns:
         API Gateway compatible response with PDF as base64-encoded binary
     """
+    # Check if this is an async job invocation
+    job_id = event.get('job_id')
+    cache_bucket = event.get('cache_bucket')
+    is_async_job = job_id is not None
+
     try:
         # Extract query parameters from API Gateway event
         params = event.get('queryStringParameters', {}) or {}
@@ -163,6 +245,30 @@ def lambda_handler(event, context):
             month_abbr = calendar.month_abbr[month]
             filename = f"{prayer_type}_prayer_monthly_{month_abbr}_{year}.pdf"
 
+            # If this is an async job, store results in S3
+            if is_async_job:
+                # Get cache key from job params
+                cache_key = None
+                try:
+                    response = s3_client.get_object(
+                        Bucket=cache_bucket,
+                        Key=f"jobs/{job_id}/status.json"
+                    )
+                    job_status = json.loads(response['Body'].read())
+                    cache_key = job_status.get('params', {}).get('cache_key')
+                except Exception:
+                    pass
+
+                # Store result and update status
+                store_job_result(cache_bucket, job_id, pdf_data, cache_key)
+                update_job_status(cache_bucket, job_id, 'completed')
+
+                # Return success (no response body needed for async)
+                return {
+                    'statusCode': 200,
+                    'body': json.dumps({'status': 'completed', 'job_id': job_id})
+                }
+
         else:
             # Daily generation (existing code)
             # Get date (optional, defaults to today)
@@ -217,6 +323,9 @@ def lambda_handler(event, context):
 
     except ValueError as e:
         print(f"Validation error: {str(e)}")
+        # Update job status if async
+        if is_async_job:
+            update_job_status(cache_bucket, job_id, 'failed', str(e))
         return {
             'statusCode': 400,
             'headers': {
@@ -230,6 +339,10 @@ def lambda_handler(event, context):
         print(f"Error generating prayer: {str(e)}")
         import traceback
         traceback.print_exc()
+
+        # Update job status if async
+        if is_async_job:
+            update_job_status(cache_bucket, job_id, 'failed', str(e))
 
         return {
             'statusCode': 500,

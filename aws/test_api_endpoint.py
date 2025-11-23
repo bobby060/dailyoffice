@@ -93,9 +93,61 @@ def test_daily_prayer(base_url, prayer_type, test_date=None, remarkable=False):
         return False
 
 
+def poll_job_status(base_url, job_id, max_wait=180):
+    """
+    Poll job status endpoint until completion or timeout.
+
+    Args:
+        base_url: Base API Gateway URL (e.g., .../prod/prayer)
+        job_id: Job ID to poll
+        max_wait: Maximum time to wait in seconds
+
+    Returns:
+        tuple: (success, pdf_data or error_message)
+    """
+    # Convert prayer URL to job URL
+    job_url = base_url.replace('/prayer', f'/job/{job_id}')
+
+    start_time = time.time()
+    poll_interval = 3  # seconds
+
+    while time.time() - start_time < max_wait:
+        try:
+            headers = {'Accept': 'application/pdf, application/json'}
+            response = requests.get(job_url, headers=headers, timeout=30)
+
+            if response.status_code == 200:
+                # Check if it's a PDF
+                content_type = response.headers.get('Content-Type', '')
+                if 'application/pdf' in content_type:
+                    return True, response.content
+                else:
+                    return False, 'Expected PDF but got different content type'
+            elif response.status_code == 202:
+                # Still pending
+                elapsed = int(time.time() - start_time)
+                print(f"   ⏳ Still processing... ({elapsed}s elapsed)")
+            elif response.status_code == 500:
+                # Failed
+                try:
+                    error_data = response.json()
+                    return False, error_data.get('error', 'Job failed')
+                except:
+                    return False, 'Job failed'
+            else:
+                return False, f'Unexpected status: {response.status_code}'
+
+        except requests.exceptions.RequestException as e:
+            print(f"   ⚠️  Polling error: {e}")
+
+        time.sleep(poll_interval)
+
+    return False, f'Job timed out after {max_wait}s'
+
+
 def test_monthly_prayer(base_url, prayer_type, year=None, month=None, remarkable=False, psalm_cycle=None):
     """
-    Test monthly prayer generation endpoint.
+    Test monthly prayer generation endpoint (async pattern).
 
     Args:
         base_url: Base API Gateway URL
@@ -137,34 +189,59 @@ def test_monthly_prayer(base_url, prayer_type, year=None, month=None, remarkable
     print(f"   Params: {params}")
 
     try:
-        # Monthly generation can take longer, so increase timeout
-        print(f"   ⏳ Generating monthly PDF (this may take 30-120 seconds)...")
         start_time = time.time()
 
         # Must include Accept header for API Gateway to return binary
-        headers = {'Accept': 'application/pdf'}
-        response = requests.get(base_url, params=params, headers=headers, timeout=300)
-        elapsed_time = time.time() - start_time
+        headers = {'Accept': 'application/pdf, application/json'}
+        response = requests.get(base_url, params=params, headers=headers, timeout=60)
 
-        if response.status_code != 200:
+        # Check if this is an async job response (202)
+        if response.status_code == 202:
+            try:
+                data = response.json()
+                job_id = data.get('job_id')
+                if not job_id:
+                    print(f"   ❌ FAILED: No job_id in 202 response")
+                    return False
+
+                print(f"   📋 Job started: {job_id}")
+                print(f"   ⏳ Polling for completion (this may take 30-120 seconds)...")
+
+                # Poll for completion
+                success, result = poll_job_status(base_url, job_id)
+                elapsed_time = time.time() - start_time
+
+                if not success:
+                    print(f"   ❌ FAILED: {result}")
+                    return False
+
+                pdf_data = result
+
+            except ValueError:
+                print(f"   ❌ FAILED: Could not parse 202 response as JSON")
+                return False
+        elif response.status_code == 200:
+            # Direct response (cached)
+            elapsed_time = time.time() - start_time
+            pdf_data = response.content
+
+            # Check content type
+            content_type = response.headers.get('Content-Type', '')
+            if 'application/pdf' not in content_type:
+                print(f"   ❌ FAILED: Invalid content type: {content_type}")
+                return False
+        else:
             print(f"   ❌ FAILED: HTTP {response.status_code}")
             print(f"   Response: {response.text}")
             return False
 
-        # Check content type
-        content_type = response.headers.get('Content-Type', '')
-        if 'application/pdf' not in content_type:
-            print(f"   ❌ FAILED: Invalid content type: {content_type}")
-            return False
-
         # Check PDF content
-        pdf_data = response.content
         if not pdf_data.startswith(b'%PDF'):
             print(f"   ❌ FAILED: Response is not a valid PDF")
             return False
 
-        # Check cache header
-        cache_status = response.headers.get('X-Cache', 'UNKNOWN')
+        # Check cache header (only for direct responses)
+        cache_status = response.headers.get('X-Cache', 'N/A')
         pdf_size = len(pdf_data)
 
         print(f"   ✅ PASSED")
@@ -175,7 +252,7 @@ def test_monthly_prayer(base_url, prayer_type, year=None, month=None, remarkable
         return True
 
     except requests.exceptions.Timeout:
-        print(f"   ❌ FAILED: Request timeout (>300s)")
+        print(f"   ❌ FAILED: Request timeout")
         return False
     except requests.exceptions.RequestException as e:
         print(f"   ❌ FAILED: Request error: {e}")
