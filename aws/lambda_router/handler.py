@@ -15,12 +15,21 @@ import base64
 import os
 import hashlib
 import boto3
+from botocore.config import Config
 import calendar
 from datetime import datetime
 
 # Initialize AWS clients
 s3_client = boto3.client('s3')
-lambda_client = boto3.client('lambda')
+
+# Configure Lambda client with extended timeout for long-running invocations
+# Monthly PDF generation can take several minutes
+lambda_config = Config(
+    read_timeout=900,  # 15 minutes
+    connect_timeout=10,
+    retries={'max_attempts': 0}  # Don't retry on timeout
+)
+lambda_client = boto3.client('lambda', config=lambda_config)
 
 # Get environment variables
 CACHE_BUCKET = os.environ.get('CACHE_BUCKET')
