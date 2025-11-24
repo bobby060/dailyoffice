@@ -18,8 +18,8 @@ Parameters:
 
   GeneratorTimeout:
     Type: Number
-    Default: 280
-    Description: Timeout for PDF generator Lambda (seconds)
+    Default: 900
+    Description: Timeout for PDF generator Lambda (seconds) - monthly generation needs up to 15 min
     MinValue: 30
     MaxValue: 900
 
@@ -32,8 +32,8 @@ Parameters:
 
   RouterTimeout:
     Type: Number
-    Default: 300
-    Description: Timeout for router Lambda (seconds)
+    Default: 900
+    Description: Timeout for router Lambda (seconds) - must match generator for monthly requests
     MinValue: 10
     MaxValue: 900
 
